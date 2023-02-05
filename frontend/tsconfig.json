@@ -1,0 +1,38 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "esnext",
+		"lib": [
+			"ESNext",
+			"dom"
+		],
+		"jsx": "react-jsx",
+		"noEmit": true,
+		"sourceMap": true,
+		/* Strict Type-Checking Options */
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+
+		/* Module Resolution Options */
+		"moduleResolution": "node",
+		"forceConsistentCasingInFileNames": true,
+		"esModuleInterop": true,
+		"plugins": [{ "name": "typescript-plugin-css-modules" }],
+		"baseUrl": "./src/",
+		"paths": {
+			"@/common/*": ["Components/Common/*"],
+			"@/screens/*": ["Components/Screens/*"],
+			"@/ui/*": ["Components/Common/UI/*"],
+
+			"@/assets/*": ["Assets/*"],
+			"@/hooks/*": ["Hooks/*"],
+			"@/services/*": ["Services/*"],
+			"@/shared/*": ["Shared/*"],
+			"@/store/*": ["Store/*"],
+			"@/utils/*": ["Utils/*"],
+			"@/providers/*": ["Providers/*"]
+		}
+	},
+	"include": ["src"]
+}

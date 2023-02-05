@@ -1,0 +1,11 @@
+.idea
+frontend/.idea
+backend/.idea
+
+frontend/node_modules
+backend/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*

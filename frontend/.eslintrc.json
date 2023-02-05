@@ -1,0 +1,43 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": [
+		"airbnb",
+		"airbnb-typescript",
+		"airbnb/hooks",
+		//        "eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended"
+	],
+	"overrides": [
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"sourceType": "module",
+		"project": [
+			"./tsconfig.json"
+		],
+		"tsconfigRootDir": "D:\\Работа\\Проекты\\withTs\\perfect-project\\google-calendar\\frontend"
+	},
+	"plugins": [
+		"react",
+		"@typescript-eslint",
+		"prettier"
+	],
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"react/self-closing-comp": "off",
+		"prettier/prettier": "off",
+		"react/function-component-definition": "off",
+		"react/button-has-type": "off",
+		"import/extensions": "off",
+		"react/jsx-no-useless-fragment": "off",
+		"import/prefer-default-export": "off",
+		"react/require-default-props": "off",
+		"import/no-extraneous-dependencies": "off"
+	}
+}
