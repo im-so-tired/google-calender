@@ -1,0 +1,38 @@
+.header {
+	padding: 0.5rem 0.7rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	> div:first-child {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+
+	img {
+		height: 2.5rem;
+		width: 2.5rem;
+	}
+
+	div {
+		position: relative;
+		margin-right: .5rem;
+		display: flex;
+		align-items: center;
+	}
+
+	.currentDay {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: var(--primary);
+		font-weight: 600;
+		font-size: 14px;
+	}
+}

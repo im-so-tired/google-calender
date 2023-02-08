@@ -1,12 +1,17 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
 
-import ShowSidebarBtn from './ShowSidebarBtn'
+import styles from '../Layout.module.scss'
+
+import Logo from './Logo'
+import CircleBtn from '@/common/Buttons/CircleBtn/CircleBtn'
 
 const Header: FC = () => {
 	return (
-		<header>
-			<ShowSidebarBtn />
+		<header className={styles.header}>
+			<div>
+				<CircleBtn bgColor="gray" size={48} iconSize={24} icon="MdDehaze" />
+				<Logo />
+			</div>
 		</header>
 	)
 }

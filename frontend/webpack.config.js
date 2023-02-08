@@ -25,6 +25,7 @@ const optimization = () => {
 const styleModulesLoader = loader => {
 	const config = [
 		isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+		// 'css-modules-typescript-loader',
 		{
 			loader: 'css-loader',
 			options: {
@@ -92,6 +93,16 @@ module.exports = {
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
+				},
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				type: 'asset/resource',
+			},
+			{
+				test: /\.(eot|svg|ttf|woff|woff2)$/,
+				use: {
+					loader: 'file-loader',
 				},
 			},
 		],

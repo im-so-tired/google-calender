@@ -3,10 +3,22 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background: none;
+	transition: background .2s;
 
 	path {
 		display: inline-block;
 		height: 100%;
 		width: 100%;
+	}
+
+	&:hover {
+		background: var(--background-hover);
+	}
+}
+
+.bgHoverDark {
+	&:hover {
+		background: var(--gray);
 	}
 }

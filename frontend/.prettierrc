@@ -21,5 +21,6 @@
 		"^./(.*)",
 		"(.scss)$"
 	],
-	"importOrderSeparation": true
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
 }

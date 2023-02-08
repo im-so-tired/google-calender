@@ -3,6 +3,8 @@ import * as MaterialIcons from 'react-icons/md'
 
 import { IconTypes } from '@/shared/types/IconTypes'
 
+import { defaultIconSize } from '@/utils/constants'
+
 interface IMaterialIconProps {
 	name: IconTypes
 	color?: string
@@ -12,7 +14,7 @@ interface IMaterialIconProps {
 const MaterialIcon: FC<IMaterialIconProps> = ({
 	name,
 	color = '#000',
-	size = 22,
+	size = defaultIconSize,
 }) => {
 	const IconComponent = MaterialIcons[name]
 	return (

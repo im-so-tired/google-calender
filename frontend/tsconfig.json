@@ -13,26 +13,56 @@
 		"strict": true,
 		"noImplicitAny": true,
 		"strictNullChecks": true,
-
 		/* Module Resolution Options */
 		"moduleResolution": "node",
+		"isolatedModules": true,
 		"forceConsistentCasingInFileNames": true,
 		"esModuleInterop": true,
-		"plugins": [{ "name": "typescript-plugin-css-modules" }],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"incremental": true,
+		"plugins": [
+			{
+				"name": "typescript-plugin-css-modules"
+			}
+		],
 		"baseUrl": "./src/",
 		"paths": {
-			"@/common/*": ["Components/Common/*"],
-			"@/screens/*": ["Components/Screens/*"],
-			"@/ui/*": ["Components/Common/UI/*"],
-
-			"@/assets/*": ["Assets/*"],
-			"@/hooks/*": ["Hooks/*"],
-			"@/services/*": ["Services/*"],
-			"@/shared/*": ["Shared/*"],
-			"@/store/*": ["Store/*"],
-			"@/utils/*": ["Utils/*"],
-			"@/providers/*": ["Providers/*"]
+			"@/common/*": [
+				"Components/Common/*"
+			],
+			"@/screens/*": [
+				"Components/Screens/*"
+			],
+			"@/ui/*": [
+				"Components/Common/UI/*"
+			],
+			"@/assets/*": [
+				"Assets/*"
+			],
+			"@/hooks/*": [
+				"Hooks/*"
+			],
+			"@/services/*": [
+				"Services/*"
+			],
+			"@/shared/*": [
+				"Shared/*"
+			],
+			"@/store/*": [
+				"Store/*"
+			],
+			"@/utils/*": [
+				"Utils/*"
+			],
+			"@/providers/*": [
+				"Providers/*"
+			]
 		}
 	},
-	"include": ["src"]
+	"include": [
+		"src",
+		"global.d.ts"
+	]
 }
