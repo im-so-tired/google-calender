@@ -6,10 +6,17 @@
 	background: none;
 	transition: background .2s;
 
-	path {
-		display: inline-block;
-		height: 100%;
-		width: 100%;
+	svg {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: transform .4s;
+
+		path {
+			display: inline-block;
+			height: 100%;
+			width: 100%;
+		}
 	}
 
 	&:hover {

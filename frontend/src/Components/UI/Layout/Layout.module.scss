@@ -3,16 +3,25 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	user-select: none;
+	border-bottom: 1px solid var(--gray);
+	margin-bottom: .75rem;
 
-	> div:first-child {
+	> div {
 		display: flex;
 		align-items: center;
+	}
+
+	> div:last-child {
+		gap: .5rem;
 	}
 }
 
 .logo {
 	display: flex;
 	align-items: center;
+	margin-right: 2.5rem;
+	margin-left: .5rem;
 
 	img {
 		height: 2.5rem;
@@ -34,5 +43,15 @@
 		color: var(--primary);
 		font-weight: 600;
 		font-size: 14px;
+	}
+}
+
+.select {
+	width: 115px;
+}
+
+.hideSidebar {
+	svg {
+		transform: rotate(-90deg);
 	}
 }

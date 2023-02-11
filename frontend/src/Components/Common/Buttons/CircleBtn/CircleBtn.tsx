@@ -20,16 +20,19 @@ const CircleBtn: FC<PropsWithChildren<CircleBtnProps>> = ({
 	size,
 	iconSize = defaultIconSize,
 	bgColor = 'light',
+	className,
+	...rest
 }) => {
 	const buttonStyle = size ? { width: size, height: size } : {}
 	return (
 		<button
-			className={cn(styles.circleBtn, {
+			{...rest}
+			className={cn(className, styles.circleBtn, {
 				[styles.bgHoverDark]: bgColor === 'gray',
 			})}
 			style={buttonStyle}
 		>
-			<Icon name={icon} size={iconSize} />
+			<Icon name={icon} size={iconSize} color="#5f6368" />
 		</button>
 	)
 }
