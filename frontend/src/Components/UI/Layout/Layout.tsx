@@ -1,18 +1,9 @@
-import { FC, createContext, useCallback, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import Header from './Header/Header'
 import Sidebar from './Sidebar/Sidebar'
-
-interface ILayoutContext {
-	showSidebar: boolean
-	toggleSidebar: () => void
-}
-
-export const LayoutContext = createContext<ILayoutContext>({
-	showSidebar: true,
-	toggleSidebar: () => {},
-})
+import { LayoutProvider } from './useLayoutContext'
 
 const Layout: FC = () => {
 	const [showSidebar, setShowSidebar] = useState(true)
@@ -23,11 +14,11 @@ const Layout: FC = () => {
 
 	return (
 		<div>
-			<LayoutContext.Provider value={{ showSidebar, toggleSidebar }}>
+			<LayoutProvider value={{ showSidebar, toggleSidebar }}>
 				<Header />
 				{showSidebar && <Sidebar />}
 				<Outlet />
-			</LayoutContext.Provider>
+			</LayoutProvider>
 		</div>
 	)
 }

@@ -4,7 +4,7 @@ import styles from '../Layout.module.scss'
 
 import Logo from './Logo'
 import Navigation from './Navigation/Navigation'
-import SelectTypeTable from './SelectTypeTable'
+import SelectTimeZone from './SelectTimeZone'
 import ShowSidebarBtn from './ShowSidebarBtn'
 import CircleBtn from '@/common/Buttons/CircleBtn/CircleBtn'
 
@@ -20,7 +20,7 @@ const Header: FC = memo(() => {
 				<CircleBtn icon="MdSearch" size={40} iconSize={24} />
 				<CircleBtn icon="MdInfoOutline" size={40} iconSize={24} />
 				<CircleBtn icon="MdSettings" size={40} iconSize={24} />
-				<SelectTypeTable />
+				<SelectTimeZone />
 			</div>
 		</header>
 	)

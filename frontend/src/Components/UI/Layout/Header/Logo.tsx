@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 
 import LogoImg from '@/assets/logo.png'
 
@@ -14,7 +14,7 @@ const Logo: FC = () => {
 				<img alt="logo" src={LogoImg} />
 				<span className={styles.currentDay}>{day}</span>
 			</div>
-			<h1 className="text-large">Календарь</h1>
+			<h1 className="text-large">Calendar</h1>
 		</div>
 	)
 }

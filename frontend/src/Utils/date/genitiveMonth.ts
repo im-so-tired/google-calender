@@ -2,40 +2,40 @@ export const getGenitiveMonth = (date: number) => {
 	let result = ''
 	switch (date) {
 		case 1:
-			result = 'Января'
+			result = 'January'
 			break
 		case 2:
-			result = 'Февраля'
+			result = 'February'
 			break
 		case 3:
-			result = 'Марта'
+			result = 'March'
 			break
 		case 4:
-			result = 'Апреля'
+			result = 'April'
 			break
 		case 5:
-			result = 'Мая'
+			result = 'May'
 			break
 		case 6:
-			result = 'Июня'
+			result = 'June'
 			break
 		case 7:
-			result = 'Июля'
+			result = 'July'
 			break
 		case 8:
-			result = 'Августа'
+			result = 'August'
 			break
 		case 9:
-			result = 'Сентября'
+			result = 'September'
 			break
 		case 10:
-			result = 'Октября'
+			result = 'October'
 			break
 		case 11:
-			result = 'Ноября'
+			result = 'November'
 			break
 		case 12:
-			result = 'Декабря'
+			result = 'December'
 			break
 		default:
 	}

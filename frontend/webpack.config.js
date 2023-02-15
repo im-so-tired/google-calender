@@ -56,6 +56,7 @@ module.exports = {
 			directory: path.resolve(__dirname, 'dist'),
 		},
 		historyApiFallback: true,
+		port: 4200,
 	},
 	devtool: isDev ? 'source-map' : false,
 	optimization: optimization(),
@@ -127,5 +128,6 @@ module.exports = {
 			'@/ui': path.resolve(__dirname, 'src/components/ui'),
 			'@': path.resolve(__dirname, 'src'),
 		},
+		// roots: [__dirname, 'src'],
 	},
 }

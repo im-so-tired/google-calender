@@ -1,13 +1,13 @@
 import cn from 'classnames'
-import React, { FC, useContext } from 'react'
+import React, { FC } from 'react'
 
-import { LayoutContext } from '../Layout'
 import styles from '../Layout.module.scss'
+import { useLayoutContext } from '../useLayoutContext'
 
 import CircleBtn from '@/common/Buttons/CircleBtn/CircleBtn'
 
 const ShowSidebarBtn: FC = () => {
-	const { showSidebar, toggleSidebar } = useContext(LayoutContext)
+	const { showSidebar, toggleSidebar } = useLayoutContext()
 	return (
 		<CircleBtn
 			onClick={() => {
