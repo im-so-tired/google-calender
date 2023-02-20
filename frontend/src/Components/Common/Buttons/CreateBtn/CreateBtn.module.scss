@@ -1,0 +1,29 @@
+.createBtn {
+	padding: .8rem;
+	background: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1.6rem;
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+	font-size: 15px;
+	transition: all .25s;
+	position: absolute;
+	left: .4rem;
+	top: 100%;
+	margin-top: 12px;
+
+	img {
+		margin-right: 1rem;
+		opacity: .6;
+	}
+
+	span {
+		margin-right: 1rem;
+	}
+
+	&:hover {
+		box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.2);
+		background: #F6FAFE;
+	}
+}

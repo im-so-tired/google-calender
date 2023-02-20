@@ -3,3 +3,4 @@ dist
 Dockerfile
 .dockerignore
 .idea
+docker-compose.yml

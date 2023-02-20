@@ -5,14 +5,14 @@
 	align-items: center;
 	user-select: none;
 	border-bottom: 1px solid var(--gray);
-	margin-bottom: .75rem;
+	position: relative;
 
 	> div {
 		display: flex;
 		align-items: center;
 	}
 
-	> div:last-child {
+	.extraOptions {
 		gap: .5rem;
 	}
 }
@@ -47,11 +47,19 @@
 }
 
 .select {
-	width: 115px;
+	width: 100px;
 }
 
 .hideSidebar {
 	svg {
 		transform: rotate(-90deg);
+	}
+}
+
+.sidebar {
+	width: 256px;
+
+	.emptyDiv {
+		height: 84px;
 	}
 }

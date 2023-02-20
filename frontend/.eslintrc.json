@@ -42,6 +42,9 @@
 		"@typescript-eslint/no-empty-interface": "off",
 		"react/jsx-props-no-spreading": "off",
 		"react/prop-types": "off",
-		"react/jsx-no-constructed-context-values": "off"
+		"react/jsx-no-constructed-context-values": "off",
+		"jsx-a11y/no-static-element-interactions": "off",
+		"jsx-a11y/click-events-have-key-events": "off",
+		"consistent-return": "off"
 	}
 }

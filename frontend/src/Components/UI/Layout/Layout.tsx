@@ -17,7 +17,9 @@ const Layout: FC = () => {
 			<LayoutProvider value={{ showSidebar, toggleSidebar }}>
 				<Header />
 				{showSidebar && <Sidebar />}
-				<Outlet />
+				<main>
+					<Outlet />
+				</main>
 			</LayoutProvider>
 		</div>
 	)

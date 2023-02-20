@@ -13,7 +13,7 @@ interface IMaterialIconProps {
 
 const MaterialIcon: FC<IMaterialIconProps> = ({
 	name,
-	color = '#000',
+	color = '#5f6368',
 	size = defaultIconSize,
 }) => {
 	const IconComponent = MaterialIcons[name]
