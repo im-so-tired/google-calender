@@ -1,21 +1,25 @@
-import { MutableRefObject, useEffect, useRef } from 'react'
+import { MutableRefObject, useEffect } from 'react'
 
 import { useLatest } from '@/hooks/useLatest'
 
 export const useOutsideClick = (
-	elemRef: MutableRefObject<null>,
-	handler: () => void,
-	attached = true
+	elemRef: MutableRefObject<any>,
+	toggleRef: MutableRefObject<any>,
+	handler: () => void
 ) => {
 	const handlerRef = useLatest(handler)
 	useEffect(() => {
-		if (!attached && !elemRef !== null) return
+		if (elemRef == null || toggleRef == null) return
 		const handleClick = (e: Event) => {
-			if (elemRef.current !== e.target) {
+			e.stopPropagation()
+			if (
+				elemRef.current !== e.target &&
+				!toggleRef.current.contains(e.target)
+			) {
 				handlerRef.current()
 			}
 		}
 		document.addEventListener('mousedown', handleClick)
 		return () => document.removeEventListener('mousedown', handleClick)
-	}, [attached, elemRef, handlerRef])
+	}, [elemRef, handlerRef, toggleRef])
 }

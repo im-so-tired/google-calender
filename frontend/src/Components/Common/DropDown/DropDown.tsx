@@ -1,35 +1,35 @@
 import cn from 'classnames'
-import React, { FC, PropsWithChildren, useRef, useState } from 'react'
+import { FC, useRef, useState } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 
-import { IOption } from '@/shared/types/SelectOpt'
-
 import styles from './DropDown.module.scss'
-
-interface IDropDownProps {
-	options: IOption[]
-	className?: string
-	clickHandler: () => void
-	children: React.ReactNode
-	openingDirection?: 'left' | 'right' | 'center'
-}
+import { IDropDownProps } from '@/common/DropDown/DropDown.interface'
 
 const DropDown: FC<IDropDownProps> = ({
 	children,
 	options,
-	className,
-	clickHandler,
 	openingDirection = 'right',
+	clickHandler,
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const menuRef = useRef(null)
-	useOutsideClick(menuRef, () => setIsOpen(false))
+	const toggleRef = useRef(null)
+	useOutsideClick(menuRef, toggleRef, () => setIsOpen(false))
 	return (
-		<div className={styles.dropDown} onClick={() => setIsOpen(prev => !prev)}>
+		<div
+			ref={toggleRef}
+			className={styles.dropDown}
+			onClick={() => setIsOpen(prev => !prev)}
+		>
 			{children}
 			{isOpen && (
-				<ul ref={menuRef} className={cn(styles.menu, styles[openingDirection])}>
+				<ul
+					ref={menuRef}
+					className={cn(styles.menu, styles[openingDirection])}
+					onClick={() => clickHandler()}
+				>
 					{options.map(opt => (
 						<li key={opt.value}>{opt.label}</li>
 					))}

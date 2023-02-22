@@ -1,27 +1,26 @@
 .dropDown {
 	position: relative;
+}
 
-	.menu {
-		width: 130px;
-		position: absolute;
-		top: 100%;
-		border-radius: .2rem;
-		background: white;
-		box-shadow: 0 2px 5px 3px rgba(60, 64, 67, 0.15);
-		//box-shadow: var(--shadow-5);
-		padding: .5rem 0;
-		font-size: 15px;
+.menu {
+	width: 130px;
+	position: absolute;
+	top: 100%;
+	border-radius: .2rem;
+	background: white;
+	box-shadow: 0 2px 5px 3px rgba(60, 64, 67, 0.15);
+	padding: .5rem 0;
+	font-size: 15px;
 
-		li {
-			height: 36px;
-			padding: 0 1.4rem;
-			display: flex;
-			align-items: center;
-			transition: all .1s;
+	li {
+		height: 36px;
+		padding: 0 1.4rem;
+		display: flex;
+		align-items: center;
+		transition: all .1s;
 
-			&:hover {
-				background: var(--gray);
-			}
+		&:hover {
+			background: var(--gray);
 		}
 	}
 }
