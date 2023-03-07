@@ -24,7 +24,13 @@ const DropDown: FC<IDropDownProps> = ({
 			onClick={() => setIsOpen(prev => !prev)}
 		>
 			{children}
-			{isOpen && (
+			<CSSTransition
+				nodeRef={menuRef}
+				timeout={300}
+				in={isOpen}
+				classNames="alert"
+				unmountOnExit
+			>
 				<ul
 					ref={menuRef}
 					className={cn(styles.menu, styles[openingDirection])}
@@ -34,7 +40,7 @@ const DropDown: FC<IDropDownProps> = ({
 						<li key={opt.value}>{opt.label}</li>
 					))}
 				</ul>
-			)}
+			</CSSTransition>
 		</div>
 	)
 }

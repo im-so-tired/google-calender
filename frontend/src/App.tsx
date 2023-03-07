@@ -7,6 +7,7 @@ import DayPage from './Components/Pages/Day/Day'
 import MonthPage from './Components/Pages/Month/Month'
 import WeekPage from './Components/Pages/Week/Week'
 import Layout from './Components/UI/Layout/Layout'
+import MainProvider from './Provider/MainProvider'
 
 const currentDate = getCurrentDate()
 
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
 ])
 
 const App: FC = () => {
-	return <RouterProvider router={router} />
+	return (
+		<MainProvider>
+			<RouterProvider router={router} />
+		</MainProvider>
+	)
 }
 
 export default App

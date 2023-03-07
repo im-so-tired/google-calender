@@ -8,6 +8,7 @@ import {
 	useRef,
 	useState,
 } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 
@@ -43,18 +44,25 @@ const DropDownAbsolute: FC<IDropDownAbs> = ({
 			left: elemRect.left + TOP_SPACE,
 		})
 	}, [opened, elem])
-	if (!opened) return null
 	return (
-		<ul
-			ref={menuRef}
-			className={cn(styles.menu, styles[openingDirection])}
-			onClick={() => clickHandler()}
-			style={{ top: position.top, left: position.left }}
+		<CSSTransition
+			nodeRef={menuRef}
+			timeout={150}
+			in={opened}
+			classNames="alert"
+			unmountOnExit
 		>
-			{options.map(opt => (
-				<li key={opt.value}>{opt.label}</li>
-			))}
-		</ul>
+			<ul
+				ref={menuRef}
+				className={cn(styles.menu, styles[openingDirection])}
+				onClick={() => clickHandler()}
+				style={position}
+			>
+				{options.map(opt => (
+					<li key={opt.value}>{opt.label}</li>
+				))}
+			</ul>
+		</CSSTransition>
 	)
 }
 
