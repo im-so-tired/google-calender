@@ -20,6 +20,11 @@
 	}
 }
 
+.wrapper {
+	display: flex;
+	transition: all .4s
+}
+
 .logo {
 	display: flex;
 	align-items: center;
@@ -62,8 +67,12 @@
 .sidebar {
 	width: 256px;
 	padding: 0 .5rem;
+	height: 100%;
+	box-sizing: border-box;
 
 	.emptyDiv {
 		height: 84px;
 	}
 }
+
+
