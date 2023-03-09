@@ -22,7 +22,11 @@
 
 .wrapper {
 	display: flex;
-	transition: all .4s
+	transition: all .4s;
+
+	main {
+		flex: 1 0;
+	}
 }
 
 .logo {

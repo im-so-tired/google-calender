@@ -20,12 +20,14 @@ const SelectTimeZone: FC = () => {
 	const timeZone = useGetTimeZone()
 
 	const handleChange = (newOption: SingleValue<IOption>) => {
-		setValue((newOption as IOption).value)
+		const newValue = (newOption as IOption).value
+		navigate(pathname.replace(timeZone, newValue))
+		setValue(newValue)
 	}
 
 	useEffect(() => {
-		navigate(pathname.replace(timeZone, value))
-	}, [value, navigate, pathname, timeZone])
+		setValue(timeZone)
+	}, [timeZone])
 
 	return (
 		<CustomSelect
