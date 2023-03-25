@@ -5,6 +5,12 @@ backend/.idea
 frontend/node_modules
 backend/node_modules
 
+frontend/docker-compose.yml
+frontend/.dockerignore
+
+frontend/dist
+backend/dist
+
 # Logs
 logs
 *.log

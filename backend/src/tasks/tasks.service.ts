@@ -8,16 +8,25 @@ import { TasksDto } from './tasks.dto'
 export class TasksService {
 	constructor(
 		@InjectRepository(TasksEntity)
-		private readonly tasksRepository: Repository<TasksEntity>
-	) {}
+		private readonly tasksRepository: Repository<TasksEntity>,
+	) {
+	}
 
 	async create(userId: number, dto: TasksDto) {
-		console.log(userId)
 		const newTask = this.tasksRepository.create({
 			...dto,
 			author: { id: userId },
 		})
 		return await this.tasksRepository.save(newTask)
+	}
+
+	async update(id: number, dto: TasksDto) {
+		let task = await this.byId(id)
+		task = {
+			...task,
+			...dto,
+		}
+		return await this.tasksRepository.save(task)
 	}
 
 	async byId(id: number) {
@@ -33,16 +42,8 @@ export class TasksService {
 				},
 			},
 		})
-		if (!task) throw new NotFoundException('Задача не найдена')
+		if (!task) throw new NotFoundException('Task not found')
 		return task
 	}
 
-	async update(id: number, dto: TasksDto) {
-		let task = await this.byId(id)
-		task = {
-			...task,
-			...dto,
-		}
-		return await this.tasksRepository.save(task)
-	}
 }

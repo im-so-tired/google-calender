@@ -3,10 +3,9 @@ import { Base } from '../utils/base';
 export declare class EventsEntity extends Base {
     author: UserEntity;
     title: string;
-    startTime: number;
-    endTime: number;
+    startTime: bigint;
+    endTime: bigint;
     guests: UserEntity[];
     location: string;
     description: string;
-    reminder?: number;
 }

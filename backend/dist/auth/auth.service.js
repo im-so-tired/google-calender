@@ -18,7 +18,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../user/user.entity");
 const typeorm_2 = require("typeorm");
 const jwt_1 = require("@nestjs/jwt");
-const bcryptjs_1 = require("bcryptjs");
+const bcrypt_1 = require("bcrypt");
 let AuthService = class AuthService {
     constructor(userRepository, jwtService) {
         this.userRepository = userRepository;
@@ -35,10 +35,10 @@ let AuthService = class AuthService {
         const oldUser = await this.userRepository.findOneBy({ email: dto.email });
         if (oldUser)
             throw new common_1.BadRequestException('Пользователь с таким email уже существует');
-        const salt = await (0, bcryptjs_1.genSalt)(10);
+        const salt = await (0, bcrypt_1.genSalt)(10);
         const newUser = this.userRepository.create({
             email: dto.email,
-            password: await (0, bcryptjs_1.hash)(dto.password, salt),
+            password: await (0, bcrypt_1.hash)(dto.password, salt),
         });
         const user = await this.userRepository.save(newUser);
         return {
@@ -49,11 +49,11 @@ let AuthService = class AuthService {
     async validateUser(dto) {
         const user = await this.userRepository.findOne({
             where: { email: dto.email },
-            select: ['id', 'email'],
+            select: ['id', 'email', 'password'],
         });
         if (!user)
             throw new common_1.NotFoundException('Пользовать не найден');
-        const isValidPassword = (0, bcryptjs_1.compare)(dto.password, user.password);
+        const isValidPassword = (0, bcrypt_1.compare)(dto.password, user.password);
         if (!isValidPassword)
             throw new common_1.UnauthorizedException('Неправильный пароль');
         return user;

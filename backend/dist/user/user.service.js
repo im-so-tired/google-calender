@@ -40,6 +40,22 @@ let UserService = class UserService {
         user = Object.assign(Object.assign({}, user), dto);
         return await this.UserEntity.save(user);
     }
+    async getActivity(userId, query) {
+        const user = await this.UserEntity.findOne({
+            where: { id: userId },
+            relations: {
+                events: true,
+                tasks: true,
+                reminders: true,
+            },
+        });
+        const events = user.events.filter(evt => evt.startTime >= query.startTime && evt.endTime <= query.endTime);
+        const tasks = user.tasks.filter(evt => evt.time >= query.startTime && evt.time <= query.endTime);
+        return {
+            events,
+            tasks,
+        };
+    }
 };
 UserService = __decorate([
     (0, common_1.Injectable)(),

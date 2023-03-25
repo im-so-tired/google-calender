@@ -27,7 +27,7 @@ __decorate([
 ], EventsEntity.prototype, "title", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: moment().unix(), name: 'start_time', type: 'bigint' }),
-    __metadata("design:type", Number)
+    __metadata("design:type", typeof BigInt === "function" ? BigInt : Object)
 ], EventsEntity.prototype, "startTime", void 0);
 __decorate([
     (0, typeorm_1.Column)({
@@ -35,7 +35,7 @@ __decorate([
         name: 'end_time',
         type: 'bigint',
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", typeof BigInt === "function" ? BigInt : Object)
 ], EventsEntity.prototype, "endTime", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, user => user.id),
@@ -50,10 +50,6 @@ __decorate([
     (0, typeorm_1.Column)({ default: '', type: 'text' }),
     __metadata("design:type", String)
 ], EventsEntity.prototype, "description", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], EventsEntity.prototype, "reminder", void 0);
 EventsEntity = __decorate([
     (0, typeorm_1.Entity)('events')
 ], EventsEntity);

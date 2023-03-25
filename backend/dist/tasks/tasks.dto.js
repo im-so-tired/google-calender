@@ -20,12 +20,8 @@ __decorate([
 ], TasksDto.prototype, "title", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], TasksDto.prototype, "startTime", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], TasksDto.prototype, "endTime", void 0);
+    __metadata("design:type", typeof BigInt === "function" ? BigInt : Object)
+], TasksDto.prototype, "time", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Contains)('no-repeat' || 'daily' || 'weekly' || 'monthly' || 'annually'),

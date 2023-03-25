@@ -22,9 +22,13 @@ let TasksService = class TasksService {
         this.tasksRepository = tasksRepository;
     }
     async create(userId, dto) {
-        console.log(userId);
         const newTask = this.tasksRepository.create(Object.assign(Object.assign({}, dto), { author: { id: userId } }));
         return await this.tasksRepository.save(newTask);
+    }
+    async update(id, dto) {
+        let task = await this.byId(id);
+        task = Object.assign(Object.assign({}, task), dto);
+        return await this.tasksRepository.save(task);
     }
     async byId(id) {
         const task = await this.tasksRepository.findOne({
@@ -40,13 +44,8 @@ let TasksService = class TasksService {
             },
         });
         if (!task)
-            throw new common_1.NotFoundException('Задача не найдена');
+            throw new common_1.NotFoundException('Task not found');
         return task;
-    }
-    async update(id, dto) {
-        let task = await this.byId(id);
-        task = Object.assign(Object.assign({}, task), dto);
-        return await this.tasksRepository.save(task);
     }
 };
 TasksService = __decorate([

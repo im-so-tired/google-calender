@@ -4,8 +4,8 @@ import { Base } from '../utils/base';
 export declare class TasksEntity extends Base {
     author: UserEntity;
     title: string;
-    startTime: number;
-    endTime: number;
+    time: bigint;
     description: string;
     repeat: repeatType;
+    completed: boolean;
 }

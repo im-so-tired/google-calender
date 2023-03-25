@@ -9,15 +9,16 @@ import { UserEntity } from '../user/user.entity'
 import { Repository } from 'typeorm'
 import { JwtService } from '@nestjs/jwt'
 import { AuthDto } from './auth.dto'
-import { compare, genSalt, hash } from 'bcryptjs'
+import { compare, genSalt, hash } from 'bcrypt'
 
 @Injectable()
 export class AuthService {
 	constructor(
 		@InjectRepository(UserEntity)
 		private readonly userRepository: Repository<UserEntity>,
-		private readonly jwtService: JwtService
-	) {}
+		private readonly jwtService: JwtService,
+	) {
+	}
 
 	async login(dto: AuthDto) {
 		const user = await this.validateUser(dto)
@@ -50,7 +51,7 @@ export class AuthService {
 	async validateUser(dto: AuthDto) {
 		const user = await this.userRepository.findOne({
 			where: { email: dto.email },
-			select: ['id', 'email'],
+			select: ['id', 'email', 'password'],
 		})
 
 		if (!user) throw new NotFoundException('Пользовать не найден')

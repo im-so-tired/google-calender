@@ -17,9 +17,13 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const user_dto_1 = require("./user.dto");
+const user_decorator_1 = require("./user.decorator");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
+    }
+    async getActivity(id, query) {
+        return await this.userService.getActivity(+id, query);
     }
     async byId(id) {
         return await this.userService.byId(+id);
@@ -28,6 +32,17 @@ let UserController = class UserController {
         return await this.userService.update(+id, dto);
     }
 };
+__decorate([
+    (0, common_1.Get)('activity'),
+    (0, common_1.HttpCode)(200),
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
+    auth_decorator_1.Auth,
+    __param(0, (0, user_decorator_1.User)('id')),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getActivity", null);
 __decorate([
     (0, common_1.Get)(':id'),
     (0, common_1.HttpCode)(200),

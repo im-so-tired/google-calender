@@ -12,13 +12,13 @@ export class EventsEntity extends Base {
 	@Column()
 	title: string
 	@Column({ default: moment().unix(), name: 'start_time', type: 'bigint' })
-	startTime: number
+	startTime: bigint
 	@Column({
 		default: moment().add(1, 'h').unix(),
 		name: 'end_time',
 		type: 'bigint',
 	})
-	endTime: number
+	endTime: bigint
 	@ManyToOne(() => UserEntity, user => user.id)
 	@JoinColumn({ name: 'user_id' })
 	guests: UserEntity[]
@@ -26,6 +26,4 @@ export class EventsEntity extends Base {
 	location: string
 	@Column({ default: '', type: 'text' })
 	description: string
-	@Column()
-	reminder?: number
 }

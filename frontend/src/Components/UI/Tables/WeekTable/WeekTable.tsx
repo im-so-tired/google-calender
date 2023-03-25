@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import moment from 'moment'
 import { FC } from 'react'
 
 import Cell from '@/ui/Tables/WeekTable/Cell'
@@ -22,7 +23,7 @@ const WeekTable: FC = () => {
 			</thead>
 			<tbody>
 				{tableArray.map((row, rowIdx) => (
-					<tr key={rowIdx}>
+					<tr data-hour={moment().hour(rowIdx).format('h a')} key={rowIdx}>
 						{row.map(day => (
 							<Cell key={day.toString()} date={day} />
 						))}

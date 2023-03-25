@@ -27,16 +27,8 @@ __decorate([
 ], TasksEntity.prototype, "title", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: moment().unix(), name: 'start_time', type: 'bigint' }),
-    __metadata("design:type", Number)
-], TasksEntity.prototype, "startTime", void 0);
-__decorate([
-    (0, typeorm_1.Column)({
-        default: moment().add(1, 'h').unix(),
-        name: 'end_time',
-        type: 'bigint',
-    }),
-    __metadata("design:type", Number)
-], TasksEntity.prototype, "endTime", void 0);
+    __metadata("design:type", typeof BigInt === "function" ? BigInt : Object)
+], TasksEntity.prototype, "time", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: '', type: 'text' }),
     __metadata("design:type", String)
@@ -45,6 +37,10 @@ __decorate([
     (0, typeorm_1.Column)({ default: 'no-repeat' }),
     __metadata("design:type", String)
 ], TasksEntity.prototype, "repeat", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: false }),
+    __metadata("design:type", Boolean)
+], TasksEntity.prototype, "completed", void 0);
 TasksEntity = __decorate([
     (0, typeorm_1.Entity)('tasks')
 ], TasksEntity);
