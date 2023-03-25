@@ -6,6 +6,7 @@ import Header from './Header/Header'
 import styles from './Layout.module.scss'
 import Sidebar from './Sidebar/Sidebar'
 import { LayoutProvider } from './useLayoutContext'
+import { toggleSidebarAnimation } from '@/styles/animations/toggleSidebarAnimation'
 
 const Layout: FC = () => {
 	const [showSidebar, setShowSidebar] = useState(true)
@@ -13,13 +14,6 @@ const Layout: FC = () => {
 	const toggleSidebar = useCallback(() => {
 		setShowSidebar(prev => !prev)
 	}, [])
-
-	const transitionStyles: any = {
-		entering: { transform: 'translateX(-256px)' },
-		entered: { transform: 'translateX(0)' },
-		exiting: { transform: 'translateX(0)' },
-		exited: { transform: 'translateX(-256px)' },
-	}
 
 	return (
 		<div>
@@ -29,7 +23,7 @@ const Layout: FC = () => {
 					{state => (
 						<div
 							className={styles.wrapper}
-							style={{ ...transitionStyles[state] }}
+							style={{ ...toggleSidebarAnimation[state] }}
 						>
 							<Sidebar />
 							<main>

@@ -58,6 +58,9 @@
 			],
 			"@/providers/*": [
 				"Providers/*"
+			],
+			"@/styles/*": [
+				"styles/*"
 			]
 		}
 	},

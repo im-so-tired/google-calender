@@ -22,10 +22,13 @@
 
 .wrapper {
 	display: flex;
-	transition: all .4s;
+	transition: all .25s;
+	gap: 2rem;
 
 	main {
 		flex: 1 0;
+		//width: 100%;
+		//box-sizing: border-box;
 	}
 }
 

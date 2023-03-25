@@ -1,11 +1,49 @@
 .table {
 	width: 100%;
 	margin-top: 0.75rem;
-	margin-left: 2rem;
+	height: calc(100vh - 65px - 0.75rem);
 
-	//th {
-	//	display: flex;
-	//	flex-direction: column;
-	//	align-items: center;
-	//}
+	tr {
+		height: 3rem;
+		width: 100%;
+		box-sizing: border-box;
+		display: table;
+	}
+
+
+	thead {
+		tr {
+			border-bottom: 1px solid var(--hairline)
+		}
+	}
+
+	tbody {
+		height: 100%;
+		overflow-y: scroll;
+		display: block;
+
+		td {
+			border-left: 1px solid var(--hairline);
+			position: relative;
+
+			//&::before {
+			//	position: absolute;
+			//	content: "";
+			//	height: 6px;
+			//	width: 1px;
+			//	border-left: 1px solid var(--hairline);
+			//	left: 0;
+			//	top: calc(-3rem - 6px);
+			//}
+		}
+
+		tr {
+			border-top: 1px solid var(--hairline)
+		}
+
+		tr:first-child {
+			border: none
+		}
+	}
 }
+

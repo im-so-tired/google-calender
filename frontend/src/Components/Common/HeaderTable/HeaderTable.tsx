@@ -23,6 +23,7 @@ const HeaderTable: FC<IHeaderTable> = ({ date, link }) => {
 					{numeric}
 				</Link>
 			</div>
+			<div></div>
 		</th>
 	)
 }
