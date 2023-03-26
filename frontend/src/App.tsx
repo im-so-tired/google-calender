@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
+import AllModals from '@/ui/AllModals/AllModals'
+
 import { getCurrentDate } from '@/utils/date/getCurrentDate'
 
 import DayPage from './Components/Pages/Day/Day'
@@ -14,7 +16,12 @@ const currentDate = getCurrentDate()
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Layout />,
+		element: (
+			<>
+				<AllModals />
+				<Layout />
+			</>
+		),
 		children: [
 			{
 				path: '/',

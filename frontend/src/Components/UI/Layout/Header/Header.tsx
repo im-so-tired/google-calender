@@ -1,4 +1,7 @@
+import { observer } from 'mobx-react-lite'
 import { FC, memo } from 'react'
+
+import modals from '@/store/Modals'
 
 import styles from '../Layout.module.scss'
 
@@ -9,6 +12,7 @@ import SelectTimeZone from './SelectTimeZone'
 import ShowSidebarBtn from './ShowSidebarBtn'
 import CircleBtn from '@/common/Buttons/CircleBtn/CircleBtn'
 import DropDown from '@/common/DropDown/DropDown'
+import LoginModal from '@/common/Modals/Login/LoginModal'
 
 const Header: FC = memo(() => {
 	return (
@@ -42,6 +46,12 @@ const Header: FC = memo(() => {
 						<CircleBtn icon="MdSettings" size={40} iconSize={24} />
 					</DropDown>
 					<SelectTimeZone />
+					<button onClick={modals.toggleLoginModal} className="navBtn">
+						Login
+					</button>
+					<button onClick={modals.toggleRegisterModal} className="navBtn">
+						Register
+					</button>
 				</div>
 			</div>
 			<CreateBtn />

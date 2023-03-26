@@ -8,7 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { UserEntity } from '../user/user.entity'
 import { Repository } from 'typeorm'
 import { JwtService } from '@nestjs/jwt'
-import { AuthDto } from './auth.dto'
+import { LoginDto, RegisterDto } from './auth.dto'
 import { compare, genSalt, hash } from 'bcrypt'
 
 @Injectable()
@@ -20,7 +20,7 @@ export class AuthService {
 	) {
 	}
 
-	async login(dto: AuthDto) {
+	async login(dto: LoginDto) {
 		const user = await this.validateUser(dto)
 
 		return {
@@ -29,7 +29,7 @@ export class AuthService {
 		}
 	}
 
-	async register(dto: AuthDto) {
+	async register(dto: RegisterDto) {
 		const oldUser = await this.userRepository.findOneBy({ email: dto.email })
 		if (oldUser)
 			throw new BadRequestException('Пользователь с таким email уже существует')
@@ -38,6 +38,7 @@ export class AuthService {
 		const newUser = this.userRepository.create({
 			email: dto.email,
 			password: await hash(dto.password, salt),
+			name: dto.name,
 		})
 
 		const user = await this.userRepository.save(newUser)
@@ -48,10 +49,10 @@ export class AuthService {
 		}
 	}
 
-	async validateUser(dto: AuthDto) {
+	async validateUser(dto: LoginDto) {
 		const user = await this.userRepository.findOne({
 			where: { email: dto.email },
-			select: ['id', 'email', 'password'],
+			select: ['id', 'email', 'password', 'name'],
 		})
 
 		if (!user) throw new NotFoundException('Пользовать не найден')
@@ -74,6 +75,7 @@ export class AuthService {
 		return {
 			id: user.id,
 			email: user.email,
+			name: user.name,
 		}
 	}
 }
