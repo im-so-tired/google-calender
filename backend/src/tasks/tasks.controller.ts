@@ -13,16 +13,18 @@ import { TasksService } from './tasks.service'
 import { User } from '../user/user.decorator'
 import { TasksDto } from './tasks.dto'
 import { Auth } from '../auth/decorators/auth.decorator'
+import { RepeatValidate } from '../pipes/repeat.pipes'
 
 @Controller('tasks')
 export class TasksController {
-	constructor(private readonly tasksService: TasksService) {}
+	constructor(private readonly tasksService: TasksService) {
+	}
 
 	@Post()
 	@HttpCode(200)
 	@UsePipes(new ValidationPipe())
 	@Auth
-	async create(@User('id') userId: number, @Body() dto: TasksDto) {
+	async create(@User('id') userId: number, @Body(RepeatValidate) dto: TasksDto) {
 		return await this.tasksService.create(userId, dto)
 	}
 
@@ -37,7 +39,7 @@ export class TasksController {
 	@HttpCode(200)
 	@UsePipes(new ValidationPipe())
 	@Auth
-	async update(@Param('id') id: string, @Body() dto: TasksDto) {
+	async update(@Param('id') id: string, @Body(RepeatValidate) dto: TasksDto) {
 		return await this.tasksService.update(+id, dto)
 	}
 }

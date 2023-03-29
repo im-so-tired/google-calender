@@ -11,7 +11,6 @@ class Modals {
 
 	toggleLoginModal = () => {
 		this.loginModal = !this.loginModal
-		console.log(this.loginModal)
 	}
 
 	toggleRegisterModal = () => {

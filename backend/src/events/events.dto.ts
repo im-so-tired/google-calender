@@ -11,7 +11,6 @@ export class EventsDto {
 	@IsNumber()
 	endTime: bigint
 	@IsString()
-	@Contains('no-repeat' || 'daily' || 'weekly' || 'monthly' || 'annually')
 	repeat: repeatType
 	description?: string
 	guests?: UserEntity[]

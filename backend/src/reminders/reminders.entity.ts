@@ -11,9 +11,7 @@ export class RemindersEntity extends Base {
 	@Column()
 	title: string
 	@Column({ default: Date.now(), type: 'bigint' })
-	date: number
+	date: bigint
 	@Column({ default: 'no-repeat' })
 	repeat: repeatType
-	@Column({ default: false })
-	completed: boolean
 }

@@ -8,7 +8,7 @@ import { TasksEntity } from '../tasks/tasks.entity'
 export class UserEntity extends Base {
 	@Column({ unique: true })
 	email: string
-	@Column({ select: false })
+	@Column()
 	password: string
 	@Column({ default: '' })
 	name: string

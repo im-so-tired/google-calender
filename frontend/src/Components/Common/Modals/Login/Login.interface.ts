@@ -5,4 +5,5 @@ export interface ILoginFields {
 
 export interface IRegisterFields extends ILoginFields {
 	name: string
+	avatar: File
 }

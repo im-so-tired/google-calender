@@ -8,7 +8,6 @@ export class TasksDto {
 	@IsNumber()
 	time: bigint
 	@IsString()
-	@Contains('no-repeat' || 'daily' || 'weekly' || 'monthly' || 'annually')
 	repeat: repeatType
 	description?: string
 	completed?: boolean

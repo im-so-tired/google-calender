@@ -34,11 +34,11 @@ export class UserController {
 		return await this.userService.byId(+id)
 	}
 
-	@Put(':id')
+	@Put()
 	@HttpCode(200)
 	@UsePipes(new ValidationPipe())
 	@Auth
-	async update(@Param('id') id: string, @Body() dto: UserDto) {
+	async update(@User('id') id: string, @Body() dto: UserDto) {
 		return await this.userService.update(+id, dto)
 	}
 }

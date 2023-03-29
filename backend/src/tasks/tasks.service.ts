@@ -30,20 +30,8 @@ export class TasksService {
 	}
 
 	async byId(id: number) {
-		const task = await this.tasksRepository.findOne({
-			where: { id },
-			relations: {
-				author: true,
-			},
-			select: {
-				author: {
-					id: true,
-					email: true,
-				},
-			},
-		})
+		const task = await this.tasksRepository.findOne({ where: { id } })
 		if (!task) throw new NotFoundException('Task not found')
 		return task
 	}
-
 }

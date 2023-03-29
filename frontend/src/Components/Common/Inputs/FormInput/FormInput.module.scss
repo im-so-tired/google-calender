@@ -1,0 +1,34 @@
+.formInput {
+	font-size: 15px;
+	position: relative;
+
+	input {
+		display: block;
+		padding: .6rem;
+		margin-top: .3rem;
+		border-radius: 5px;
+		border: 2px solid var(--textfield-hairline);
+		color: black;
+		font-size: 18px;
+
+		&:focus {
+			outline: none;
+			border: 2px solid var(--primary)
+		}
+	}
+
+	.error {
+		position: absolute;
+		bottom: -18px;
+		color: var(--error)
+	}
+
+	.borderError {
+		border: 2px solid var(--error);
+
+		&:focus {
+			outline: none;
+			border: 2px solid var(--error)
+		}
+	}
+}

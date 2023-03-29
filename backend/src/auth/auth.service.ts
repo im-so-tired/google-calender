@@ -52,13 +52,13 @@ export class AuthService {
 	async validateUser(dto: LoginDto) {
 		const user = await this.userRepository.findOne({
 			where: { email: dto.email },
-			select: ['id', 'email', 'password', 'name'],
 		})
 
-		if (!user) throw new NotFoundException('Пользовать не найден')
-		const isValidPassword = compare(dto.password, user.password)
+		if (!user) throw new NotFoundException('User not found')
 
-		if (!isValidPassword) throw new UnauthorizedException('Неправильный пароль')
+		const isValidPassword = await compare(dto.password, user.password)
+
+		if (!isValidPassword) throw new UnauthorizedException('Wrong password')
 		return user
 	}
 
@@ -76,6 +76,7 @@ export class AuthService {
 			id: user.id,
 			email: user.email,
 			name: user.name,
+			avatarPath: user.avatarPath,
 		}
 	}
 }
