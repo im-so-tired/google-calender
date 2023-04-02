@@ -1,4 +1,5 @@
 import { IsEmail, IsString, MinLength } from 'class-validator'
+import { Binary } from 'typeorm'
 
 export class LoginDto {
 	@IsEmail()
@@ -11,5 +12,5 @@ export class LoginDto {
 export class RegisterDto extends LoginDto {
 	@IsString()
 	name: string
-	avatarPath?: File
+	avatar?: File
 }

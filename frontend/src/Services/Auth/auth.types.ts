@@ -7,7 +7,7 @@ export interface ILoginData {
 
 export interface IRegisterData extends ILoginData {
 	name: string
-	avatarPath: File
+	avatar: File | null
 }
 
 export interface IAuthResponse {

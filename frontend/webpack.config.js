@@ -128,6 +128,7 @@ module.exports = {
 			'@/ui': path.resolve(__dirname, 'src/components/ui'),
 			'@': path.resolve(__dirname, 'src'),
 		},
-		// roots: [__dirname, 'src'],
+		fallback: { path: false },
+		roots: [__dirname, 'src'],
 	},
 }

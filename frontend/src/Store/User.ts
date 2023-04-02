@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx'
 
 import { AuthService } from '@/services/Auth/AuthService'
-import { ILoginData } from '@/services/Auth/auth.types'
+import { ILoginData, IRegisterData } from '@/services/Auth/auth.types'
 
 import { errorMessage } from '@/utils/errorMessage'
 
@@ -22,6 +22,15 @@ class User {
 	async login(data: ILoginData) {
 		try {
 			this.user = await AuthService.login(data)
+		} catch (e) {
+			return errorMessage(e)
+		}
+	}
+
+	async register(data: FormData) {
+		try {
+			this.user = await AuthService.register(data)
+			console.log(this.user)
 		} catch (e) {
 			return errorMessage(e)
 		}

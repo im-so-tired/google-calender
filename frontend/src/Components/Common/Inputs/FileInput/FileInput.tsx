@@ -1,28 +1,29 @@
-import React, { FC } from 'react'
+import { ChangeEvent, FC, useRef } from 'react'
 
-import defaultAvatar from '@/assets/images/default-avatar.png'
-
-import styles from '@/common/Inputs/FormInput/FormInput.module.scss'
+import styles from './FileInput.module.scss'
 
 interface IFileInput {
-	register: any
 	label: string
-	onChange: () => void
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void
 	alt: string
 	src: string
 }
 
-const FileInput: FC<IFileInput> = ({ label, register, onChange, alt, src }) => {
+const FileInput: FC<IFileInput> = ({ label, onChange, alt, src }) => {
+	const inputRef = useRef<HTMLInputElement>(null)
+	const handleClick = () => {
+		inputRef.current?.click()
+	}
 	return (
 		<label htmlFor={label} className={styles.formInput}>
 			{label}
 			<input
 				type="file"
-				{...register('avatar')}
 				accept="image/*, .png, .jpg, .gif"
 				onChange={onChange}
+				ref={inputRef}
 			/>
-			<img alt={alt} src={src} width={80} height={80} />
+			<img alt={alt} src={src} width={80} height={80} onClick={handleClick} />
 		</label>
 	)
 }

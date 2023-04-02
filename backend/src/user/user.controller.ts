@@ -6,7 +6,7 @@ import {
 	Put,
 	Body,
 	UsePipes,
-	ValidationPipe, Query,
+	ValidationPipe, Query, Res,
 } from '@nestjs/common'
 import { UserService } from './user.service'
 import { Auth } from '../auth/decorators/auth.decorator'
@@ -40,6 +40,11 @@ export class UserController {
 	@Auth
 	async update(@User('id') id: string, @Body() dto: UserDto) {
 		return await this.userService.update(+id, dto)
+	}
+
+	@Get('avatar/:filename')
+	getImage(@Param('filename') filename, @Res() res) {
+		return res.sendFile(filename, { root: 'upload/avatars' })
 	}
 }
 
