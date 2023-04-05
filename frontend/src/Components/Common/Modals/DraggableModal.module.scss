@@ -1,0 +1,19 @@
+.content {
+	width: 448px;
+	height: 505px;
+	padding: 0 !important;
+
+	header {
+		background: var(--textfield-surface);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: .5rem 1rem;
+
+		button {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+}

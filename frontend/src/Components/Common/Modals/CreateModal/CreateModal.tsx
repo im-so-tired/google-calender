@@ -1,56 +1,46 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 
-const Modal = ({ children }) => {
-	const [isDragging, setIsDragging] = useState(false)
-	const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 })
-	const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+import { CreateModalType } from '@/store/Modals'
 
-	useEffect(() => {
-		const handleMouseMove = event => {
-			if (isDragging) {
-				const x = event.clientX - dragStart.x
-				const y = event.clientY - dragStart.y
+import styles from './CreateModal.module.scss'
+import TitleInput from '@/common/Inputs/TitleInput/TitleInput'
+import { IBaseModal } from '@/common/Modals/BaseModal'
+import DraggableModal from '@/common/Modals/DraggableModal'
 
-				setModalPosition({ x, y })
-			}
-		}
+interface CreateModalProps extends IBaseModal {
+	type: 'event' | 'task' | 'reminder'
+}
 
-		const handleMouseUp = () => {
-			setIsDragging(false)
-		}
-
-		document.addEventListener('mousemove', handleMouseMove)
-		document.addEventListener('mouseup', handleMouseUp)
-
-		return () => {
-			document.removeEventListener('mousemove', handleMouseMove)
-			document.removeEventListener('mouseup', handleMouseUp)
-		}
-	}, [isDragging, dragStart])
-
-	const handleMouseDown = event => {
-		setIsDragging(true)
-		setDragStart({
-			x: event.clientX - modalPosition.x,
-			y: event.clientY - modalPosition.y,
-		})
-	}
-
+const btns: CreateModalType[] = ['event', 'task', 'reminder']
+const CreateModal: FC<CreateModalProps> = ({ type, ...props }) => {
+	const [created, setCreated] = useState<CreateModalType>(type)
 	return (
-		<div
-			style={{
-				position: 'absolute',
-				top: modalPosition.y,
-				left: modalPosition.x,
-				border: '1px solid black',
-				padding: '20px',
-				cursor: isDragging ? 'grabbing' : 'grab',
-			}}
-			onMouseDown={handleMouseDown}
-		>
-			{children}
-		</div>
+		<DraggableModal {...props}>
+			<section className={styles.main}>
+				<div className={styles.flexComp}>
+					<div />
+					<div>
+						<TitleInput />
+					</div>
+				</div>
+				<div className={styles.flexComp}>
+					<div />
+					<div className={styles.selectTheCreated}>
+						{btns.map(value => (
+							// eslint-disable-next-line jsx-a11y/control-has-associated-label
+							<button
+								key={value}
+								className={created === value ? styles.selected : ''}
+								onClick={() => setCreated(value)}
+							>
+								{value}
+							</button>
+						))}
+					</div>
+				</div>
+			</section>
+		</DraggableModal>
 	)
 }
 
-export default Modal
+export default CreateModal

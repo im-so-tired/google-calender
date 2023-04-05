@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import React, { FC, useRef, useState } from 'react'
 
-import { IconTypes } from '@/shared/types/IconTypes'
-
 import PlusLogo from '@/assets/plus.png'
+
+import modals, { CreateModalType } from '@/store/Modals'
 
 import { useLayoutContext } from '../../useLayoutContext'
 
@@ -15,12 +15,15 @@ const CreateBtn: FC = () => {
 	const btnRef = useRef<HTMLButtonElement | null>(null)
 	const [dropDownOpened, setDropDownOpened] = useState(false)
 	const { showSidebar } = useLayoutContext()
+	const clickHandler = () => {
+		setDropDownOpened(prev => !prev)
+	}
 	return (
 		<>
 			<button
 				ref={btnRef}
 				className={cn(styles.createBtn, { [styles.rounded]: !showSidebar })}
-				onClick={() => setDropDownOpened(prev => !prev)}
+				onClick={() => clickHandler()}
 			>
 				<img alt="plus" src={PlusLogo} height={24} width={24} />
 				{showSidebar && (
@@ -36,7 +39,9 @@ const CreateBtn: FC = () => {
 					{ value: 'event', label: 'Event' },
 					{ value: 'task', label: 'Task' },
 				]}
-				clickHandler={() => null}
+				clickHandler={value =>
+					modals.toggleCreateModal(value as CreateModalType)
+				}
 				opened={dropDownOpened}
 				setOpened={setDropDownOpened}
 			/>

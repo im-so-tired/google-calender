@@ -55,11 +55,12 @@ const DropDownAbsolute: FC<IDropDownAbs> = ({
 			<ul
 				ref={menuRef}
 				className={cn(styles.menu, styles[openingDirection])}
-				onClick={() => clickHandler()}
 				style={position}
 			>
 				{options.map(opt => (
-					<li key={opt.value}>{opt.label}</li>
+					<li key={opt.value} onClick={() => clickHandler(opt.value)}>
+						{opt.label}
+					</li>
 				))}
 			</ul>
 		</CSSTransition>

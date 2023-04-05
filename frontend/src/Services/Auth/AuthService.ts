@@ -3,7 +3,7 @@ import { IUser } from '@/store/User'
 import { axiosBase, axiosFile } from '../../Api/axios'
 
 import { IAuthResponse, ILoginData, IRegisterData } from './auth.types'
-import { saveToken } from './helpers'
+import { saveToLs, saveToken } from './helpers'
 
 export const AuthService = {
 	async login(data: ILoginData): Promise<IUser> {
@@ -11,7 +11,7 @@ export const AuthService = {
 			'/auth/login',
 			data
 		)
-		saveToken(res.accessToken)
+		saveToLs(res)
 		return res.user
 	},
 
@@ -20,7 +20,7 @@ export const AuthService = {
 			'/auth/register',
 			data
 		)
-		saveToken(res.accessToken)
+		saveToLs(res)
 		return res.user
 	},
 }

@@ -4,7 +4,7 @@ import { IOption } from '@/shared/types/SelectOpt'
 
 export interface IDropDownProps {
 	options: IOption[]
-	clickHandler: () => void
+	clickHandler: (value: string) => void
 	children: React.ReactNode
 	openingDirection?: 'left' | 'right' | 'center'
 }

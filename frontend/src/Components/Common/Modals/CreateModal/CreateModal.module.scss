@@ -1,0 +1,50 @@
+.main {
+	padding: 0 16px;
+	margin-top: 24px;
+}
+
+.flexComp {
+	display: flex;
+	gap: 8px;
+	margin-top: 12px;
+
+	div:first-child {
+		width: 2.25rem;
+		height: 2.25rem;
+	}
+
+	div:last-child {
+		flex: 1 0;
+	}
+}
+
+.selectTheCreated {
+	display: flex;
+	gap: 8px;
+
+	button {
+		color: var(--textfield-on-surface-variant);
+		padding: 0.5rem 0.6rem;
+		border-radius: 8px;
+		background: none;
+
+		&:hover {
+			background: var(--background-hover);
+		}
+
+		&:first-letter {
+			text-transform: uppercase;
+		}
+	}
+
+	.selected {
+		background: var(--secondary);
+		color: var(--primary-variant);
+
+		&:hover {
+			background: var(--secondary);
+		}
+	}
+}
+
+
