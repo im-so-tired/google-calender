@@ -5,6 +5,7 @@ import { CreateModalType } from '@/store/Modals'
 import styles from './CreateModal.module.scss'
 import TitleInput from '@/common/Inputs/TitleInput/TitleInput'
 import { IBaseModal } from '@/common/Modals/BaseModal'
+import Event from '@/common/Modals/CreateModal/Event'
 import DraggableModal from '@/common/Modals/DraggableModal'
 
 interface CreateModalProps extends IBaseModal {
@@ -38,6 +39,7 @@ const CreateModal: FC<CreateModalProps> = ({ type, ...props }) => {
 						))}
 					</div>
 				</div>
+				{created === 'event' ? <Event /> : null}
 			</section>
 		</DraggableModal>
 	)

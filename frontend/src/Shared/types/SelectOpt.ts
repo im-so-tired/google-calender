@@ -1,4 +1,4 @@
-export interface IOption {
+export interface IOption<T> {
 	label: string
-	value: string
+	value: T
 }

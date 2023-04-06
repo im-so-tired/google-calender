@@ -7,13 +7,17 @@
 	display: flex;
 	gap: 8px;
 	margin-top: 12px;
+	align-items: center;
 
-	div:first-child {
+	> div:first-child {
 		width: 2.25rem;
 		height: 2.25rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
-	div:last-child {
+	> div:last-child {
 		flex: 1 0;
 	}
 }
@@ -47,4 +51,20 @@
 	}
 }
 
+.datePicker {
+	width: 150px;
+}
 
+.time {
+	display: flex;
+	align-items: center;
+}
+
+.customSelect {
+	margin-left: 10px;
+}
+
+.repeatSelect {
+	width: 130px;
+	flex: none !important;
+}

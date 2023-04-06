@@ -6,9 +6,10 @@ import { IOption } from '@/shared/types/SelectOpt'
 import './CustomSelect.scss'
 
 interface ICustomSelectProps {
-	value: string
-	onChange: (newValue: SingleValue<IOption>) => void
-	options: IOption[]
+	value: string | number
+	onChange: (newValue: SingleValue<IOption<any>>) => void
+	options: IOption<any>[]
+	classNamePrefix: string
 	isSearchable?: boolean
 	className?: string
 }
@@ -17,14 +18,7 @@ const CustomSelect: FC<ICustomSelectProps> = ({ value, options, ...rest }) => {
 	const getValue = () => {
 		return options.find(opt => opt.value === value) || options[0]
 	}
-	return (
-		<Select
-			value={getValue()}
-			classNamePrefix="custom-select"
-			options={options}
-			{...rest}
-		/>
-	)
+	return <Select value={getValue()} options={options} {...rest} />
 }
 
 export default CustomSelect

@@ -19,8 +19,8 @@ const SelectTimeZone: FC = () => {
 	const { pathname } = useLocation()
 	const timeZone = useGetTimeZone()
 
-	const handleChange = (newOption: SingleValue<IOption>) => {
-		const newValue = (newOption as IOption).value
+	const handleChange = (newOption: SingleValue<IOption<string>>) => {
+		const newValue = (newOption as IOption<string>).value
 		navigate(pathname.replace(timeZone, newValue))
 		setValue(newValue)
 	}
@@ -32,6 +32,7 @@ const SelectTimeZone: FC = () => {
 	return (
 		<CustomSelect
 			value={value}
+			classNamePrefix="custom-select"
 			onChange={handleChange}
 			options={typeTableOptions}
 			className={styles.select}

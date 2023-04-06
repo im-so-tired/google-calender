@@ -4,7 +4,7 @@
 	}
 
 	&__control {
-		padding: 0 .7rem !important;
+		padding: 0 .5rem !important;
 		border: 1px solid var(--hairline) !important;
 		box-shadow: none !important;
 
@@ -20,12 +20,49 @@
 
 	&__value-container {
 		padding: 0 !important;
-		font-size: 15px !important;
+		font-size: 16px !important;
 	}
 
 	&__indicator {
 		padding: 0 !important;
 		cursor: pointer;
 		margin-left: .5rem !important;
+	}
+}
+
+.primary-select {
+	&__indicator-separator {
+		display: none !important;
+	}
+
+	&__indicator {
+		display: none !important;
+	}
+
+	&__control {
+		height: 38px !important;
+		border: none !important;
+		border-radius: 5px 5px 0 0 !important;
+		box-sizing: border-box !important;
+
+		&:hover {
+			background: var(--background-hover);
+		}
+
+		&--is-focused {
+			outline: none !important;
+			border: none !important;
+			box-shadow: none !important;
+			border-bottom: 2px solid var(--primary) !important;
+		}
+	}
+
+	&__input-container {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	&__menu {
+		width: 130px !important;
 	}
 }
