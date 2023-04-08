@@ -39,9 +39,10 @@ const CreateBtn: FC = () => {
 					{ value: 'event', label: 'Event' },
 					{ value: 'task', label: 'Task' },
 				]}
-				clickHandler={value =>
-					modals.toggleCreateModal(value as CreateModalType)
-				}
+				clickHandler={value => {
+					modals.toggleCreateModal()
+					modals.changeCreateModalType(value as CreateModalType)
+				}}
 				opened={dropDownOpened}
 				setOpened={setDropDownOpened}
 			/>

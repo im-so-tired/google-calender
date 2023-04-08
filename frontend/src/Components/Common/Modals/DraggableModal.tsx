@@ -1,5 +1,11 @@
 import cn from 'classnames'
-import React, { PropsWithChildren, useEffect, useState } from 'react'
+import React, {
+	PropsWithChildren,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from 'react'
 
 import styles from './DraggableModal.module.scss'
 import MaterialIcon from '@/common/Icon'
@@ -17,12 +23,21 @@ const DraggableModal: React.FC<PropsWithChildren<IBaseModal>> = ({
 	open,
 	bgDark,
 }) => {
+	const modalRef = useRef<HTMLDivElement | null>(null)
 	const [isDragging, setIsDragging] = useState(false)
 	const [modalPosition, setModalPosition] = useState<Coordinates>({
 		x: Math.round(window.innerWidth / 2) - 224,
-		y: Math.round(window.innerHeight / 2) - 202,
+		y: Math.round(window.innerHeight / 2),
 	})
 	const [dragStart, setDragStart] = useState<Coordinates>({ x: 0, y: 0 })
+	useLayoutEffect(() => {
+		if (!open) return
+		const height = modalRef.current?.clientHeight || 0
+		setModalPosition({
+			x: Math.round(window.innerWidth / 2) - 224,
+			y: Math.round(window.innerHeight / 2) - height / 2,
+		})
+	}, [open])
 
 	useEffect(() => {
 		const handleMouseMove = (event: MouseEvent) => {
@@ -72,6 +87,7 @@ const DraggableModal: React.FC<PropsWithChildren<IBaseModal>> = ({
 					e.stopPropagation()
 				}}
 				className={cn(mainStyles.content, styles.content)}
+				ref={modalRef}
 			>
 				<header
 					style={{ cursor: isDragging ? 'grabbing' : 'grab' }}

@@ -1,6 +1,7 @@
-import React, { FC, useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import { FC } from 'react'
 
-import { CreateModalType } from '@/store/Modals'
+import modals, { CreateModalType } from '@/store/Modals'
 
 import styles from './CreateModal.module.scss'
 import TitleInput from '@/common/Inputs/TitleInput/TitleInput'
@@ -8,13 +9,11 @@ import { IBaseModal } from '@/common/Modals/BaseModal'
 import Event from '@/common/Modals/CreateModal/Event'
 import DraggableModal from '@/common/Modals/DraggableModal'
 
-interface CreateModalProps extends IBaseModal {
-	type: 'event' | 'task' | 'reminder'
-}
+interface CreateModalProps extends IBaseModal {}
 
 const btns: CreateModalType[] = ['event', 'task', 'reminder']
-const CreateModal: FC<CreateModalProps> = ({ type, ...props }) => {
-	const [created, setCreated] = useState<CreateModalType>(type)
+const CreateModal: FC<CreateModalProps> = observer(({ ...props }) => {
+	const created = modals.createModal.type
 	return (
 		<DraggableModal {...props}>
 			<section className={styles.main}>
@@ -32,7 +31,7 @@ const CreateModal: FC<CreateModalProps> = ({ type, ...props }) => {
 							<button
 								key={value}
 								className={created === value ? styles.selected : ''}
-								onClick={() => setCreated(value)}
+								onClick={() => modals.changeCreateModalType(value)}
 							>
 								{value}
 							</button>
@@ -43,6 +42,6 @@ const CreateModal: FC<CreateModalProps> = ({ type, ...props }) => {
 			</section>
 		</DraggableModal>
 	)
-}
+})
 
 export default CreateModal

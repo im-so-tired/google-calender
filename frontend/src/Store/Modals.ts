@@ -29,8 +29,11 @@ class Modals {
 		this.registerModal = !this.registerModal
 	}
 
-	toggleCreateModal = (type: CreateModalType = 'event') => {
+	toggleCreateModal = () => {
 		this.createModal.open = !this.createModal.open
+	}
+
+	changeCreateModalType = (type: CreateModalType) => {
 		this.createModal.type = type
 	}
 }

@@ -17,7 +17,6 @@ const AllModals: FC = observer(() => {
 			/>
 			<CreateModal
 				open={modals.createModal.open}
-				type={modals.createModal.type}
 				onClose={modals.toggleCreateModal}
 			/>
 		</>
