@@ -4,8 +4,10 @@
 @import "./transition.scss";
 
 @font-face {
-	font-family: Roboto, sans-serif;
-	src: url("@/assets/fonts/Roboto-Regular.ttf");
+	font-family: Google Sans, sans;
+	src: url("@/assets/fonts/GoogleSans-Regular.ttf");
+	font-weight: 500;
+	font-style: normal;
 }
 
 ::-webkit-scrollbar {
@@ -31,7 +33,7 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: Roboto, sans-serif;
+	font-family: Google Sans, Roboto, Arial, sans-serif;
 	color: var(--on-surface);
 	background: var(--surface);
 	overflow: hidden;
@@ -71,18 +73,47 @@ body {
 .modalTextField {
 	padding: .5rem;
 	border: none;
-	background: var(--textfield-surface);
 	border-radius: 5px 5px 0 0;
-	font-size: 14px;
+	font-size: 15px;
 	border-bottom: 2px solid transparent;
 	transition: all .3s;
 
 	&:focus {
 		border-bottom-color: var(--primary);
+		background: var(--textfield-surface);
 		outline: none;
+	}
+
+	&:hover {
+		background: var(--textfield-surface);
 	}
 }
 
 textarea {
 	font-family: Roboto, sans-serif;
+}
+
+.titleInput {
+	width: 100%;
+	border: none;
+	box-sizing: border-box;
+	border-bottom: 2px solid var(--textfield-surface);
+	font-size: 22px;
+	height: 28px;
+	color: rgb(60, 64, 67);
+	transition: all .3s;
+
+	&:focus {
+		outline: none;
+		border-bottom-color: var(--primary);
+	}
+}
+
+.primaryBtn {
+	border-radius: 5px;
+	background: var(--primary);
+	padding: 10px 24px;
+	color: white;
+	font-family: Arial, sans-serif;
+	font-size: 16px;
 }

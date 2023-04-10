@@ -6,7 +6,7 @@ import user from '@/store/User'
 
 import styles from './Login.module.scss'
 import FormInput from '@/common/Inputs/FormInput/FormInput'
-import BaseModal, { IBaseModal } from '@/common/Modals/BaseModal'
+import BaseModal, { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
 import { ILoginFields } from '@/common/Modals/Login/Login.interface'
 
 interface ILoginModal extends IBaseModal {}

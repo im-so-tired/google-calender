@@ -1,10 +1,12 @@
 import { makeAutoObservable } from 'mobx'
+import moment, { Moment } from 'moment'
 
 export type CreateModalType = 'event' | 'task' | 'reminder'
 
 export interface ICreateModal {
 	open: boolean
 	type: CreateModalType
+	selectedDate: Moment
 }
 
 class Modals {
@@ -15,6 +17,7 @@ class Modals {
 	createModal: ICreateModal = {
 		open: false,
 		type: 'event',
+		selectedDate: moment(),
 	}
 
 	constructor() {
@@ -29,8 +32,9 @@ class Modals {
 		this.registerModal = !this.registerModal
 	}
 
-	toggleCreateModal = () => {
+	toggleCreateModal = (date: Moment = moment()) => {
 		this.createModal.open = !this.createModal.open
+		this.createModal.selectedDate = date
 	}
 
 	changeCreateModalType = (type: CreateModalType) => {

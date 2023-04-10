@@ -9,8 +9,8 @@ import React, {
 
 import styles from './DraggableModal.module.scss'
 import MaterialIcon from '@/common/Icon'
-import { IBaseModal } from '@/common/Modals/BaseModal'
-import mainStyles from '@/common/Modals/BaseModal.module.scss'
+import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
+import mainStyles from '@/common/Modals/BaseModal/BaseModal.module.scss'
 
 interface Coordinates {
 	x: number

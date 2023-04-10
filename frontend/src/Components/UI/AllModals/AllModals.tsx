@@ -15,10 +15,12 @@ const AllModals: FC = observer(() => {
 				open={modals.registerModal}
 				onClose={modals.toggleRegisterModal}
 			/>
-			<CreateModal
-				open={modals.createModal.open}
-				onClose={modals.toggleCreateModal}
-			/>
+			{modals.createModal.open ? (
+				<CreateModal
+					open={modals.createModal.open}
+					onClose={modals.toggleCreateModal}
+				/>
+			) : null}
 		</>
 	)
 })

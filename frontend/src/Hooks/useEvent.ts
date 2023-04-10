@@ -1,6 +1,5 @@
 import moment, { Moment } from 'moment/moment'
 import { ChangeEvent, useState } from 'react'
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import { SingleValue } from 'react-select'
 
 import { IOption } from '@/shared/types/SelectOpt'

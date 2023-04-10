@@ -1,46 +1,65 @@
 import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
+import React, { FC, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 
-import modals, { CreateModalType } from '@/store/Modals'
+import { repeatOption } from '@/shared/constants/repeatOption'
+
+import modals from '@/store/Modals'
 
 import styles from './CreateModal.module.scss'
-import TitleInput from '@/common/Inputs/TitleInput/TitleInput'
-import { IBaseModal } from '@/common/Modals/BaseModal'
-import Event from '@/common/Modals/CreateModal/Event'
-import DraggableModal from '@/common/Modals/DraggableModal'
+import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
+import { IFormData } from '@/common/Modals/CreateModal/Helpers/FormData.interface'
+import {
+	endTimeOption,
+	startTimeOption,
+} from '@/common/Modals/CreateModal/Helpers/createOptions'
+import { CreateModalProvider } from '@/common/Modals/CreateModal/useModalContext'
+import ChooseActivity from '@/common/Modals/CreateModal/СhooseActivity'
+import DraggableModal from '@/common/Modals/DraggableModal/DraggableModal'
+import Title from '@/common/Modals/ModalComponent/Title'
 
 interface CreateModalProps extends IBaseModal {}
 
-const btns: CreateModalType[] = ['event', 'task', 'reminder']
 const CreateModal: FC<CreateModalProps> = observer(({ ...props }) => {
-	const created = modals.createModal.type
+	const date = modals.createModal.selectedDate
+	const { handleSubmit, setValue, control, watch, getValues, reset } =
+		useForm<IFormData>({
+			defaultValues: {
+				title: '',
+				description: '',
+				day: date,
+				guests: '',
+				endHour: endTimeOption.find(op => op.value === date.hour() + 1),
+				startHour: startTimeOption.find(op => op.value === date.hour()),
+				repeat: repeatOption[0],
+			},
+		})
+	const onSubmit = (data: IFormData) => {
+		console.log(data)
+	}
+
+	useEffect(() => {
+		return () => reset()
+	}, [reset])
 	return (
-		<DraggableModal {...props}>
-			<section className={styles.main}>
-				<div className={styles.flexComp}>
-					<div />
-					<div>
-						<TitleInput />
+		<CreateModalProvider value={{ setValue, control, getValues, watch }}>
+			<DraggableModal {...props}>
+				<form className={styles.main} onSubmit={handleSubmit(onSubmit)}>
+					<div className={styles.flexComp}>
+						<div />
+						<div>
+							<Title />
+						</div>
 					</div>
-				</div>
-				<div className={styles.flexComp}>
-					<div />
-					<div className={styles.selectTheCreated}>
-						{btns.map(value => (
-							// eslint-disable-next-line jsx-a11y/control-has-associated-label
-							<button
-								key={value}
-								className={created === value ? styles.selected : ''}
-								onClick={() => modals.changeCreateModalType(value)}
-							>
-								{value}
-							</button>
-						))}
+					<ChooseActivity />
+					<div className={styles.footer}>
+						<button className="primaryBtn" type="submit">
+							Save
+						</button>
 					</div>
-				</div>
-				{created === 'event' ? <Event /> : null}
-			</section>
-		</DraggableModal>
+				</form>
+			</DraggableModal>
+		</CreateModalProvider>
 	)
 })
 

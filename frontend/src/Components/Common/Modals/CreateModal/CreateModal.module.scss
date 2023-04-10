@@ -1,5 +1,11 @@
 .main {
-	padding: 12px 16px 16px;
+	padding: 12px 24px 16px 16px;
+
+	textarea {
+		width: 100%;
+		box-sizing: border-box;
+	}
+
 }
 
 .flexComp {
@@ -52,18 +58,18 @@
 
 .datePicker {
 	width: 150px;
+	margin-right: 10px !important;
 }
 
 .time {
 	display: flex;
 	align-items: center;
+	margin-top: 10px;
 }
 
-.customSelect {
-	margin-left: 10px;
-}
 
-.repeatSelect {
-	width: 130px;
-	flex: none !important;
+.footer {
+	margin-top: 20px;
+	display: flex;
+	justify-content: flex-end;
 }

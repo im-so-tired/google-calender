@@ -31,6 +31,7 @@
 }
 
 .primary-select {
+
 	&__indicator-separator {
 		display: none !important;
 	}
@@ -44,9 +45,10 @@
 		border: none !important;
 		border-radius: 5px 5px 0 0 !important;
 		box-sizing: border-box !important;
+		border-bottom: 2px solid transparent !important;
 
 		&:hover {
-			background: var(--background-hover);
+			background: var(--background-hover) !important;
 		}
 
 		&--is-focused {
@@ -55,6 +57,12 @@
 			box-shadow: none !important;
 			border-bottom: 2px solid var(--primary) !important;
 		}
+
+		&--menu-is-open {
+			border-bottom: 2px solid var(--primary) !important;
+			background: var(--background-hover) !important;
+		}
+
 	}
 
 	&__input-container {
