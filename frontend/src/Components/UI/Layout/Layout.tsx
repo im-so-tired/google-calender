@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Transition } from 'react-transition-group'
 
@@ -14,7 +14,6 @@ const Layout: FC = () => {
 	const toggleSidebar = useCallback(() => {
 		setShowSidebar(prev => !prev)
 	}, [])
-
 	return (
 		<div>
 			<LayoutProvider value={{ showSidebar, toggleSidebar }}>

@@ -27,6 +27,27 @@ export class UserController {
 		return await this.userService.getActivity(+id, query)
 	}
 
+	@Get('tasks')
+	@HttpCode(200)
+	@Auth
+	async getTasks(@User('id') id: number, @Query() query: QueryParameters) {
+		return await this.userService.getTasks(id, query)
+	}
+
+	@Get('events')
+	@HttpCode(200)
+	@Auth
+	async getEvents(@User('id') id: number, @Query() query: QueryParameters) {
+		return await this.userService.getEvents(id, query)
+	}
+
+	@Get('reminders')
+	@HttpCode(200)
+	@Auth
+	async getReminders(@User('id') id: number, @Query() query: QueryParameters) {
+		return await this.userService.getReminders(id, query)
+	}
+
 	@Get(':id')
 	@HttpCode(200)
 	@Auth
@@ -40,11 +61,6 @@ export class UserController {
 	@Auth
 	async update(@User('id') id: string, @Body() dto: UserDto) {
 		return await this.userService.update(+id, dto)
-	}
-
-	@Get('avatar/:filename')
-	getImage(@Param('filename') filename, @Res() res) {
-		return res.sendFile(filename, { root: 'upload/avatars' })
 	}
 }
 

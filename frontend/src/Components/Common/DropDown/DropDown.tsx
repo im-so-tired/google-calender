@@ -31,13 +31,11 @@ const DropDown: FC<IDropDownProps> = ({
 				classNames="alert"
 				unmountOnExit
 			>
-				<ul
-					ref={menuRef}
-					className={cn(styles.menu, styles[openingDirection])}
-					onClick={() => clickHandler()}
-				>
+				<ul ref={menuRef} className={cn(styles.menu, styles[openingDirection])}>
 					{options.map(opt => (
-						<li key={opt.value}>{opt.label}</li>
+						<li key={opt.value} onClick={() => clickHandler(opt.value)}>
+							{opt.label}
+						</li>
 					))}
 				</ul>
 			</CSSTransition>

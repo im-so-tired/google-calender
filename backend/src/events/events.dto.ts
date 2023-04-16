@@ -12,7 +12,8 @@ export class EventsDto {
 	endTime: bigint
 	@IsString()
 	repeat: repeatType
-	description?: string
-	guests?: UserEntity[]
+	
+	guests?: string
 	location?: string
+	description?: string
 }

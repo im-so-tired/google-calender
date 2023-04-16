@@ -12,11 +12,13 @@ export class TasksEntity extends Base {
 	@Column()
 	title: string
 	@Column({ default: moment().unix(), name: 'start_time', type: 'bigint' })
-	time: bigint
+	time: number
 	@Column({ default: '', type: 'text' })
 	description: string
 	@Column({ default: 'no-repeat' })
 	repeat: repeatType
 	@Column({ default: false })
 	completed: boolean
+	@Column({ default: null, name: 'group_id', type: 'bigint' })
+	groupId: number | null
 }

@@ -1,5 +1,5 @@
 import { UserEntity } from '../user/user.entity'
-import { Column, ManyToOne, JoinColumn, Entity } from 'typeorm'
+import { Column, ManyToOne, JoinColumn, Entity, OneToMany } from 'typeorm'
 import { ITimeInterval } from '../utils/types/timeInterval'
 import * as moment from 'moment'
 import { Base } from '../utils/base'
@@ -19,9 +19,11 @@ export class EventsEntity extends Base {
 		type: 'bigint',
 	})
 	endTime: bigint
-	@ManyToOne(() => UserEntity, user => user.id)
-	@JoinColumn({ name: 'user_id' })
-	guests: UserEntity[]
+	// @OneToMany(() => UserEntity, user => user.email)
+	// @JoinColumn({ name: 'users_email' })
+	// guests: UserEntity[]
+	@Column({ default: '' })
+	guests: string
 	@Column({ default: '' })
 	location: string
 	@Column({ default: '', type: 'text' })

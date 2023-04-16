@@ -1,9 +1,9 @@
 import {
 	Body,
-	Controller,
+	Controller, Delete,
 	Get,
 	HttpCode,
-	Param,
+	Param, Patch,
 	Post,
 	Put,
 	UsePipes,
@@ -35,11 +35,41 @@ export class TasksController {
 		return await this.tasksService.byId(+id)
 	}
 
+	@Delete(':id')
+	@HttpCode(200)
+	@Auth
+	async delete(@Param('id') id: string, @User('id') userId: number) {
+		return await this.tasksService.delete(+id, userId)
+	}
+
+	@Delete('group/:id')
+	@HttpCode(200)
+	@Auth
+	async deleteGroup(@Param('id') id: string, @User('id') userId: number) {
+		return await this.tasksService.deleteGroup(+id, userId)
+	}
+
 	@Put(':id')
 	@HttpCode(200)
 	@UsePipes(new ValidationPipe())
 	@Auth
 	async update(@Param('id') id: string, @Body(RepeatValidate) dto: TasksDto) {
 		return await this.tasksService.update(+id, dto)
+	}
+
+
+	@Put('/group/:id')
+	@HttpCode(200)
+	@UsePipes(new ValidationPipe())
+	@Auth
+	async groupUpdate(@Param('id') id: string, @User('id') userId: number, @Body(RepeatValidate) dto: TasksDto) {
+		return await this.tasksService.groupUpdate(+id, userId, dto)
+	}
+
+	@Patch('complete/:id')
+	@HttpCode(200)
+	@Auth
+	async toggleComplete(@Param('id') id: string) {
+		return await this.tasksService.toggleComplete(+id)
 	}
 }

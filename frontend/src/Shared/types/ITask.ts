@@ -1,14 +1,13 @@
 import { RepeatType } from '@/shared/types/repeatType'
 
-export interface IEvent {
+export interface ITask {
 	id: number
 	title: string
-	startTime: number
-	endTime: number
-	guests: string
 	description: string
+	time: number
 	repeat: RepeatType
 	groupId: number | null
+	completed: boolean
 }
 
-export interface DtoEvent extends Omit<IEvent, 'id' | 'groupId'> {}
+export interface DtoTask extends Omit<ITask, 'id' | 'groupId'> {}

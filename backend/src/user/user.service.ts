@@ -47,11 +47,42 @@ export class UserService {
 		})
 
 		const events = user.events.filter(evt => evt.startTime >= query.startTime && evt.endTime <= query.endTime)
-		const tasks = user.tasks.filter(evt => evt.time >= query.startTime && evt.time <= query.endTime)
-
+		const tasks = user.tasks.filter(task => task.time >= query.startTime && task.time <= query.endTime)
+		const reminders = user.reminders.filter(rem => rem.time >= query.startTime && rem.time <= query.endTime)
 		return {
 			events,
 			tasks,
+			reminders,
 		}
+	}
+
+	async getTasks(userId, query: QueryParameters) {
+		const user = await this.UserEntity.findOne({
+			where: { id: userId },
+			relations: {
+				tasks: true,
+			},
+		})
+		return user.tasks.filter(task => task.time >= query.startTime && task.time <= query.endTime)
+	}
+
+	async getEvents(userId, query: QueryParameters) {
+		const user = await this.UserEntity.findOne({
+			where: { id: userId },
+			relations: {
+				events: true,
+			},
+		})
+		return user.events.filter(evt => evt.startTime >= query.startTime && evt.endTime <= query.endTime)
+	}
+
+	async getReminders(userId, query: QueryParameters) {
+		const user = await this.UserEntity.findOne({
+			where: { id: userId },
+			relations: {
+				reminders: true,
+			},
+		})
+		return user.reminders.filter(rem => rem.time >= query.startTime && rem.time <= query.endTime)
 	}
 }

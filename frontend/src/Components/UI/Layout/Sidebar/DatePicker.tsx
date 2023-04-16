@@ -20,9 +20,9 @@ const DatePicker: FC = () => {
 		setValue(newDate)
 		navigate(`${timeZone}/${year}/${month}/${day}`)
 	}
-	
+
 	useEffect(() => {
-		setValue(moment(new Date(params.year, params.month, params.day)))
+		setValue(moment(new Date(params.year, params.month - 1, params.day)))
 	}, [params])
 	return (
 		<DesktopDatePicker

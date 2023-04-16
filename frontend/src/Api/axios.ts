@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 export const axiosBase = axios.create({
 	baseURL: 'http://localhost:9000/api',
@@ -14,9 +15,15 @@ export const axiosFile = axios.create({
 	},
 })
 
-export const axiosImg = axios.create({
-	baseURL: 'http://localhost:9000',
+export const axiosAuth = axios.create({
+	baseURL: `http://localhost:9000/api`,
 	headers: {
-		'Content-Type': 'image/*',
+		'Content-Type': 'application/json',
 	},
+})
+axiosAuth.interceptors.request.use(config => {
+	const accessToken = Cookies.get('accessToken')
+	if (config.headers && accessToken)
+		config.headers.Authorization = `Bearer ${accessToken}`
+	return config
 })

@@ -10,10 +10,10 @@ export class EventsService {
 	}
 
 	async create(userId: number, dto: EventsDto) {
+		const guests = dto.guests.split(',').map(el => ({ email: el.trim() }))
 		const newEvent = this.eventsRepository.create({
 			...dto,
 			author: { id: userId },
-			guests: [],
 		})
 		return await this.eventsRepository.save(newEvent)
 	}
