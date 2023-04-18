@@ -20,7 +20,7 @@
 		display: inline-block;
 	}
 
-	a {
+	button {
 		border-radius: 100%;
 		display: flex;
 		align-items: center;
@@ -29,6 +29,7 @@
 		width: 46px;
 		font-size: 24px;
 		color: var(--on-surface);
+		background: none;
 
 		&:hover {
 			background: var(--background-hover);

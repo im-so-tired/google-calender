@@ -10,9 +10,7 @@ const ShowSidebarBtn: FC = () => {
 	const { showSidebar, toggleSidebar } = useLayoutContext()
 	return (
 		<CircleBtn
-			onClick={() => {
-				toggleSidebar()
-			}}
+			onClick={toggleSidebar}
 			bgColor="gray"
 			size={48}
 			iconSize={24}

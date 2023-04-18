@@ -3,6 +3,7 @@
 	margin-top: 0.75rem;
 	height: calc(100vh - 65px - 0.75rem);
 	box-sizing: border-box;
+	user-select: none;
 
 	tr {
 		height: 3rem;
@@ -15,6 +16,7 @@
 	thead {
 		display: block;
 		padding-left: 3.5rem;
+		margin-right: 16px;
 
 		tr {
 			border-bottom: 1px solid var(--hairline);

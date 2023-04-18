@@ -1,27 +1,34 @@
+import { Moment } from 'moment'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import { getCurrentDate } from '@/utils/date/getCurrentDate'
 
+import pickedDate from '@/store/PickedDate'
+
 import styles from './HeaderTable.module.scss'
 
 interface IHeaderTable {
-	date: string
-	link: string
+	date: Moment
 }
 
-const HeaderTable: FC<IHeaderTable> = ({ date, link }) => {
-	const [numeric, dayOfWeek] = date.split(' ')
+const HeaderTable: FC<IHeaderTable> = ({ date }) => {
+	const [numeric, dayOfWeek] = date.locale('EN').format('D ddd').split(' ')
 	const { day, month, year } = getCurrentDate()
-	const isCurrentDate =
-		link.split('/').slice(2).join(' ') === `${year} ${month} ${day}`
+	const isCurrentDate = date.format('YYYY M D') === `${year} ${month} ${day}`
 	return (
 		<th className={styles.header}>
 			<div>
 				<span>{dayOfWeek}</span>
-				<Link to={link} className={isCurrentDate ? styles.currentDate : ''}>
+				<button
+					onClick={() => {
+						pickedDate.setTimeZone('day')
+						pickedDate.setDate(date)
+					}}
+					className={isCurrentDate ? styles.currentDate : ''}
+				>
 					{numeric}
-				</Link>
+				</button>
 			</div>
 			<div></div>
 		</th>

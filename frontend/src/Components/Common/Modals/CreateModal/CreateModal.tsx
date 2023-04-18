@@ -1,10 +1,12 @@
 import { observer } from 'mobx-react-lite'
+import moment from 'moment'
 import React, { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { repeatOption } from '@/shared/constants/repeatOption'
 
 import modals from '@/store/Modals'
+import task from '@/store/Task'
 
 import styles from './CreateModal.module.scss'
 import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
@@ -20,8 +22,8 @@ import Title from '@/common/Modals/ModalComponent/Title'
 
 interface CreateModalProps extends IBaseModal {}
 
-const CreateModal: FC<CreateModalProps> = observer(({ ...props }) => {
-	const date = modals.createModal.selectedDate
+const CreateModal: FC<CreateModalProps> = observer(({ onClose, ...props }) => {
+	const { type, selectedDate: date } = modals.createModal
 	const { handleSubmit, setValue, control, watch, getValues, reset } =
 		useForm<IFormData>({
 			defaultValues: {
@@ -35,7 +37,15 @@ const CreateModal: FC<CreateModalProps> = observer(({ ...props }) => {
 			},
 		})
 	const onSubmit = (data: IFormData) => {
-		console.log(data)
+		if (type === 'task') {
+			task.createTask({
+				time: moment(data.day).hour(data.startHour.value).minute(0).unix(),
+				repeat: data.repeat.value,
+				description: data.description,
+				title: data.title,
+			})
+		}
+		onClose()
 	}
 
 	useEffect(() => {
@@ -43,7 +53,7 @@ const CreateModal: FC<CreateModalProps> = observer(({ ...props }) => {
 	}, [reset])
 	return (
 		<CreateModalProvider value={{ setValue, control, getValues, watch }}>
-			<DraggableModal {...props}>
+			<DraggableModal {...props} onClose={onClose}>
 				<form className={styles.main} onSubmit={handleSubmit(onSubmit)}>
 					<div className={styles.flexComp}>
 						<div />

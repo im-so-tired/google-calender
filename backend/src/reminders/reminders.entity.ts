@@ -2,6 +2,7 @@ import { Base } from '../utils/base'
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm'
 import { UserEntity } from '../user/user.entity'
 import { repeatType } from '../utils/types/repeat'
+import * as moment from 'moment'
 
 @Entity('reminders')
 export class RemindersEntity extends Base {
@@ -10,7 +11,7 @@ export class RemindersEntity extends Base {
 	author: UserEntity
 	@Column()
 	title: string
-	@Column({ default: Date.now(), type: 'bigint' })
+	@Column({ default: moment().unix(), type: 'bigint' })
 	time: number
 	@Column({ default: 'no-repeat' })
 	repeat: repeatType

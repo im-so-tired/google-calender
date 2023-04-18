@@ -63,7 +63,7 @@ export class UserService {
 				tasks: true,
 			},
 		})
-		return user.tasks.filter(task => task.time >= query.startTime && task.time <= query.endTime)
+		return user.tasks.filter(task => +task.time >= query.startTime && +task.time <= query.endTime)
 	}
 
 	async getEvents(userId, query: QueryParameters) {

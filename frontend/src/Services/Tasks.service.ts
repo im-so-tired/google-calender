@@ -3,7 +3,7 @@ import { DtoTask, ITask } from '@/shared/types/ITask'
 import { axiosAuth } from '../Api/axios'
 
 export const TasksService = {
-	async create(task: DtoTask): Promise<ITask> {
+	async create(task: DtoTask): Promise<ITask[]> {
 		const { data } = await axiosAuth.post('/tasks', task)
 		return data
 	},

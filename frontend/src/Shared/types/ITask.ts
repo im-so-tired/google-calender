@@ -10,4 +10,4 @@ export interface ITask {
 	completed: boolean
 }
 
-export interface DtoTask extends Omit<ITask, 'id' | 'groupId'> {}
+export interface DtoTask extends Omit<ITask, 'id' | 'groupId' | 'completed'> {}

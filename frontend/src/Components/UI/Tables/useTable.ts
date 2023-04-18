@@ -1,27 +1,22 @@
-import { Moment } from 'moment'
+import moment from 'moment'
+import { useEffect } from 'react'
 
-import { useNumberParams } from '@/hooks/useNumberParams'
+import pickedDate from '@/store/PickedDate'
+import task from '@/store/Task'
+import user from '@/store/User'
 
-import { getDate } from '@/utils/date/getDate'
+export const useTable = () => {
+	const { timeZone, date } = pickedDate
+	const { user: client } = user
 
-export const useWeekTable = () => {
-	const { month, day, year } = useNumberParams()
-
-	const tableArray: Moment[][] = Array.from(Array(24), (_, i) =>
-		new Array(7)
-			.fill(0)
-			.map((el, dayIdx) =>
-				getDate(day, month, year).locale('RU').weekday(dayIdx).hour(i)
-			)
-	)
-
-	const tableHead = new Array(7).fill(0).map((_, i) => {
-		const date = getDate(day, month, year).locale('RU').weekday(i)
-		return {
-			date: date.locale('EN').format('D ddd'),
-			link: `/day/${date.format('YYYY/M/D')}`,
+	useEffect(() => {
+		if (!client) {
+			task.clearTasks()
+			return
 		}
-	})
-
-	return { tableArray, tableHead }
+		task.getTasks({
+			startTime: moment(date).startOf(timeZone).unix(),
+			endTime: moment(date).endOf(timeZone).unix(),
+		})
+	}, [client, date, timeZone])
 }

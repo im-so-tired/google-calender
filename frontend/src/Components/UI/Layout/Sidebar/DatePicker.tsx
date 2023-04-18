@@ -1,29 +1,25 @@
 import TextField from '@mui/material/TextField'
 import { DesktopDatePicker } from '@mui/x-date-pickers'
-import moment, { Moment } from 'moment'
+import { observer } from 'mobx-react-lite'
+import { Moment } from 'moment'
 import React, { FC, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
-import { useGetTimeZone } from '@/hooks/useGetTimeZone'
-import { useNumberParams } from '@/hooks/useNumberParams'
+import pickedDate from '@/store/PickedDate'
 
 const dateFormat = 'DD/MM/YYYY'
 
-const DatePicker: FC = () => {
+const DatePicker: FC = observer(() => {
 	const [value, setValue] = useState<Moment | null>()
-	const navigate = useNavigate()
-	const timeZone = useGetTimeZone()
-	const params = useNumberParams()
+	const { date } = pickedDate
 	const handleChange = (newDate: Moment | null) => {
 		if (!newDate) return
-		const [day, month, year] = newDate.format(dateFormat).split('/')
 		setValue(newDate)
-		navigate(`${timeZone}/${year}/${month}/${day}`)
+		pickedDate.setDate(newDate)
 	}
 
 	useEffect(() => {
-		setValue(moment(new Date(params.year, params.month - 1, params.day)))
-	}, [params])
+		setValue(date)
+	}, [date])
 	return (
 		<DesktopDatePicker
 			label="Date desktop"
@@ -33,6 +29,6 @@ const DatePicker: FC = () => {
 			renderInput={params => <TextField {...params} />}
 		/>
 	)
-}
+})
 
 export default DatePicker

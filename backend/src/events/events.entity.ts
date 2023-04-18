@@ -1,6 +1,5 @@
 import { UserEntity } from '../user/user.entity'
-import { Column, ManyToOne, JoinColumn, Entity, OneToMany } from 'typeorm'
-import { ITimeInterval } from '../utils/types/timeInterval'
+import { Column, ManyToOne, JoinColumn, Entity } from 'typeorm'
 import * as moment from 'moment'
 import { Base } from '../utils/base'
 

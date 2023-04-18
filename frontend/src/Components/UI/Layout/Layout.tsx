@@ -1,6 +1,9 @@
+import { observer } from 'mobx-react-lite'
 import { FC, useCallback, useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { Transition } from 'react-transition-group'
+
+import pickedDate from '@/store/PickedDate'
 
 import Header from './Header/Header'
 import styles from './Layout.module.scss'
@@ -14,6 +17,7 @@ const Layout: FC = () => {
 	const toggleSidebar = useCallback(() => {
 		setShowSidebar(prev => !prev)
 	}, [])
+
 	return (
 		<div>
 			<LayoutProvider value={{ showSidebar, toggleSidebar }}>

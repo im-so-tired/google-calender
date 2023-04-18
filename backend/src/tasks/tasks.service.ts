@@ -21,7 +21,7 @@ export class TasksService {
 				author: { id: userId },
 			})
 			await this.tasksRepository.save(newTask)
-			return [newTask]
+			return [this.returnTaskFields(newTask)]
 		}
 		const groupId = Date.now()
 		return await this.createRepeat(dto, userId, dto.time, groupId)
@@ -104,7 +104,7 @@ export class TasksService {
 				author: { id: userId },
 			})
 			await this.tasksRepository.save(newTask)
-			tasks.push(newTask)
+			tasks.push(this.returnTaskFields(newTask))
 			time = moment.unix(time).add(1, dto.repeat[0] as DurationConstructor).unix()
 		}
 		return tasks
@@ -120,5 +120,17 @@ export class TasksService {
 		const tasks = await this.tasksRepository.find({ where: { groupId }, relations: { author: true } })
 		if (!tasks) throw new NotFoundException('Group not found')
 		return tasks
+	}
+
+	returnTaskFields(task: TasksEntity) {
+		return {
+			title: task.title,
+			time: task.time,
+			repeat: task.repeat,
+			groupId: task.groupId,
+			id: task.id,
+			description: task.description,
+			completed: task.completed,
+		}
 	}
 }
