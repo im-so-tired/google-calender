@@ -105,7 +105,17 @@ export class TasksService {
 			})
 			await this.tasksRepository.save(newTask)
 			tasks.push(this.returnTaskFields(newTask))
-			time = moment.unix(time).add(1, dto.repeat[0] as DurationConstructor).unix()
+			switch (dto.repeat) {
+				case 'daily':
+					time = moment.unix(time).add(1, 'd').unix()
+					break
+				case 'weekly':
+					time = moment.unix(time).add(1, 'w').unix()
+					break
+				case 'monthly':
+					time = moment.unix(time).add(1, 'M').unix()
+					break
+			}
 		}
 		return tasks
 	}

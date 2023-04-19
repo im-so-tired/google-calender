@@ -3,7 +3,8 @@ import React, { FC, useEffect, useState } from 'react'
 
 import modals, { CreateModalType } from '@/store/Modals'
 
-import styles from './CreateModal.module.scss'
+import styles from '../CrudModal.module.scss'
+
 import Event from '@/common/Modals/CreateModal/Activity/Event'
 import Reminder from '@/common/Modals/CreateModal/Activity/Reminder'
 import Task from '@/common/Modals/CreateModal/Activity/Task'

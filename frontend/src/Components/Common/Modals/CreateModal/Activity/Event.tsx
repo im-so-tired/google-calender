@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Controller } from 'react-hook-form'
 
-import styles from '../CreateModal.module.scss'
+import styles from '../../CrudModal.module.scss'
 
 import MaterialIcon from '@/common/Icon'
 import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'

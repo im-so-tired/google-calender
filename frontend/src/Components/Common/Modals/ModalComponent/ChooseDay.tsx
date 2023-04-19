@@ -3,7 +3,8 @@ import { DatePicker } from '@mui/x-date-pickers'
 import React, { FC } from 'react'
 import { Controller } from 'react-hook-form'
 
-import styles from '@/common/Modals/CreateModal/CreateModal.module.scss'
+import styles from '../CrudModal.module.scss'
+
 import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
 
 const dateFormat = 'DD/MM/YYYY'

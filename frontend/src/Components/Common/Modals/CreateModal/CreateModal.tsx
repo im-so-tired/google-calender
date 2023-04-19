@@ -8,7 +8,8 @@ import { repeatOption } from '@/shared/constants/repeatOption'
 import modals from '@/store/Modals'
 import task from '@/store/Task'
 
-import styles from './CreateModal.module.scss'
+import styles from '../CrudModal.module.scss'
+
 import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
 import { IFormData } from '@/common/Modals/CreateModal/Helpers/FormData.interface'
 import {

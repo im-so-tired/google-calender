@@ -44,6 +44,35 @@ class Task {
 	clearTasks() {
 		this.tasks = []
 	}
+
+	async deleteTask(id: number) {
+		try {
+			const deletedId = await TasksService.delete(id)
+			runInAction(() => {
+				this.tasks = this.tasks.filter(task => task.id !== deletedId)
+			})
+			toast.success('Task deleted!')
+		} catch (e) {
+			toast.error(errorMessage(e))
+		}
+	}
+
+	async changeComplete(id: number) {
+		try {
+			const newComplete = await TasksService.changeComplete(id)
+			runInAction(() => {
+				this.tasks = this.tasks.map(task => {
+					if (task.id === id) {
+						task.completed = newComplete
+					}
+					return task
+				})
+			})
+			toast.success('Task updated!')
+		} catch (e) {
+			toast.error(errorMessage(e))
+		}
+	}
 }
 
 export default new Task()

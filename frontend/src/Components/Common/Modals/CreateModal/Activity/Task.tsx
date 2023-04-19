@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import styles from '../CreateModal.module.scss'
+import styles from '../../CrudModal.module.scss'
 
 import MaterialIcon from '@/common/Icon'
 import ChooseDay from '@/common/Modals/ModalComponent/ChooseDay'

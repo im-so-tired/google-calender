@@ -6,6 +6,7 @@ import modals from '@/store/Modals'
 import CreateModal from '@/common/Modals/CreateModal/CreateModal'
 import LoginModal from '@/common/Modals/Login/LoginModal'
 import RegisterModal from '@/common/Modals/Login/RegisterModal'
+import TaskModal from '@/common/Modals/TaskModal/TaskModal'
 
 const AllModals: FC = observer(() => {
 	return (
@@ -21,6 +22,10 @@ const AllModals: FC = observer(() => {
 					onClose={modals.toggleCreateModal}
 				/>
 			) : null}
+			<TaskModal
+				open={modals.taskModal.open}
+				onClose={modals.toggleTaskModal}
+			/>
 		</>
 	)
 })

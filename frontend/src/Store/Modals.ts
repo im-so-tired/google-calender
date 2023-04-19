@@ -1,12 +1,21 @@
 import { makeAutoObservable } from 'mobx'
 import moment, { Moment } from 'moment'
 
+import { ITask } from '@/shared/types/ITask'
+import { Position } from '@/shared/types/position'
+
 export type CreateModalType = 'event' | 'task' | 'reminder'
 
 export interface ICreateModal {
 	open: boolean
 	type: CreateModalType
 	selectedDate: Moment
+}
+
+export interface ITaskModal {
+	open: boolean
+	position: Position
+	task: ITask | null
 }
 
 class Modals {
@@ -18,6 +27,17 @@ class Modals {
 		open: false,
 		type: 'event',
 		selectedDate: moment(),
+	}
+
+	taskModal: ITaskModal = {
+		open: false,
+		position: {
+			right: 'auto',
+			left: 'auto',
+			top: 'auto',
+			bottom: 'auto',
+		},
+		task: null,
 	}
 
 	constructor() {
@@ -39,6 +59,20 @@ class Modals {
 
 	changeCreateModalType = (type: CreateModalType) => {
 		this.createModal.type = type
+	}
+
+	toggleTaskModal = (
+		task: ITask | null = null,
+		position: Position = {
+			right: 'auto',
+			left: 'auto',
+			top: 'auto',
+			bottom: 'auto',
+		}
+	) => {
+		this.taskModal.open = !this.taskModal.open
+		this.taskModal.position = position
+		this.taskModal.task = task
 	}
 }
 
