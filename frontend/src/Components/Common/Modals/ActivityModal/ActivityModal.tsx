@@ -15,6 +15,7 @@ export interface IActivityModal extends IBaseModal {
 	deleteHandler: () => void
 	editHandler: () => void
 	isEdit: boolean
+	setIsEdit: (value: boolean) => void
 }
 
 interface IHeaderIcons {
@@ -31,17 +32,23 @@ const ActivityModal: FC<PropsWithChildren<IActivityModal>> = ({
 	deleteHandler,
 	editHandler,
 	isEdit,
+	setIsEdit,
 }) => {
 	if (!open) return null
+	const clickOutside = () => {
+		setIsEdit(false)
+		onClose()
+	}
 	const headerIcons: IHeaderIcons[] = [
 		{ name: 'MdEdit', onClick: editHandler },
 		{ name: 'MdDelete', onClick: deleteHandler },
-		{ name: 'MdClose', onClick: onClose },
+		{ name: 'MdClose', onClick: clickOutside },
 	]
+
 	return (
 		<div
 			className={cn(mainStyles.baseModal, { [mainStyles.bgDark]: bgDark })}
-			onMouseDown={onClose}
+			onMouseDown={clickOutside}
 		>
 			<div
 				onMouseDown={e => {

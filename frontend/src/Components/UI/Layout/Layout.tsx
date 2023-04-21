@@ -3,12 +3,13 @@ import { FC, useCallback, useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { Transition } from 'react-transition-group'
 
+import { LayoutProvider } from '@/ui/Layout/useLayoutContext'
+
 import pickedDate from '@/store/PickedDate'
 
 import Header from './Header/Header'
 import styles from './Layout.module.scss'
 import Sidebar from './Sidebar/Sidebar'
-import { LayoutProvider } from './useLayoutContext'
 import { toggleSidebarAnimation } from '@/styles/animations/toggleSidebarAnimation'
 
 const Layout: FC = () => {

@@ -1,15 +1,12 @@
 import TextField from '@mui/material/TextField'
 import { DatePicker } from '@mui/x-date-pickers'
 import React, { FC } from 'react'
-import { Controller } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 
 import styles from '../CrudModal.module.scss'
 
-import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
-
 const dateFormat = 'DD/MM/YYYY'
-const ChooseDay: FC = () => {
-	const { control } = useCreateModalContext()
+const ChooseDay: FC<{ control: Control<any, any> }> = ({ control }) => {
 	return (
 		<Controller
 			control={control}

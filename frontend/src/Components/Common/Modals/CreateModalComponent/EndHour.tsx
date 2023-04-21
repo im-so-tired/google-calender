@@ -3,11 +3,18 @@ import React, { FC, useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 import Select from 'react-select'
 
+import { IOption } from '@/shared/types/SelectOpt'
+
+import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
 import {
 	endTimeOption,
 	startTimeOption,
-} from '@/common/Modals/CreateModal/Helpers/createOptions'
-import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
+} from '@/common/Modals/Helpers/createOptions'
+
+interface ITimeOption {
+	endHour: IOption<number>
+	startHour: IOption<number>
+}
 
 const EndHour: FC = () => {
 	const { watch, setValue, control } = useCreateModalContext()
@@ -16,7 +23,7 @@ const EndHour: FC = () => {
 	)
 	useEffect(() => {
 		const subscription = watch(
-			({ endHour, startHour }) => {
+			({ endHour, startHour }: ITimeOption) => {
 				if (!startHour?.value || !endHour?.value) return
 
 				if (startHour.value >= endHour.value) {

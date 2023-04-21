@@ -11,15 +11,15 @@ import task from '@/store/Task'
 import styles from '../CrudModal.module.scss'
 
 import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
-import { IFormData } from '@/common/Modals/CreateModal/Helpers/FormData.interface'
+import { CreateModalProvider } from '@/common/Modals/CreateModal/useModalContext'
+import ChooseActivity from '@/common/Modals/CreateModal/СhooseActivity'
+import Title from '@/common/Modals/CreateModalComponent/Title'
+import DraggableModal from '@/common/Modals/DraggableModal/DraggableModal'
+import { IFormData } from '@/common/Modals/Helpers/FormData.interface'
 import {
 	endTimeOption,
 	startTimeOption,
-} from '@/common/Modals/CreateModal/Helpers/createOptions'
-import { CreateModalProvider } from '@/common/Modals/CreateModal/useModalContext'
-import ChooseActivity from '@/common/Modals/CreateModal/СhooseActivity'
-import DraggableModal from '@/common/Modals/DraggableModal/DraggableModal'
-import Title from '@/common/Modals/ModalComponent/Title'
+} from '@/common/Modals/Helpers/createOptions'
 
 interface CreateModalProps extends IBaseModal {}
 
@@ -59,7 +59,7 @@ const CreateModal: FC<CreateModalProps> = observer(({ onClose, ...props }) => {
 					<div className={styles.flexComp}>
 						<div />
 						<div>
-							<Title />
+							<Title control={control} />
 						</div>
 					</div>
 					<ChooseActivity />

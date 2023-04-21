@@ -12,3 +12,10 @@ export interface IFormData {
 	guests: string
 	repeat: IOption<RepeatType>
 }
+
+export interface ITaskData extends Omit<IFormData, 'guests' | 'endHour'> {}
+
+export interface IReminderData
+	extends Omit<IFormData, 'guests' | 'endHour' | 'description'> {}
+
+export interface IEventData extends IFormData {}

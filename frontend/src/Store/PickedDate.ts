@@ -3,10 +3,14 @@ import moment, { Moment } from 'moment'
 
 import { ITimeZone } from '@/shared/types/timeZone'
 
-class PickedDate {
-	timeZone: ITimeZone = 'day'
+import { getValueLocalStorage } from '@/utils/localStorage'
 
-	date: Moment = moment()
+class PickedDate {
+	timeZone: ITimeZone = getValueLocalStorage('timeZone')?.value || 'day'
+
+	date: Moment = getValueLocalStorage('date')
+		? moment(getValueLocalStorage('date'))
+		: moment()
 
 	constructor() {
 		makeAutoObservable(this)

@@ -1,11 +1,11 @@
 import cn from 'classnames'
 import React, { FC, useRef, useState } from 'react'
 
+import { useLayoutContext } from '@/ui/Layout/useLayoutContext'
+
 import PlusLogo from '@/assets/plus.png'
 
 import modals, { CreateModalType } from '@/store/Modals'
-
-import { useLayoutContext } from '../../useLayoutContext'
 
 import styles from './CreateBtn.module.scss'
 import DropDownAbsolute from '@/common/DropDown/DropDownAbsolute'

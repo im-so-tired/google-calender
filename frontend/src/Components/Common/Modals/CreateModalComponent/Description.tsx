@@ -1,11 +1,10 @@
 import React, { FC } from 'react'
-import { Controller } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 
-import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
-
-const Description: FC = () => {
-	const { control } = useCreateModalContext()
-
+const Description: FC<{ control: Control<any, any>; row: number }> = ({
+	control,
+	row,
+}) => {
 	return (
 		<Controller
 			name="description"
@@ -15,7 +14,7 @@ const Description: FC = () => {
 					className="modalTextField"
 					value={field.value}
 					onChange={field.onChange}
-					rows={1}
+					rows={row}
 					placeholder="Add description"
 				/>
 			)}

@@ -1,12 +1,7 @@
 .main {
 	padding: 12px 24px 16px 16px;
-
-	textarea {
-		width: 100%;
-		box-sizing: border-box;
-	}
-
 }
+
 
 .flexComp {
 	display: flex;
@@ -24,6 +19,11 @@
 
 	> div:last-child {
 		flex: 1 0;
+
+		textarea {
+			width: 100%;
+			box-sizing: border-box;
+		}
 	}
 }
 
@@ -72,4 +72,10 @@
 	margin-top: 20px;
 	display: flex;
 	justify-content: flex-end;
+}
+
+.editForm {
+	textarea {
+		background: var(--textfield-surface);
+	}
 }

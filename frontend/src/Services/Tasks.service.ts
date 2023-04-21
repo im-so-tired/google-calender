@@ -8,8 +8,15 @@ export const TasksService = {
 		return data
 	},
 
-	async updateGroup(groupId: number, newData: DtoTask): Promise<ITask[]> {
-		const { data } = await axiosAuth.put(`/tasks/group/${groupId}`, newData)
+	async updateGroup(
+		groupId: number,
+		taskId: number,
+		newData: DtoTask
+	): Promise<ITask[]> {
+		const { data } = await axiosAuth.put(
+			`/tasks/group/${groupId}?taskId=${taskId}`,
+			newData
+		)
 		return data
 	},
 

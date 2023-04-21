@@ -1,8 +1,9 @@
 import cn from 'classnames'
 import React, { FC } from 'react'
 
+import { useLayoutContext } from '@/ui/Layout/useLayoutContext'
+
 import styles from '../Layout.module.scss'
-import { useLayoutContext } from '../useLayoutContext'
 
 import CircleBtn from '@/common/Buttons/CircleBtn/CircleBtn'
 

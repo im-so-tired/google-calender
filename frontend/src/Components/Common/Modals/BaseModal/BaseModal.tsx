@@ -1,5 +1,6 @@
 import cn from 'classnames'
-import { FC, PropsWithChildren } from 'react'
+import { FC, PropsWithChildren, useRef } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import styles from './BaseModal.module.scss'
 
@@ -15,21 +16,31 @@ const BaseModal: FC<PropsWithChildren<IBaseModal>> = ({
 	children,
 	bgDark = false,
 }) => {
-	if (!open) return null
+	const modalRef = useRef(null)
+	// if (!open) return null
 	return (
-		<div
-			className={cn(styles.baseModal, { [styles.bgDark]: bgDark })}
-			onMouseDown={onClose}
+		<CSSTransition
+			nodeRef={modalRef}
+			timeout={200}
+			in={open}
+			classNames="alert"
+			unmountOnExit
 		>
 			<div
-				onMouseDown={e => {
-					e.stopPropagation()
-				}}
-				className={styles.content}
+				ref={modalRef}
+				className={cn(styles.baseModal, { [styles.bgDark]: bgDark })}
+				onMouseDown={onClose}
 			>
-				{children}
+				<div
+					onMouseDown={e => {
+						e.stopPropagation()
+					}}
+					className={styles.content}
+				>
+					{children}
+				</div>
 			</div>
-		</div>
+		</CSSTransition>
 	)
 }
 

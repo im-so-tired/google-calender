@@ -5,7 +5,7 @@ import {
 	HttpCode,
 	Param, Patch,
 	Post,
-	Put,
+	Put, Query,
 	UsePipes,
 	ValidationPipe,
 } from '@nestjs/common'
@@ -62,8 +62,13 @@ export class TasksController {
 	@HttpCode(200)
 	@UsePipes(new ValidationPipe())
 	@Auth
-	async groupUpdate(@Param('id') id: string, @User('id') userId: number, @Body(RepeatValidate) dto: TasksDto) {
-		return await this.tasksService.groupUpdate(+id, userId, dto)
+	async groupUpdate(
+		@Param('id') id: string,
+		@Query('taskId') taskId: string,
+		@User('id') userId: number,
+		@Body(RepeatValidate) dto: TasksDto
+	) {
+		return await this.tasksService.groupUpdate(+id, +taskId, userId, dto)
 	}
 
 	@Patch('complete/:id')

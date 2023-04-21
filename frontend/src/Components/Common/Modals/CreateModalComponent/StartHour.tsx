@@ -1,14 +1,11 @@
 import moment from 'moment/moment'
 import { FC } from 'react'
-import { Controller } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 import Select from 'react-select'
 
-import { startTimeOption } from '@/common/Modals/CreateModal/Helpers/createOptions'
-import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
+import { startTimeOption } from '@/common/Modals/Helpers/createOptions'
 
-const StartHour: FC = () => {
-	const { control } = useCreateModalContext()
-
+const StartHour: FC<{ control: Control<any, any> }> = ({ control }) => {
 	return (
 		<Controller
 			name="startHour"

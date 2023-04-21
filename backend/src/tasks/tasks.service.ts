@@ -29,10 +29,10 @@ export class TasksService {
 
 	async update(id: number, dto: TasksDto) {
 		let task = await this.byId(id)
-		let groupId = null
 		let repeatTasks = []
-		if (dto.repeat !== 'no-repeat') {
-			groupId = Date.now()
+		if (dto.repeat !== 'no-repeat' && !task.groupId) {
+			const groupId = Date.now()
+			task.groupId = groupId
 			repeatTasks = await this.createRepeat(
 				dto,
 				task.author.id, moment.unix(dto.time).add(1, dto.repeat[0] as DurationConstructor).unix(),
@@ -42,20 +42,20 @@ export class TasksService {
 		task = {
 			...task,
 			...dto,
-			groupId,
 		}
 		await this.tasksRepository.save(task)
 		return {
 			updatedTask: task,
-			createTask: repeatTasks,
+			createdTask: repeatTasks,
 		}
 	}
 
-	async groupUpdate(groupId: number, userId: number, dto: TasksDto) {
+	async groupUpdate(groupId: number, taskId: number, userId: number, dto: TasksDto) {
 		const tasks = await this.tasksRepository.find({ where: { groupId }, relations: { author: true } })
+		if (!tasks.length) throw new NotFoundException('Task group not found')
 		if (tasks[0].author.id !== userId) throw new ForbiddenException('You do not have permission to delete this task!!!')
 		const updatedTasks = []
-		const deltaTime = dto.time - tasks[0].time
+		const deltaTime = dto.time - tasks.find(task => task.id === taskId).time
 		if (dto.repeat === tasks[0].repeat) {
 			for (let task of tasks) {
 				task = {
@@ -63,7 +63,7 @@ export class TasksService {
 					...dto,
 					time: +task.time + deltaTime,
 				}
-				updatedTasks.push(task)
+				updatedTasks.push(this.returnTaskFields(task))
 				await this.tasksRepository.save(task)
 			}
 		} else {
@@ -135,9 +135,9 @@ export class TasksService {
 	returnTaskFields(task: TasksEntity) {
 		return {
 			title: task.title,
-			time: task.time,
+			time: Number(task.time),
 			repeat: task.repeat,
-			groupId: task.groupId,
+			groupId: task.groupId ? Number(task.groupId) : null,
 			id: task.id,
 			description: task.description,
 			completed: task.completed,

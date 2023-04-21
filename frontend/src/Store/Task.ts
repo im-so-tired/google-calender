@@ -57,6 +57,18 @@ class Task {
 		}
 	}
 
+	async deleteGroup(groupId: number) {
+		try {
+			const deletedId = await TasksService.deleteGroup(groupId)
+			runInAction(() => {
+				this.tasks = this.tasks.filter(task => task.groupId !== deletedId)
+			})
+			toast.success('Task group deleted!')
+		} catch (e) {
+			toast.error(errorMessage(e))
+		}
+	}
+
 	async changeComplete(id: number) {
 		try {
 			const newComplete = await TasksService.changeComplete(id)
@@ -69,6 +81,49 @@ class Task {
 				})
 			})
 			toast.success('Task updated!')
+		} catch (e) {
+			toast.error(errorMessage(e))
+		}
+	}
+
+	async update(id: number, newValue: DtoTask) {
+		try {
+			const { updatedTask, createdTask } = await TasksService.update(
+				id,
+				newValue
+			)
+			runInAction(() => {
+				this.tasks = this.tasks.map(task => {
+					if (task.id === id) {
+						task = { ...task, ...updatedTask }
+					}
+					return task
+				})
+				if (createdTask.length) this.tasks = [...this.tasks, ...createdTask]
+			})
+			toast.success('Task updated!')
+		} catch (e) {
+			toast.error(errorMessage(e))
+		}
+	}
+
+	async groupUpdate(groupId: number, taskId: number, newValue: DtoTask) {
+		try {
+			const updatedTasks = await TasksService.updateGroup(
+				groupId,
+				taskId,
+				newValue
+			)
+			runInAction(() => {
+				this.tasks = this.tasks.map(task => {
+					const updatedTask = updatedTasks.find(el => el.id === task.id)
+					if (updatedTask) {
+						task = { ...task, ...updatedTask }
+					}
+					return task
+				})
+			})
+			toast.success('Task group updated!')
 		} catch (e) {
 			toast.error(errorMessage(e))
 		}

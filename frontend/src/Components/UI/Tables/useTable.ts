@@ -10,6 +10,8 @@ export const useTable = () => {
 	const { user: client } = user
 
 	useEffect(() => {
+		localStorage.setItem('timeZone', JSON.stringify({ value: timeZone }))
+		localStorage.setItem('date', JSON.stringify(date))
 		if (!client) {
 			task.clearTasks()
 			return

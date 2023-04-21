@@ -1,11 +1,9 @@
 import React, { FC } from 'react'
-import { Controller } from 'react-hook-form'
+import { Control, Controller, FieldError } from 'react-hook-form'
 
 import ModalInput from '@/common/Inputs/ModalInput/ModalInput'
-import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
 
-const Title: FC = () => {
-	const { control } = useCreateModalContext()
+const Title: FC<{ control: Control<any, any> }> = ({ control }) => {
 	return (
 		<Controller
 			control={control}
@@ -15,12 +13,12 @@ const Title: FC = () => {
 				<ModalInput
 					value={field.value}
 					onChange={field.onChange}
-					error={errors.title}
+					error={errors.title as FieldError}
 					className="titleInput"
 					placeholder="Add title"
 				/>
 			)}
-		></Controller>
+		/>
 	)
 }
 

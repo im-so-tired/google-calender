@@ -6,9 +6,7 @@ import { FC, useEffect } from 'react'
 import Cell from '@/ui/Tables/Cell/Cell'
 import { useTable } from '@/ui/Tables/useTable'
 
-import pickedDate from '@/store/PickedDate'
 import task from '@/store/Task'
-import user from '@/store/User'
 
 import mainStyles from '../Table.module.scss'
 
@@ -20,17 +18,6 @@ const WeekTable: FC = observer(() => {
 	const { tableArray, tableHead } = useWeekTable()
 	const { tasks } = task
 	useTable()
-	// const { timeZone, date } = pickedDate
-	// const { user: client } = user
-	//
-	// useEffect(() => {
-	// 	if (!client) return
-	// 	task.getTasks({
-	// 		startTime: moment(date).startOf(timeZone).unix(),
-	// 		endTime: moment(date).endOf(timeZone).unix(),
-	// 	})
-	// 	console.log('effect')
-	// }, [client, date, timeZone])
 	return (
 		<table className={cn(mainStyles.table, styles.weekTable)}>
 			<thead>

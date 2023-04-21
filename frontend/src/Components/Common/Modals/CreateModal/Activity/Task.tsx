@@ -3,13 +3,15 @@ import React, { FC } from 'react'
 import styles from '../../CrudModal.module.scss'
 
 import MaterialIcon from '@/common/Icon'
-import ChooseDay from '@/common/Modals/ModalComponent/ChooseDay'
-import Description from '@/common/Modals/ModalComponent/Description'
-import Repeat from '@/common/Modals/ModalComponent/Repeat'
-import StartHour from '@/common/Modals/ModalComponent/StartHour'
+import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
+import ChooseDay from '@/common/Modals/CreateModalComponent/ChooseDay'
+import Description from '@/common/Modals/CreateModalComponent/Description'
+import Repeat from '@/common/Modals/CreateModalComponent/Repeat'
+import StartHour from '@/common/Modals/CreateModalComponent/StartHour'
 import '@/common/Select/CustomSelect.scss'
 
 const Task: FC = () => {
+	const { control } = useCreateModalContext()
 	return (
 		<div>
 			<div className={styles.flexComp}>
@@ -17,22 +19,22 @@ const Task: FC = () => {
 					<MaterialIcon name="MdAccessTime" />
 				</div>
 				<div className={styles.time}>
-					<ChooseDay />
-					<StartHour />
+					<ChooseDay control={control} />
+					<StartHour control={control} />
 				</div>
 			</div>
 			<div className={styles.flexComp}>
 				<div>
 					<MaterialIcon name="MdRepeat" />
 				</div>
-				<Repeat />
+				<Repeat control={control} />
 			</div>
 			<div className={styles.flexComp}>
 				<div>
 					<MaterialIcon name="MdDescription" />
 				</div>
 				<div>
-					<Description />
+					<Description row={1} control={control} />
 				</div>
 			</div>
 		</div>
