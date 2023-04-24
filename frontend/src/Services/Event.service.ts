@@ -1,15 +1,41 @@
-import { DtoEvent } from '@/shared/types/IEvent'
+import { DtoEvent, IEvent } from '@/shared/types/IEvent'
+import { DtoTask, ITask } from '@/shared/types/ITask'
 
 import { axiosAuth } from '../Api/axios'
 
 export const EventService = {
-	async create(data: DtoEvent) {
-		const { data: event } = await axiosAuth.post('/events', data)
-		return event
+	async create(event: DtoEvent): Promise<IEvent[]> {
+		const { data } = await axiosAuth.post('/events', event)
+		return data
 	},
 
-	async update(id: number, data: DtoEvent) {
-		const { data: event } = await axiosAuth.put(`/events/${id}`, data)
-		return event
+	async updateGroup(
+		groupId: number,
+		eventId: number,
+		newData: DtoEvent
+	): Promise<IEvent[]> {
+		const { data } = await axiosAuth.put(
+			`/events/group/${groupId}?eventId=${eventId}`,
+			newData
+		)
+		return data
+	},
+
+	async update(
+		eventId: number,
+		newData: DtoEvent
+	): Promise<{ updatedTask: IEvent; createdTask: IEvent[] }> {
+		const { data } = await axiosAuth.put(`/events/${eventId}`, newData)
+		return data
+	},
+
+	async deleteGroup(eventId: number): Promise<number> {
+		const { data } = await axiosAuth.delete(`/events/group/${eventId}`)
+		return data
+	},
+
+	async delete(eventId: number): Promise<number> {
+		const { data } = await axiosAuth.delete(`/events/${eventId}`)
+		return data
 	},
 }
