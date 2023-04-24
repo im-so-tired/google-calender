@@ -5,6 +5,8 @@ import { Repository } from 'typeorm'
 import { UserDto } from './user.dto'
 import { QueryParameters } from './user.interface'
 import { TasksService } from '../tasks/tasks.service'
+import { RemindersService } from '../reminders/reminders.service'
+import { EventsService } from '../events/events.service'
 
 @Injectable()
 export class UserService {
@@ -12,6 +14,8 @@ export class UserService {
 		@InjectRepository(UserEntity)
 		private readonly UserEntity: Repository<UserEntity>,
 		private readonly tasksService: TasksService,
+		private readonly remindersService: RemindersService,
+		private readonly eventsService: EventsService,
 	) {
 	}
 
@@ -65,7 +69,8 @@ export class UserService {
 				tasks: true,
 			},
 		})
-		return user.tasks.filter(task => +task.time >= query.startTime && +task.time <= query.endTime).map(task => this.tasksService.returnTaskFields(task))
+		return user.tasks.filter(task => +task.time >= query.startTime && +task.time <= query.endTime)
+			.map(task => this.tasksService.returnTaskFields(task))
 	}
 
 	async getEvents(userId, query: QueryParameters) {
@@ -75,7 +80,8 @@ export class UserService {
 				events: true,
 			},
 		})
-		return user.events.filter(evt => evt.startTime >= query.startTime && evt.endTime <= query.endTime)
+		return user.events.filter(evt => +evt.startTime >= query.startTime && +evt.endTime <= query.endTime)
+			.map(event => this.eventsService.returnEventFields(event))
 	}
 
 	async getReminders(userId, query: QueryParameters) {
@@ -85,6 +91,7 @@ export class UserService {
 				reminders: true,
 			},
 		})
-		return user.reminders.filter(rem => rem.time >= query.startTime && rem.time <= query.endTime)
+		return user.reminders.filter(rem => +rem.time >= query.startTime && +rem.time <= query.endTime)
+			.map(reminder => this.remindersService.returnReminderFields(reminder))
 	}
 }

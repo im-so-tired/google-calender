@@ -3,7 +3,7 @@ import { DtoTask, ITask } from '@/shared/types/ITask'
 
 import { axiosAuth } from '../Api/axios'
 
-export const EventService = {
+export const EventsService = {
 	async create(event: DtoEvent): Promise<IEvent[]> {
 		const { data } = await axiosAuth.post('/events', event)
 		return data
@@ -24,7 +24,7 @@ export const EventService = {
 	async update(
 		eventId: number,
 		newData: DtoEvent
-	): Promise<{ updatedTask: IEvent; createdTask: IEvent[] }> {
+	): Promise<{ updatedEvent: IEvent; createdEvents: IEvent[] }> {
 		const { data } = await axiosAuth.put(`/events/${eventId}`, newData)
 		return data
 	},

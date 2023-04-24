@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import moment from 'moment'
 import { FC, MouseEvent, useRef } from 'react'
 
@@ -5,12 +6,13 @@ import { ITask } from '@/shared/types/ITask'
 
 import modals from '@/store/Modals'
 
-import styles from './Task.module.scss'
+import mainStyles from '../Activity.module.scss'
+
 import MaterialIcon from '@/common/Icon'
 
-const Task: FC<{ task: ITask; countTasks: number }> = ({
+const Task: FC<{ task: ITask; countActivity: number }> = ({
 	task,
-	countTasks,
+	countActivity,
 }) => {
 	const time = moment.unix(task.time).format('h a')
 	const ref = useRef<HTMLLIElement | null>(null)
@@ -57,12 +59,17 @@ const Task: FC<{ task: ITask; countTasks: number }> = ({
 		<li
 			ref={ref}
 			draggable
-			style={{ width: `${(1 / countTasks) * 100}%`, boxSizing: 'border-box' }}
+			style={{
+				width: `${(1 / countActivity) * 100}%`,
+				boxSizing: 'border-box',
+				height: '22px',
+				background: 'var(--green)',
+			}}
 			onClick={handleClick}
-			className={styles.task}
+			className={mainStyles.activity}
 		>
 			<MaterialIcon color="white" name="MdTaskAlt" size={14} />
-			<span className={task.completed ? styles.completed : ''}>
+			<span className={task.completed ? mainStyles.completed : ''}>
 				{task.title}, {time}
 			</span>
 		</li>

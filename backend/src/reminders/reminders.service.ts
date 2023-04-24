@@ -40,8 +40,8 @@ export class RemindersService {
 		}
 		await this.reminderRepository.save(reminder)
 		return {
-			updatedTask: this.returnReminderFields(reminder),
-			createdTask: repeatReminders,
+			updatedReminder: this.returnReminderFields(reminder),
+			createdReminders: repeatReminders,
 		}
 	}
 

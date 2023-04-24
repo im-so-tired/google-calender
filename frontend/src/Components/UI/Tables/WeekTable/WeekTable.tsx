@@ -6,6 +6,8 @@ import { FC, useEffect } from 'react'
 import Cell from '@/ui/Tables/Cell/Cell'
 import { useTable } from '@/ui/Tables/useTable'
 
+import event from '@/store/Event'
+import reminder from '@/store/Reminder'
 import task from '@/store/Task'
 
 import mainStyles from '../Table.module.scss'
@@ -17,6 +19,8 @@ import HeaderTable from '@/common/HeaderTable/HeaderTable'
 const WeekTable: FC = observer(() => {
 	const { tableArray, tableHead } = useWeekTable()
 	const { tasks } = task
+	const { events } = event
+	const { reminders } = reminder
 	useTable()
 	return (
 		<table className={cn(mainStyles.table, styles.weekTable)}>
@@ -31,7 +35,13 @@ const WeekTable: FC = observer(() => {
 				{tableArray.map((row, rowIdx) => (
 					<tr data-hour={moment().hour(rowIdx).format('h a')} key={rowIdx}>
 						{row.map(day => (
-							<Cell tasks={tasks} key={day.toString()} date={day} />
+							<Cell
+								events={events}
+								reminders={reminders}
+								tasks={tasks}
+								key={day.toString()}
+								date={day}
+							/>
 						))}
 					</tr>
 				))}

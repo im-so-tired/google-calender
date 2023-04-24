@@ -23,7 +23,7 @@ export const RemindersService = {
 	async update(
 		reminderId: number,
 		newData: DtoReminder
-	): Promise<{ updatedTask: IReminder; createdTask: IReminder[] }> {
+	): Promise<{ updatedReminder: IReminder; createdReminders: IReminder[] }> {
 		const { data } = await axiosAuth.put(`/tasks/${reminderId}`, newData)
 		return data
 	},

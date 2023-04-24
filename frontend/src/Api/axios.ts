@@ -8,19 +8,13 @@ export const axiosBase = axios.create({
 	},
 })
 
-export const axiosFile = axios.create({
-	baseURL: 'http://localhost:9000/api',
-	headers: {
-		'Content-Type': 'multipart/form-data',
-	},
-})
-
 export const axiosAuth = axios.create({
 	baseURL: `http://localhost:9000/api`,
 	headers: {
 		'Content-Type': 'application/json',
 	},
 })
+
 axiosAuth.interceptors.request.use(config => {
 	const accessToken = Cookies.get('accessToken')
 	if (config.headers && accessToken)

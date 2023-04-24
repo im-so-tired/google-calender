@@ -42,8 +42,8 @@ export class EventsService {
 		}
 		await this.eventsRepository.save(event)
 		return {
-			updatedTask: this.returnEventFields(event),
-			createdTask: repeatEvents,
+			updatedEvent: this.returnEventFields(event),
+			createdEvents: repeatEvents,
 		}
 	}
 
