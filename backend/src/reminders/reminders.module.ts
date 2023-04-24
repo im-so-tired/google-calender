@@ -10,5 +10,7 @@ import { UserEntity } from '../user/user.entity'
 	controllers: [RemindersController],
 	providers: [RemindersService],
 	imports: [TypeOrmModule.forFeature([RemindersEntity])],
+	exports: [RemindersService],
 })
-export class RemindersModule {}
+export class RemindersModule {
+}

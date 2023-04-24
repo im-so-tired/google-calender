@@ -15,4 +15,6 @@ export class RemindersEntity extends Base {
 	time: number
 	@Column({ default: 'no-repeat' })
 	repeat: repeatType
+	@Column({ default: null, name: 'group_id', type: 'bigint' })
+	groupId: number | null
 }

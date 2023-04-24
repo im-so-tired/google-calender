@@ -4,12 +4,14 @@ import { UserEntity } from './user.entity'
 import { Repository } from 'typeorm'
 import { UserDto } from './user.dto'
 import { QueryParameters } from './user.interface'
+import { TasksService } from '../tasks/tasks.service'
 
 @Injectable()
 export class UserService {
 	constructor(
 		@InjectRepository(UserEntity)
 		private readonly UserEntity: Repository<UserEntity>,
+		private readonly tasksService: TasksService,
 	) {
 	}
 
@@ -63,7 +65,7 @@ export class UserService {
 				tasks: true,
 			},
 		})
-		return user.tasks.filter(task => +task.time >= query.startTime && +task.time <= query.endTime)
+		return user.tasks.filter(task => +task.time >= query.startTime && +task.time <= query.endTime).map(task => this.tasksService.returnTaskFields(task))
 	}
 
 	async getEvents(userId, query: QueryParameters) {

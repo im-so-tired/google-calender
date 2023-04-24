@@ -3,8 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { TasksEntity } from './tasks.entity'
 import { Repository } from 'typeorm'
 import { TasksDto } from './tasks.dto'
-import * as moment from 'moment'
-import DurationConstructor = moment.unitOfTime.DurationConstructor
+import { countTime } from '../utils/repeatTime'
 
 @Injectable()
 export class TasksService {
@@ -30,14 +29,10 @@ export class TasksService {
 	async update(id: number, dto: TasksDto) {
 		let task = await this.byId(id)
 		let repeatTasks = []
-		if (dto.repeat !== 'no-repeat' && !task.groupId) {
+		if (dto.repeat !== 'no-repeat') {
 			const groupId = Date.now()
 			task.groupId = groupId
-			repeatTasks = await this.createRepeat(
-				dto,
-				task.author.id, moment.unix(dto.time).add(1, dto.repeat[0] as DurationConstructor).unix(),
-				groupId,
-			)
+			repeatTasks = await this.createRepeat(dto, task.author.id, countTime(dto.time, dto.repeat), groupId)
 		}
 		task = {
 			...task,
@@ -45,7 +40,7 @@ export class TasksService {
 		}
 		await this.tasksRepository.save(task)
 		return {
-			updatedTask: task,
+			updatedTask: this.returnTaskFields(task),
 			createdTask: repeatTasks,
 		}
 	}
@@ -53,7 +48,7 @@ export class TasksService {
 	async groupUpdate(groupId: number, taskId: number, userId: number, dto: TasksDto) {
 		const tasks = await this.tasksRepository.find({ where: { groupId }, relations: { author: true } })
 		if (!tasks.length) throw new NotFoundException('Task group not found')
-		if (tasks[0].author.id !== userId) throw new ForbiddenException('You do not have permission to delete this task!!!')
+		if (tasks[0].author.id !== userId) throw new ForbiddenException('You do not have permission to update this task group!!!')
 		const updatedTasks = []
 		const deltaTime = dto.time - tasks.find(task => task.id === taskId).time
 		if (dto.repeat === tasks[0].repeat) {
@@ -105,17 +100,7 @@ export class TasksService {
 			})
 			await this.tasksRepository.save(newTask)
 			tasks.push(this.returnTaskFields(newTask))
-			switch (dto.repeat) {
-				case 'daily':
-					time = moment.unix(time).add(1, 'd').unix()
-					break
-				case 'weekly':
-					time = moment.unix(time).add(1, 'w').unix()
-					break
-				case 'monthly':
-					time = moment.unix(time).add(1, 'M').unix()
-					break
-			}
+			time = countTime(time, dto.repeat)
 		}
 		return tasks
 	}

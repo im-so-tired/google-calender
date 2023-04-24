@@ -7,13 +7,13 @@ export class EventsDto {
 	@MinLength(2)
 	title: string
 	@IsNumber()
-	startTime: bigint
+	startTime: number
 	@IsNumber()
-	endTime: bigint
+	endTime: number
 	@IsString()
 	repeat: repeatType
-	
+
 	guests?: string
-	location?: string
+	// location?: string
 	description?: string
 }

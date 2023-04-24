@@ -6,10 +6,20 @@ import { EventsEntity } from '../events/events.entity'
 import { UserEntity } from './user.entity'
 import { TasksEntity } from '../tasks/tasks.entity'
 import { RemindersEntity } from '../reminders/reminders.entity'
+import { TasksService } from '../tasks/tasks.service'
+import { TasksModule } from '../tasks/tasks.module'
+import { RemindersModule } from '../reminders/reminders.module'
+import { EventsModule } from '../events/events.module'
 
 @Module({
 	controllers: [UserController],
 	providers: [UserService],
-	imports: [TypeOrmModule.forFeature([UserEntity])],
+	imports: [
+		TypeOrmModule.forFeature([UserEntity]),
+		TasksModule,
+		RemindersModule,
+		EventsModule
+	],
 })
-export class UserModule {}
+export class UserModule {
+}

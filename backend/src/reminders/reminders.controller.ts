@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common'
+import { Body, Controller, Delete, HttpCode, Param, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common'
 import { RemindersService } from './reminders.service'
 import { Auth } from '../auth/decorators/auth.decorator'
 import { User } from '../user/user.decorator'
@@ -24,5 +24,32 @@ export class RemindersController {
 	@Auth
 	async update(@Param('id') id: string, @Body(RepeatValidate) dto: ReminderDto) {
 		return await this.remindersService.update(+id, dto)
+	}
+
+	@Put('/group/:id')
+	@HttpCode(200)
+	@UsePipes(new ValidationPipe())
+	@Auth
+	async groupUpdate(
+		@Param('id') id: string,
+		@Query('reminderId') reminderId: string,
+		@User('id') userId: number,
+		@Body(RepeatValidate) dto: ReminderDto,
+	) {
+		return await this.remindersService.groupUpdate(+id, +reminderId, userId, dto)
+	}
+
+	@Delete(':id')
+	@HttpCode(200)
+	@Auth
+	async delete(@Param('id') id: string, @User('id') userId: number) {
+		return await this.remindersService.delete(+id, userId)
+	}
+
+	@Delete('group/:id')
+	@HttpCode(200)
+	@Auth
+	async deleteGroup(@Param('id') id: string, @User('id') userId: number) {
+		return await this.remindersService.deleteGroup(+id, userId)
 	}
 }

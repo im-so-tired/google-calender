@@ -1,12 +1,13 @@
-import { Contains, IsNumber, IsString, Min } from 'class-validator'
+import { IsNumber, IsString, Min } from 'class-validator'
 import { repeatType } from '../utils/types/repeat'
+import * as moment from 'moment'
 
 export class ReminderDto {
 	@IsString()
 	title: string
 	@IsNumber()
-	@Min(Date.now())
-	date: bigint
+	@Min(moment().unix())
+	time: number
 	@IsString()
 	repeat: repeatType
 }
