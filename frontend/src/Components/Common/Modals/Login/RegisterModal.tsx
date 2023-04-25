@@ -3,7 +3,6 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import defaultAvatar from '@/assets/images/default-avatar.png'
 
-// import { getDirname } from '@/utils/getDirname'
 import modals from '@/store/Modals'
 import user from '@/store/User'
 

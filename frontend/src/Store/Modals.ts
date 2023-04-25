@@ -1,12 +1,8 @@
 import { makeAutoObservable } from 'mobx'
 import moment, { Moment } from 'moment'
 
-import { DtoTask, ITask } from '@/shared/types/ITask'
-import {
-	IConfirmUpdateTask,
-	ICreateModal,
-	ITaskModal,
-} from '@/shared/types/modals'
+import { ITask } from '@/shared/types/ITask'
+import { ICreateModal, ITaskModal } from '@/shared/types/modals'
 import { Position } from '@/shared/types/position'
 
 export type CreateModalType = 'event' | 'task' | 'reminder'

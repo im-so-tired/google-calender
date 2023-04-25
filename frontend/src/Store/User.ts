@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx'
 
-import { AuthService } from '@/services/Auth/AuthService'
-import { ILoginData, IRegisterData } from '@/services/Auth/auth.types'
+import { AuthService } from '@/services/Auth/Auth.service'
+import { ILoginData } from '@/services/Auth/auth.types'
 import { removeToken } from '@/services/Auth/helpers'
 
 import { errorMessage } from '@/utils/errorMessage'
