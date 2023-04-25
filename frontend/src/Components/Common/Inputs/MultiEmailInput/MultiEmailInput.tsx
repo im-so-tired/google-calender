@@ -1,21 +1,22 @@
+import cn from 'classnames'
 import React, { FC, InputHTMLAttributes } from 'react'
+import { FieldError } from 'react-hook-form'
 
 import styles from './MultiEmailInput.module.scss'
 
 interface MultiEmailInputProps extends InputHTMLAttributes<HTMLInputElement> {
-	isValid: boolean
-	changeValid: (value: boolean) => void
+	error: FieldError
 }
 
 const MultiEmailInput: FC<MultiEmailInputProps> = ({
-	isValid,
-	changeValid,
+	error,
+	className,
 	...rest
 }) => {
 	return (
 		<div className={styles.multiEmail}>
-			<input {...rest} className={!isValid ? styles.error : ''} />
-			{!isValid ? <span>Invalid email address</span> : null}
+			<input className={cn(className, { [styles.error]: error })} {...rest} />
+			{error ? <span>{error.message}</span> : null}
 		</div>
 	)
 }

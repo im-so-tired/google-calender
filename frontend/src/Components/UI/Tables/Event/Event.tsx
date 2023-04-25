@@ -1,7 +1,11 @@
 import moment from 'moment'
-import { FC, useRef } from 'react'
+import { FC, MouseEvent, useRef } from 'react'
 
-import { IEvent } from '@/shared/types/IEvent'
+import { IEvent } from '@/shared/types/event'
+
+import { countPosition } from '@/utils/countPosition'
+
+import modals from '@/store/Modals'
 
 import mainStyles from '../Activity.module.scss'
 
@@ -13,6 +17,10 @@ const Event: FC<{ event: IEvent; countActivity: number }> = ({
 	const endTime = moment.unix(event.endTime).format('ha')
 	const ref = useRef<HTMLLIElement | null>(null)
 
+	const handleClick = (e: MouseEvent<HTMLLIElement>) => {
+		e.stopPropagation()
+		modals.toggleEventModal(event, countPosition(ref))
+	}
 	return (
 		<li
 			ref={ref}
@@ -23,6 +31,7 @@ const Event: FC<{ event: IEvent; countActivity: number }> = ({
 				background: 'var(--yellow)',
 				height: 'calc(100% - 5px)',
 			}}
+			onClick={handleClick}
 			className={mainStyles.activity}
 		>
 			<div>

@@ -1,5 +1,5 @@
-import { DtoEvent, IEvent } from '@/shared/types/IEvent'
-import { DtoTask, ITask } from '@/shared/types/ITask'
+import { DtoEvent, IEvent } from '@/shared/types/event'
+import { DtoTask, ITask } from '@/shared/types/task'
 
 import { axiosAuth } from '../Api/axios'
 

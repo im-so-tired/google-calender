@@ -1,8 +1,8 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import toast from 'react-hot-toast'
 
-import { DtoReminder, IReminder } from '@/shared/types/IReminder'
 import { QueryParamTime } from '@/shared/types/queryParamTime'
+import { DtoReminder, IReminder } from '@/shared/types/reminder'
 
 import { RemindersService } from '@/services/Reminders.service'
 import { UserService } from '@/services/User.service'

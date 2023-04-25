@@ -1,7 +1,7 @@
 import { Moment } from 'moment/moment'
 
-import { DtoTask, ITask } from '@/shared/types/ITask'
 import { Position } from '@/shared/types/position'
+import { DtoTask } from '@/shared/types/task'
 
 import { CreateModalType } from '@/store/Modals'
 
@@ -11,16 +11,16 @@ export interface ICreateModal {
 	selectedDate: Moment
 }
 
-export interface ITaskModal {
+export interface IActivityModal<T> {
 	open: boolean
 	position: Position
-	task: ITask | null
+	activity: T | null
 }
 
-export interface IConfirmUpdateTask {
+export interface IConfirmUpdateActivity<T> {
 	open: boolean
-	newValue: DtoTask | null
-	taskId: number | null
+	newValue: T | null
+	activityId: number | null
 }
 
 export interface IConfirmDeleteTask {

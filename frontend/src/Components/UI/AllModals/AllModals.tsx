@@ -4,8 +4,10 @@ import React, { FC } from 'react'
 import modals from '@/store/Modals'
 
 import CreateModal from '@/common/Modals/CreateModal/CreateModal'
+import EventModal from '@/common/Modals/EventModal/EventModal'
 import LoginModal from '@/common/Modals/Login/LoginModal'
 import RegisterModal from '@/common/Modals/Login/RegisterModal'
+import ReminderModal from '@/common/Modals/ReminderModal/ReminderModal'
 import TaskModal from '@/common/Modals/TaskModal/TaskModal'
 
 const AllModals: FC = observer(() => {
@@ -25,6 +27,14 @@ const AllModals: FC = observer(() => {
 			<TaskModal
 				open={modals.taskModal.open}
 				onClose={modals.toggleTaskModal}
+			/>
+			<EventModal
+				open={modals.eventModal.open}
+				onClose={modals.toggleEventModal}
+			/>
+			<ReminderModal
+				open={modals.reminderModal.open}
+				onClose={modals.toggleReminderModal}
 			/>
 		</>
 	)

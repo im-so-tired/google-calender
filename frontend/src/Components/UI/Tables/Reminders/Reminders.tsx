@@ -1,8 +1,10 @@
 import moment from 'moment'
-import { FC, useRef } from 'react'
+import { FC, MouseEvent, useRef } from 'react'
 
-import { IReminder } from '@/shared/types/IReminder'
-import { ITask } from '@/shared/types/ITask'
+import { IReminder } from '@/shared/types/reminder'
+import { ITask } from '@/shared/types/task'
+
+import { countPosition } from '@/utils/countPosition'
 
 import modals from '@/store/Modals'
 
@@ -16,6 +18,11 @@ const Reminder: FC<{ reminder: IReminder; countActivity: number }> = ({
 }) => {
 	const time = moment.unix(reminder.time).format('h a')
 	const ref = useRef<HTMLLIElement | null>(null)
+
+	const handleClick = (e: MouseEvent<HTMLLIElement>) => {
+		e.stopPropagation()
+		modals.toggleReminderModal(reminder, countPosition(ref))
+	}
 	return (
 		<li
 			ref={ref}
@@ -27,6 +34,7 @@ const Reminder: FC<{ reminder: IReminder; countActivity: number }> = ({
 				background: 'var(--primary)',
 			}}
 			className={mainStyles.activity}
+			onClick={handleClick}
 		>
 			<MaterialIcon color="white" name="MdTimer" size={14} />
 			<span>

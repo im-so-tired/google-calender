@@ -29,7 +29,7 @@ export class TasksService {
 	async update(id: number, dto: TasksDto) {
 		let task = await this.byId(id)
 		let repeatTasks = []
-		if (dto.repeat !== 'no-repeat') {
+		if (dto.repeat !== 'no-repeat' && task.repeat !== dto.repeat) {
 			const groupId = Date.now()
 			task.groupId = groupId
 			repeatTasks = await this.createRepeat(dto, task.author.id, countTime(dto.time, dto.repeat), groupId)

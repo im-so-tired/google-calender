@@ -1,6 +1,6 @@
 import moment from 'moment/moment'
 import React, { FC, useEffect } from 'react'
-import { Controller } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 import Select from 'react-select'
 
 import { IOption } from '@/shared/types/SelectOpt'
@@ -16,8 +16,11 @@ interface ITimeOption {
 	startHour: IOption<number>
 }
 
-const EndHour: FC = () => {
-	const { watch, setValue, control } = useCreateModalContext()
+const EndHour: FC<{
+	control: Control<any, any>
+	setValue: any
+	watch: any
+}> = ({ control, watch, setValue }) => {
 	const defaultValue = endTimeOption.find(
 		op => op.value === moment().hour() + 1
 	)

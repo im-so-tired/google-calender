@@ -31,7 +31,7 @@ export class EventsService {
 	async update(id: number, dto: EventsDto) {
 		let event = await this.byId(id)
 		let repeatEvents = []
-		if (dto.repeat !== 'no-repeat') {
+		if (dto.repeat !== 'no-repeat' && event.repeat !== dto.repeat) {
 			const groupId = Date.now()
 			event.groupId = groupId
 			repeatEvents = await this.createRepeat(dto, event.author.id, countTime(dto.startTime, dto.repeat), groupId)

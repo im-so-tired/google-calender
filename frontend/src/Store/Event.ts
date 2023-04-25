@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import toast from 'react-hot-toast'
 
-import { DtoEvent, IEvent } from '@/shared/types/IEvent'
+import { DtoEvent, IEvent } from '@/shared/types/event'
 import { QueryParamTime } from '@/shared/types/queryParamTime'
 
 import { EventsService } from '@/services/Events.service'

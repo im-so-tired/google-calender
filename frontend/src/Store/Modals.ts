@@ -1,9 +1,11 @@
 import { makeAutoObservable } from 'mobx'
 import moment, { Moment } from 'moment'
 
-import { ITask } from '@/shared/types/ITask'
-import { ICreateModal, ITaskModal } from '@/shared/types/modals'
+import { IEvent } from '@/shared/types/event'
+import { IActivityModal, ICreateModal } from '@/shared/types/modals'
 import { Position } from '@/shared/types/position'
+import { IReminder } from '@/shared/types/reminder'
+import { ITask } from '@/shared/types/task'
 
 export type CreateModalType = 'event' | 'task' | 'reminder'
 
@@ -18,7 +20,7 @@ class Modals {
 		selectedDate: moment(),
 	}
 
-	taskModal: ITaskModal = {
+	taskModal: IActivityModal<ITask> = {
 		open: false,
 		position: {
 			right: 'auto',
@@ -26,7 +28,29 @@ class Modals {
 			top: 'auto',
 			bottom: 'auto',
 		},
-		task: null,
+		activity: null,
+	}
+
+	eventModal: IActivityModal<IEvent> = {
+		open: false,
+		position: {
+			right: 'auto',
+			left: 'auto',
+			top: 'auto',
+			bottom: 'auto',
+		},
+		activity: null,
+	}
+
+	reminderModal: IActivityModal<IReminder> = {
+		open: false,
+		position: {
+			right: 'auto',
+			left: 'auto',
+			top: 'auto',
+			bottom: 'auto',
+		},
+		activity: null,
 	}
 
 	constructor() {
@@ -61,7 +85,35 @@ class Modals {
 	) => {
 		this.taskModal.open = !this.taskModal.open
 		this.taskModal.position = position
-		this.taskModal.task = task
+		this.taskModal.activity = task
+	}
+
+	toggleEventModal = (
+		event: IEvent | null = null,
+		position: Position = {
+			right: 'auto',
+			left: 'auto',
+			top: 'auto',
+			bottom: 'auto',
+		}
+	) => {
+		this.eventModal.open = !this.taskModal.open
+		this.eventModal.position = position
+		this.eventModal.activity = event
+	}
+
+	toggleReminderModal = (
+		reminder: IReminder | null = null,
+		position: Position = {
+			right: 'auto',
+			left: 'auto',
+			top: 'auto',
+			bottom: 'auto',
+		}
+	) => {
+		this.reminderModal.open = !this.taskModal.open
+		this.reminderModal.position = position
+		this.reminderModal.activity = reminder
 	}
 }
 

@@ -16,7 +16,7 @@ import styles from '../CrudModal.module.scss'
 import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
 import { CreateModalProvider } from '@/common/Modals/CreateModal/useModalContext'
 import ChooseActivity from '@/common/Modals/CreateModal/СhooseActivity'
-import Title from '@/common/Modals/CreateModalComponent/Title'
+import Title from '@/common/Modals/CrudModalComponent/Title'
 import DraggableModal from '@/common/Modals/DraggableModal/DraggableModal'
 import { IFormData } from '@/common/Modals/Helpers/FormData.interface'
 import {

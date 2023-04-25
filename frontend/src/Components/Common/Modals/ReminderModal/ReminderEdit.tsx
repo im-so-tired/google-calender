@@ -7,49 +7,45 @@ import { repeatOption } from '@/shared/constants/repeatOption'
 
 import confirmModal from '@/store/ConfirmModal'
 import modals from '@/store/Modals'
-import taskMobx from '@/store/Task'
+import reminderMobx from '@/store/Reminder'
 
 import mainStyles from '../CrudModal.module.scss'
 
-import ConfirmTaskUpdate from '@/common/Modals/ConfirmModals/Update/ConfirmTaskUpdate'
-import styles from '@/common/Modals/CrudModal.module.scss'
+import ConfirmReminderDelete from '@/common/Modals/ConfirmModals/Delete/ConfirmReminderDelete'
+import ConfirmReminderUpdate from '@/common/Modals/ConfirmModals/Update/ConfirmReminderUpdate'
 import ChooseDay from '@/common/Modals/CrudModalComponent/ChooseDay'
-import Description from '@/common/Modals/CrudModalComponent/Description'
-import EndHour from '@/common/Modals/CrudModalComponent/EndHour'
 import Repeat from '@/common/Modals/CrudModalComponent/Repeat'
 import StartHour from '@/common/Modals/CrudModalComponent/StartHour'
 import Title from '@/common/Modals/CrudModalComponent/Title'
-import { ITaskData } from '@/common/Modals/Helpers/FormData.interface'
+import { IReminderData } from '@/common/Modals/Helpers/FormData.interface'
 import { startTimeOption } from '@/common/Modals/Helpers/createOptions'
 import ModalRow from '@/common/Modals/ModalRow'
 
-const TaskEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
-	const { activity: task } = modals.taskModal
-	if (!task) return null
-	const { handleSubmit, control, reset } = useForm<ITaskData>({
+const ReminderEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
+	const { activity: reminder } = modals.reminderModal
+	if (!reminder) return null
+	const { handleSubmit, control, reset } = useForm<IReminderData>({
 		defaultValues: {
-			title: task.title,
-			description: task.description,
-			day: moment.unix(task.time || 0),
+			title: reminder.title,
+			day: moment.unix(reminder.time || 0),
 			startHour: startTimeOption.find(
-				op => op.value === moment.unix(task.time || 0).hour()
+				op => op.value === moment.unix(reminder.time || 0).hour()
 			),
-			repeat: repeatOption.find(op => op.value === task.repeat),
+			repeat: repeatOption.find(op => op.value === reminder.repeat),
 		},
 	})
 
-	const onSubmit = (data: ITaskData) => {
+	const onSubmit = (data: IReminderData) => {
 		const newValue = {
 			title: data.title,
 			repeat: data.repeat.value,
 			time: data.day.hour(data.startHour.value).unix(),
-			description: data.description,
 		}
-		if (!task.groupId) {
-			taskMobx.update(task.id, newValue)
+		if (!reminder.groupId) {
+			reminderMobx.update(reminder.id, newValue)
 			onClose()
 		} else {
-			confirmModal.toggleUpdateTask(newValue, task.id)
+			confirmModal.toggleUpdateReminder(newValue, reminder.id)
 		}
 	}
 
@@ -71,24 +67,21 @@ const TaskEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 				<ModalRow icon="MdRepeat">
 					<Repeat control={control} />
 				</ModalRow>
-				<ModalRow icon="MdDescription">
-					<Description row={4} control={control} />
-				</ModalRow>
 				<div className={mainStyles.footer}>
 					<button className="primaryBtn" type="submit">
 						Save
 					</button>
 				</div>
 			</form>
-			{task.groupId && (
-				<ConfirmTaskUpdate
+			{reminder.groupId && (
+				<ConfirmReminderUpdate
 					closeMainModal={onClose}
-					groupId={task.groupId}
-					id={task.id}
+					groupId={reminder.groupId}
+					id={reminder.id}
 				/>
 			)}
 		</>
 	)
 })
 
-export default TaskEdit
+export default ReminderEdit

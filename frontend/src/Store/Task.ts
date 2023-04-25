@@ -1,8 +1,8 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import toast from 'react-hot-toast'
 
-import { DtoTask, ITask } from '@/shared/types/ITask'
 import { QueryParamTime } from '@/shared/types/queryParamTime'
+import { DtoTask, ITask } from '@/shared/types/task'
 
 import { TasksService } from '@/services/Tasks.service'
 import { UserService } from '@/services/User.service'

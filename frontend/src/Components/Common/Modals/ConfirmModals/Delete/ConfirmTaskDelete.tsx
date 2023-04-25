@@ -7,6 +7,8 @@ import { IConfirmModal } from '@/shared/types/modals'
 import confirmModal from '@/store/ConfirmModal'
 import task from '@/store/Task'
 
+import Footer from '../Footer'
+
 import BaseModal from '@/common/Modals/BaseModal/BaseModal'
 import styles from '@/common/Modals/ConfirmModals/ConfirmModal.module.scss'
 import { useConfirm } from '@/common/Modals/ConfirmModals/useConfirm'
@@ -45,17 +47,7 @@ const ConfirmTaskDelete: FC<IConfirmModal> = observer(
 							label="All tasks"
 						/>
 					</RadioGroup>
-					<div className={styles.footer}>
-						<button
-							onClick={() => toggleDeleteTask()}
-							className={styles.cancelBtn}
-						>
-							Cancel
-						</button>
-						<button onClick={handleConfirm} className={styles.okBtn}>
-							OK
-						</button>
-					</div>
+					<Footer confirm={handleConfirm} cancel={toggleDeleteTask} />
 				</div>
 			</BaseModal>
 		)

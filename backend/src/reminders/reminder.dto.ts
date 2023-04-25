@@ -6,7 +6,7 @@ export class ReminderDto {
 	@IsString()
 	title: string
 	@IsNumber()
-	@Min(moment().unix(), { message: 'Can\'t create a reminder for past tense!' })
+		// @Min(moment().unix(), { message: 'Can\'t create a reminder for past tense!' })
 	time: number
 	@IsString()
 	repeat: repeatType

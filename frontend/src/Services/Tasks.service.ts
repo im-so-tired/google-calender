@@ -1,4 +1,4 @@
-import { DtoTask, ITask } from '@/shared/types/ITask'
+import { DtoTask, ITask } from '@/shared/types/task'
 
 import { axiosAuth } from '../Api/axios'
 

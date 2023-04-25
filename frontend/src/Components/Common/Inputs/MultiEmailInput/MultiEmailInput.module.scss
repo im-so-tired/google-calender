@@ -4,7 +4,8 @@
 	span {
 		position: absolute;
 		bottom: -18px;
-		color: var(--error)
+		color: var(--error);
+		left: 0;
 	}
 }
 
@@ -12,6 +13,10 @@
 	background: #FCE8E6;
 
 	&:focus {
-		border-bottom-color: var(--error);
+		border-bottom-color: var(--error) !important;
+	}
+
+	&:hover {
+		background: #FCE8E6 !important;
 	}
 }

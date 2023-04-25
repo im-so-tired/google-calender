@@ -29,7 +29,7 @@ export class RemindersService {
 	async update(id: number, dto: ReminderDto) {
 		let reminder = await this.byId(id)
 		let repeatReminders = []
-		if (dto.repeat !== 'no-repeat' && !reminder.groupId) {
+		if (dto.repeat !== 'no-repeat' && reminder.repeat !== dto.repeat) {
 			const groupId = Date.now()
 			reminder.groupId = groupId
 			repeatReminders = await this.createRepeat(dto, reminder.author.id, countTime(dto.time, dto.repeat), groupId)

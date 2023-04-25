@@ -5,33 +5,31 @@ import { FC } from 'react'
 import { IConfirmModal } from '@/shared/types/modals'
 
 import confirmModal from '@/store/ConfirmModal'
-import task from '@/store/Task'
+import event from '@/store/Event'
 
-import styles from '../ConfirmModal.module.scss'
 import Footer from '../Footer'
 
 import BaseModal from '@/common/Modals/BaseModal/BaseModal'
+import styles from '@/common/Modals/ConfirmModals/ConfirmModal.module.scss'
 import { useConfirm } from '@/common/Modals/ConfirmModals/useConfirm'
 
-const ConfirmTaskUpdate: FC<IConfirmModal> = observer(
+const ConfirmEventDelete: FC<IConfirmModal> = observer(
 	({ id, groupId, closeMainModal }) => {
-		const { toggleUpdateTask, confirmUpdateTask } = confirmModal
-		const { newValue, activityId: taskId } = confirmUpdateTask
+		const { toggleDeleteEvent, confirmDeleteEvent } = confirmModal
 		const { value, handleChange } = useConfirm()
 		const handleConfirm = () => {
-			if (!newValue || !taskId) return
 			if (value === 'one') {
-				task.update(id, newValue)
+				event.delete(id)
 			} else {
-				task.groupUpdate(groupId, taskId, newValue)
+				event.deleteGroup(groupId)
 			}
-			toggleUpdateTask()
+			toggleDeleteEvent()
 			closeMainModal()
 		}
 		return (
-			<BaseModal open={confirmUpdateTask.open} onClose={toggleUpdateTask}>
+			<BaseModal open={confirmDeleteEvent} onClose={toggleDeleteEvent}>
 				<div className={styles.cnfModal}>
-					<h2>Save repeating task</h2>
+					<h2>Delete recurring event</h2>
 					<RadioGroup
 						aria-labelledby="demo-controlled-radio-buttons-group"
 						name="controlled-radio-buttons-group"
@@ -41,19 +39,19 @@ const ConfirmTaskUpdate: FC<IConfirmModal> = observer(
 						<FormControlLabel
 							value="one"
 							control={<Radio />}
-							label="This task"
+							label="This event"
 						/>
 						<FormControlLabel
 							value="all"
 							control={<Radio />}
-							label="All tasks"
+							label="All events"
 						/>
 					</RadioGroup>
-					<Footer confirm={handleConfirm} cancel={toggleUpdateTask} />
+					<Footer confirm={handleConfirm} cancel={toggleDeleteEvent} />
 				</div>
 			</BaseModal>
 		)
 	}
 )
 
-export default ConfirmTaskUpdate
+export default ConfirmEventDelete

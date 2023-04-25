@@ -6,9 +6,9 @@ import Event from '@/ui/Tables/Event/Event'
 import Reminder from '@/ui/Tables/Reminders/Reminders'
 import Task from '@/ui/Tables/Task/Task'
 
-import { IEvent } from '@/shared/types/IEvent'
-import { IReminder } from '@/shared/types/IReminder'
-import { ITask } from '@/shared/types/ITask'
+import { IEvent } from '@/shared/types/event'
+import { IReminder } from '@/shared/types/reminder'
+import { ITask } from '@/shared/types/task'
 
 import modals from '@/store/Modals'
 

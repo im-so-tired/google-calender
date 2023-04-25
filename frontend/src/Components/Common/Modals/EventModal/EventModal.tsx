@@ -1,36 +1,36 @@
 import { observer } from 'mobx-react-lite'
+import moment from 'moment'
 import React, { FC, useState } from 'react'
 
 import confirmModal from '@/store/ConfirmModal'
+import event from '@/store/Event'
 import modals from '@/store/Modals'
-import task from '@/store/Task'
 
 import mainStyles from '../CrudModal.module.scss'
 
-import styles from './TaskModal.module.scss'
 import Heading from '@/common/ActivityInfo/Heading/Heading'
-import Time from '@/common/ActivityInfo/Time/Time'
 import ActivityModal from '@/common/Modals/ActivityModal/ActivityModal'
 import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
+import ConfirmEventDelete from '@/common/Modals/ConfirmModals/Delete/ConfirmEventDelete'
 import ConfirmTaskDelete from '@/common/Modals/ConfirmModals/Delete/ConfirmTaskDelete'
+import EventEdit from '@/common/Modals/EventModal/EventEdit'
 import ModalRow from '@/common/Modals/ModalRow'
-import TaskEdit from '@/common/Modals/TaskModal/TaskEdit'
 
-interface ITaskModal extends IBaseModal {}
+interface IEventModal extends IBaseModal {}
 
-const TaskModal: FC<ITaskModal> = observer(props => {
+const EventModal: FC<IEventModal> = observer(props => {
 	const [isEdit, setIsEdit] = useState(false)
 	const { onClose } = props
-	const { taskModal } = modals
-	const { activity: taskInfo } = taskModal
-	if (!taskInfo) return null
+	const { eventModal } = modals
+	const { activity: eventInfo } = eventModal
+	if (!eventInfo) return null
 
 	const onDelete = () => {
-		if (!taskInfo.groupId) {
-			task.deleteTask(taskInfo.id)
+		if (!eventInfo.groupId) {
+			event.delete(eventInfo.id)
 			onClose()
 		} else {
-			confirmModal.toggleDeleteTask()
+			confirmModal.toggleDeleteEvent()
 		}
 	}
 	const reset = () => {
@@ -42,10 +42,6 @@ const TaskModal: FC<ITaskModal> = observer(props => {
 		setIsEdit(true)
 	}
 
-	const completeHandler = () => {
-		task.changeComplete(taskInfo.id)
-		onClose()
-	}
 	return (
 		<ActivityModal
 			{...props}
@@ -54,34 +50,35 @@ const TaskModal: FC<ITaskModal> = observer(props => {
 			isEdit={isEdit}
 			setIsEdit={setIsEdit}
 			bgDark={isEdit}
-			position={{ ...taskModal.position }}
+			position={{ ...eventModal.position }}
 		>
 			{isEdit ? (
-				<TaskEdit onClose={reset} />
+				<EventEdit onClose={reset} />
 			) : (
 				<>
 					<ModalRow>
-						<Heading title={taskInfo.title} />
+						<Heading title={eventInfo.title} />
+						<span>
+							{moment.unix(eventInfo.startTime).format('dddd, D MMMM ⋅ ha - ')}
+							{moment.unix(eventInfo.endTime).format('ha')}
+						</span>
 					</ModalRow>
-					<ModalRow icon="MdAccessTime">
-						<Time time={taskInfo.time} />
-					</ModalRow>
-					{taskInfo.description && (
+					{eventInfo.description && (
 						<ModalRow icon="MdDescription">
-							<p>{taskInfo.description}</p>
+							<p>{eventInfo.description}</p>
 						</ModalRow>
 					)}
-					<footer className={styles.footer}>
-						<button onClick={completeHandler}>
-							{taskInfo.completed ? 'Mark uncompleted' : 'Mark completed'}
-						</button>
-					</footer>
+					{eventInfo.guests && (
+						<ModalRow icon="MdPeople">
+							<p>{eventInfo.guests}</p>
+						</ModalRow>
+					)}
 				</>
 			)}
-			{taskInfo.groupId && (
-				<ConfirmTaskDelete
-					id={taskInfo.id}
-					groupId={taskInfo.groupId}
+			{eventInfo.groupId && (
+				<ConfirmEventDelete
+					id={eventInfo.id}
+					groupId={eventInfo.groupId}
 					closeMainModal={reset}
 				/>
 			)}
@@ -89,4 +86,4 @@ const TaskModal: FC<ITaskModal> = observer(props => {
 	)
 })
 
-export default TaskModal
+export default EventModal
