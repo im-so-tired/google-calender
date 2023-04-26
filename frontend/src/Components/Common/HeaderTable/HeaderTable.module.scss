@@ -2,11 +2,16 @@
 	color: var(--on-surface-variant-agm);
 	text-align: center;
 
-	> div {
+	.weekContent {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
 
+	.dayContent {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
 	}
 
 	> div:last-of-type {
@@ -20,8 +25,7 @@
 		display: inline-block;
 	}
 
-	button {
-		border-radius: 100%;
+	.numeric {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -30,6 +34,7 @@
 		font-size: 24px;
 		color: var(--on-surface);
 		background: none;
+		border-radius: 100%;
 
 		&:hover {
 			background: var(--background-hover);

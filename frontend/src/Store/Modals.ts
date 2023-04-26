@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx'
 import moment, { Moment } from 'moment'
 
+import { defaultPosition } from '@/shared/constants/defaultPosition'
 import { IEvent } from '@/shared/types/event'
 import { IActivityModal, ICreateModal } from '@/shared/types/modals'
 import { Position } from '@/shared/types/position'
@@ -22,34 +23,19 @@ class Modals {
 
 	taskModal: IActivityModal<ITask> = {
 		open: false,
-		position: {
-			right: 'auto',
-			left: 'auto',
-			top: 'auto',
-			bottom: 'auto',
-		},
+		position: defaultPosition,
 		activity: null,
 	}
 
 	eventModal: IActivityModal<IEvent> = {
 		open: false,
-		position: {
-			right: 'auto',
-			left: 'auto',
-			top: 'auto',
-			bottom: 'auto',
-		},
+		position: defaultPosition,
 		activity: null,
 	}
 
 	reminderModal: IActivityModal<IReminder> = {
 		open: false,
-		position: {
-			right: 'auto',
-			left: 'auto',
-			top: 'auto',
-			bottom: 'auto',
-		},
+		position: defaultPosition,
 		activity: null,
 	}
 
@@ -76,12 +62,7 @@ class Modals {
 
 	toggleTaskModal = (
 		task: ITask | null = null,
-		position: Position = {
-			right: 'auto',
-			left: 'auto',
-			top: 'auto',
-			bottom: 'auto',
-		}
+		position: Position = defaultPosition
 	) => {
 		this.taskModal.open = !this.taskModal.open
 		this.taskModal.position = position
@@ -90,12 +71,7 @@ class Modals {
 
 	toggleEventModal = (
 		event: IEvent | null = null,
-		position: Position = {
-			right: 'auto',
-			left: 'auto',
-			top: 'auto',
-			bottom: 'auto',
-		}
+		position: Position = defaultPosition
 	) => {
 		this.eventModal.open = !this.taskModal.open
 		this.eventModal.position = position
@@ -104,12 +80,7 @@ class Modals {
 
 	toggleReminderModal = (
 		reminder: IReminder | null = null,
-		position: Position = {
-			right: 'auto',
-			left: 'auto',
-			top: 'auto',
-			bottom: 'auto',
-		}
+		position: Position = defaultPosition
 	) => {
 		this.reminderModal.open = !this.taskModal.open
 		this.reminderModal.position = position

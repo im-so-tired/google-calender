@@ -1,10 +1,10 @@
 import { Moment } from 'moment'
 import { FC } from 'react'
 
+import Event from '@/ui/Tables/Activity/Event'
+import Reminder from '@/ui/Tables/Activity/Reminders'
+import Task from '@/ui/Tables/Activity/Task'
 import { useCell } from '@/ui/Tables/Cell/useCell'
-import Event from '@/ui/Tables/Event/Event'
-import Reminder from '@/ui/Tables/Reminders/Reminders'
-import Task from '@/ui/Tables/Task/Task'
 
 import { IEvent } from '@/shared/types/event'
 import { IReminder } from '@/shared/types/reminder'
@@ -19,9 +19,10 @@ export interface CellProps {
 	tasks: ITask[]
 	reminders: IReminder[]
 	events: IEvent[]
+	countDay: number
 }
 
-const Cell: FC<CellProps> = ({ date, ...rest }) => {
+const Cell: FC<CellProps> = ({ date, countDay, ...rest }) => {
 	const {
 		countActivity,
 		approachEvents,
@@ -31,7 +32,7 @@ const Cell: FC<CellProps> = ({ date, ...rest }) => {
 	} = useCell({ ...rest, date })
 	return (
 		<td
-			style={{ maxWidth: `${maxWidth / 7}px` }}
+			style={{ maxWidth: `${maxWidth / countDay}px` }}
 			onClick={() => modals.toggleCreateModal(date)}
 		>
 			<ul className={styles.list}>
@@ -44,9 +45,9 @@ const Cell: FC<CellProps> = ({ date, ...rest }) => {
 				))}
 				{approachEvents.map(event => (
 					<Event
-						event={event}
 						countActivity={countActivity}
 						key={`event${event.id}`}
+						event={event}
 					/>
 				))}
 				{approachReminders.map(reminder => (

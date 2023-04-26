@@ -34,8 +34,8 @@ const TaskModal: FC<ITaskModal> = observer(props => {
 		}
 	}
 	const reset = () => {
-		onClose()
 		setIsEdit(false)
+		onClose()
 	}
 
 	const onEdit = () => {

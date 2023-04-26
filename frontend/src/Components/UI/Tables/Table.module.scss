@@ -4,6 +4,7 @@
 	height: calc(100vh - 65px - 0.75rem);
 	box-sizing: border-box;
 	user-select: none;
+	border-collapse: separate;
 
 	tr {
 		height: 3rem;

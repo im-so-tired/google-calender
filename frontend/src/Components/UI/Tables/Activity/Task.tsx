@@ -1,11 +1,14 @@
 import moment from 'moment'
 import { FC, MouseEvent, useRef } from 'react'
 
+import { Position } from '@/shared/types/position'
 import { ITask } from '@/shared/types/task'
 
-import { countPosition } from '@/utils/countPosition'
+import { countDayPosition } from '@/utils/countDayPosition'
+import { countWeekPosition } from '@/utils/countWeekPosition'
 
 import modals from '@/store/Modals'
+import pickedDate from '@/store/PickedDate'
 
 import mainStyles from '../Activity.module.scss'
 
@@ -17,9 +20,18 @@ const Task: FC<{ task: ITask; countActivity: number }> = ({
 }) => {
 	const time = moment.unix(task.time).format('h a')
 	const ref = useRef<HTMLLIElement | null>(null)
+	const { timeZone } = pickedDate
 	const handleClick = (e: MouseEvent<HTMLLIElement>) => {
 		e.stopPropagation()
-		modals.toggleTaskModal(task, countPosition(ref))
+		switch (timeZone) {
+			case 'day':
+				modals.toggleTaskModal(task, countDayPosition(ref))
+				break
+			case 'week':
+				modals.toggleTaskModal(task, countWeekPosition(ref))
+				break
+			default:
+		}
 	}
 
 	return (

@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { observer } from 'mobx-react-lite'
 import moment from 'moment'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 
 import Cell from '@/ui/Tables/Cell/Cell'
 import { useTable } from '@/ui/Tables/useTable'
@@ -14,7 +14,7 @@ import mainStyles from '../Table.module.scss'
 
 import styles from './WeekTable.module.scss'
 import { useWeekTable } from './useWeekTable'
-import HeaderTable from '@/common/HeaderTable/HeaderTable'
+import HeaderWeekTable from '@/common/HeaderTable/HeaderWeekTable'
 
 const WeekTable: FC = observer(() => {
 	const { tableArray, tableHead } = useWeekTable()
@@ -27,7 +27,7 @@ const WeekTable: FC = observer(() => {
 			<thead>
 				<tr>
 					{tableHead.map(date => (
-						<HeaderTable key={date.toString()} date={date} />
+						<HeaderWeekTable key={date.toString()} date={date} />
 					))}
 				</tr>
 			</thead>
@@ -36,6 +36,7 @@ const WeekTable: FC = observer(() => {
 					<tr data-hour={moment().hour(rowIdx).format('h a')} key={rowIdx}>
 						{row.map(day => (
 							<Cell
+								countDay={7}
 								events={events}
 								reminders={reminders}
 								tasks={tasks}

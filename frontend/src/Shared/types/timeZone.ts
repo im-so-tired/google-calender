@@ -1,1 +1,1 @@
-export type ITimeZone = 'day' | 'month' | 'year'
+export type ITimeZone = 'day' | 'month' | 'week'

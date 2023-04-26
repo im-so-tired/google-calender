@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import moment from 'moment'
+import moment, { Moment } from 'moment'
 import React, { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -23,8 +23,11 @@ import {
 	endTimeOption,
 	startTimeOption,
 } from '@/common/Modals/Helpers/createOptions'
+import ModalRow from '@/common/Modals/ModalRow'
 
-interface CreateModalProps extends IBaseModal {}
+interface CreateModalProps extends IBaseModal {
+	// date: Moment
+}
 
 const CreateModal: FC<CreateModalProps> = observer(({ onClose, ...props }) => {
 	const { type, selectedDate: date } = modals.createModal
@@ -83,12 +86,9 @@ const CreateModal: FC<CreateModalProps> = observer(({ onClose, ...props }) => {
 		<CreateModalProvider value={{ setValue, control, getValues, watch }}>
 			<DraggableModal {...props} onClose={onClose}>
 				<form className={styles.main} onSubmit={handleSubmit(onSubmit)}>
-					<div className={styles.flexComp}>
-						<div />
-						<div>
-							<Title control={control} />
-						</div>
-					</div>
+					<ModalRow>
+						<Title control={control} />
+					</ModalRow>
 					<ChooseActivity />
 					<div className={styles.footer}>
 						<button className="primaryBtn" type="submit">

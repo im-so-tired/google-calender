@@ -6,6 +6,7 @@ import React, {
 	useRef,
 	useState,
 } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import styles from './DraggableModal.module.scss'
 import MaterialIcon from '@/common/Icon'
@@ -71,36 +72,44 @@ const DraggableModal: React.FC<PropsWithChildren<IBaseModal>> = ({
 			y: event.clientY - modalPosition.y,
 		})
 	}
-	if (!open) return null
+
 	return (
-		<div
-			className={cn(mainStyles.baseModal, { [mainStyles.bgDark]: bgDark })}
-			onMouseDown={onClose}
+		<CSSTransition
+			nodeRef={modalRef}
+			timeout={200}
+			in={open}
+			classNames="alert"
+			unmountOnExit
 		>
 			<div
-				style={{
-					top: modalPosition.y,
-					left: modalPosition.x,
-					position: 'absolute',
-				}}
-				onMouseDown={e => {
-					e.stopPropagation()
-				}}
-				className={cn(mainStyles.content, styles.content)}
-				ref={modalRef}
+				className={cn(mainStyles.baseModal, { [mainStyles.bgDark]: bgDark })}
+				onMouseDown={onClose}
 			>
-				<header
-					style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
-					onMouseDown={handleMouseDown}
+				<div
+					style={{
+						top: modalPosition.y,
+						left: modalPosition.x,
+						position: 'absolute',
+					}}
+					onMouseDown={e => {
+						e.stopPropagation()
+					}}
+					className={cn(mainStyles.content, styles.content)}
+					ref={modalRef}
 				>
-					<MaterialIcon name="MdDragHandle" />
-					<button onClick={onClose}>
-						<MaterialIcon name="MdClose" />
-					</button>
-				</header>
-				<div>{children}</div>
+					<header
+						style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+						onMouseDown={handleMouseDown}
+					>
+						<MaterialIcon name="MdDragHandle" />
+						<button onClick={onClose}>
+							<MaterialIcon name="MdClose" />
+						</button>
+					</header>
+					<div>{children}</div>
+				</div>
 			</div>
-		</div>
+		</CSSTransition>
 	)
 }
 

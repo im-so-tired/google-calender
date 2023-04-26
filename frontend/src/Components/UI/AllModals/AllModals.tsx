@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite'
 import React, { FC } from 'react'
 
 import modals from '@/store/Modals'
+import pickedDate from '@/store/PickedDate'
 
 import CreateModal from '@/common/Modals/CreateModal/CreateModal'
 import EventModal from '@/common/Modals/EventModal/EventModal'

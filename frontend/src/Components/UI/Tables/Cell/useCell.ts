@@ -3,7 +3,12 @@ import moment from 'moment'
 import { useLayoutContext } from '@/ui/Layout/useLayoutContext'
 import { CellProps } from '@/ui/Tables/Cell/Cell'
 
-export const useCell = ({ events, reminders, tasks, date }: CellProps) => {
+export const useCell = ({
+	events,
+	reminders,
+	tasks,
+	date,
+}: Omit<CellProps, 'countDay'>) => {
 	const { showSidebar } = useLayoutContext()
 	const approachTasks = tasks.filter(
 		el =>

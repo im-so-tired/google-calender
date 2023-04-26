@@ -2,7 +2,9 @@ import { MutableRefObject } from 'react'
 
 import { Position } from '@/shared/types/position'
 
-export const countPosition = (ref: MutableRefObject<HTMLLIElement | null>) => {
+export const countWeekPosition = (
+	ref: MutableRefObject<HTMLLIElement | null>
+) => {
 	if (!ref.current) return
 	const rect = ref.current.getBoundingClientRect()
 	const halfWindowWidth = window.innerWidth / 2

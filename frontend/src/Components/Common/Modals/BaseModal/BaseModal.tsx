@@ -17,7 +17,6 @@ const BaseModal: FC<PropsWithChildren<IBaseModal>> = ({
 	bgDark = false,
 }) => {
 	const modalRef = useRef(null)
-	// if (!open) return null
 	return (
 		<CSSTransition
 			nodeRef={modalRef}
@@ -31,12 +30,7 @@ const BaseModal: FC<PropsWithChildren<IBaseModal>> = ({
 				className={cn(styles.baseModal, { [styles.bgDark]: bgDark })}
 				onMouseDown={onClose}
 			>
-				<div
-					onMouseDown={e => {
-						e.stopPropagation()
-					}}
-					className={styles.content}
-				>
+				<div onMouseDown={e => e.stopPropagation()} className={styles.content}>
 					{children}
 				</div>
 			</div>

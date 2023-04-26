@@ -11,12 +11,21 @@ import EndHour from '@/common/Modals/CrudModalComponent/EndHour'
 import Guests from '@/common/Modals/CrudModalComponent/Guests'
 import Repeat from '@/common/Modals/CrudModalComponent/Repeat'
 import StartHour from '@/common/Modals/CrudModalComponent/StartHour'
+import ModalRow from '@/common/Modals/ModalRow'
 import '@/common/Select/CustomSelect.scss'
 
 const Event: FC = () => {
 	const { control, setValue, watch } = useCreateModalContext()
 	return (
 		<div>
+			{/* <ModalRow icon="MdAccessTime"> */}
+			{/* 	<div className={styles.time}> */}
+			{/* 		<ChooseDay control={control} /> */}
+			{/* 		<StartHour control={control} /> */}
+			{/* 		<span>-</span> */}
+			{/* 		<EndHour control={control} watch={watch} setValue={setValue} /> */}
+			{/* 	</div> */}
+			{/* </ModalRow> */}
 			<div className={styles.flexComp}>
 				<div>
 					<MaterialIcon name="MdAccessTime" />

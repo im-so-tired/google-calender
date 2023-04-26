@@ -1,5 +1,6 @@
 import cn from 'classnames'
-import { FC, PropsWithChildren } from 'react'
+import { FC, PropsWithChildren, useRef } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import { IconTypes } from '@/shared/types/IconTypes'
 import { Position } from '@/shared/types/position'
@@ -34,11 +35,13 @@ const ActivityModal: FC<PropsWithChildren<IActivityModal>> = ({
 	isEdit,
 	setIsEdit,
 }) => {
-	if (!open) return null
+	const modalRef = useRef(null)
+
 	const clickOutside = () => {
 		setIsEdit(false)
 		onClose()
 	}
+
 	const headerIcons: IHeaderIcons[] = [
 		{ name: 'MdEdit', onClick: editHandler },
 		{ name: 'MdDelete', onClick: deleteHandler },
@@ -46,32 +49,39 @@ const ActivityModal: FC<PropsWithChildren<IActivityModal>> = ({
 	]
 
 	return (
-		<div
-			className={cn(mainStyles.baseModal, { [mainStyles.bgDark]: bgDark })}
-			onMouseDown={clickOutside}
+		<CSSTransition
+			nodeRef={modalRef}
+			timeout={200}
+			in={open}
+			classNames="alert"
+			unmountOnExit
 		>
 			<div
-				onMouseDown={e => {
-					e.stopPropagation()
-				}}
-				className={cn(mainStyles.content, styles.content)}
-				style={position}
+				className={cn(mainStyles.baseModal, { [mainStyles.bgDark]: bgDark })}
+				onMouseDown={clickOutside}
+				ref={modalRef}
 			>
-				<header className={styles.header}>
-					{headerIcons.map(icon => {
-						if (icon.name === 'MdEdit' && isEdit) return null
-						return (
-							<CircleBtn
-								key={icon.name}
-								icon={icon.name}
-								onClick={icon.onClick}
-							/>
-						)
-					})}
-				</header>
-				{children}
+				<div
+					onMouseDown={e => e.stopPropagation()}
+					className={cn(mainStyles.content, styles.content)}
+					style={position}
+				>
+					<header className={styles.header}>
+						{headerIcons.map(icon => {
+							if (icon.name === 'MdEdit' && isEdit) return null
+							return (
+								<CircleBtn
+									key={icon.name}
+									icon={icon.name}
+									onClick={icon.onClick}
+								/>
+							)
+						})}
+					</header>
+					{children}
+				</div>
 			</div>
-		</div>
+		</CSSTransition>
 	)
 }
 
