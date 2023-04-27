@@ -13,8 +13,6 @@ import modals from '@/store/Modals'
 import mainStyles from '../CrudModal.module.scss'
 
 import ConfirmEventUpdate from '@/common/Modals/ConfirmModals/Update/ConfirmEventUpdate'
-import ConfirmTaskUpdate from '@/common/Modals/ConfirmModals/Update/ConfirmTaskUpdate'
-import styles from '@/common/Modals/CrudModal.module.scss'
 import ChooseDay from '@/common/Modals/CrudModalComponent/ChooseDay'
 import Description from '@/common/Modals/CrudModalComponent/Description'
 import EndHour from '@/common/Modals/CrudModalComponent/EndHour'
@@ -22,10 +20,7 @@ import Guests from '@/common/Modals/CrudModalComponent/Guests'
 import Repeat from '@/common/Modals/CrudModalComponent/Repeat'
 import StartHour from '@/common/Modals/CrudModalComponent/StartHour'
 import Title from '@/common/Modals/CrudModalComponent/Title'
-import {
-	IEventData,
-	ITaskData,
-} from '@/common/Modals/Helpers/FormData.interface'
+import { IEventData } from '@/common/Modals/Helpers/FormData.interface'
 import {
 	endTimeOption,
 	startTimeOption,

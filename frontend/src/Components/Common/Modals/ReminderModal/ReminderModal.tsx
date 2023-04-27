@@ -4,9 +4,6 @@ import React, { FC, useState } from 'react'
 import confirmModal from '@/store/ConfirmModal'
 import modals from '@/store/Modals'
 import reminder from '@/store/Reminder'
-import task from '@/store/Task'
-
-import mainStyles from '../CrudModal.module.scss'
 
 import Heading from '@/common/ActivityInfo/Heading/Heading'
 import Time from '@/common/ActivityInfo/Time/Time'

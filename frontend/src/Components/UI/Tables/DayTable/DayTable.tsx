@@ -22,7 +22,7 @@ const DayTable: FC = observer(() => {
 	const { reminders } = reminder
 	const { date } = pickedDate
 	const tableArray: Moment[] = Array.from(Array(24), (_, i) =>
-		moment(date).hour(i)
+		moment(date).hour(i).startOf('hour')
 	)
 	useTable()
 	return (
@@ -34,13 +34,15 @@ const DayTable: FC = observer(() => {
 			</thead>
 			<tbody>
 				{tableArray.map((value, rowIdx) => (
-					<tr data-hour={moment().hour(rowIdx).format('h a')} key={rowIdx}>
+					<tr
+						data-hour={moment().hour(rowIdx).format('h a')}
+						key={value.toString()}
+					>
 						<Cell
 							countDay={1}
 							events={events}
 							reminders={reminders}
 							tasks={tasks}
-							key={value.toString()}
 							date={value}
 						/>
 					</tr>

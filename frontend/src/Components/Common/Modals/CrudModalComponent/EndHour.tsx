@@ -5,7 +5,6 @@ import Select from 'react-select'
 
 import { IOption } from '@/shared/types/SelectOpt'
 
-import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
 import {
 	endTimeOption,
 	startTimeOption,

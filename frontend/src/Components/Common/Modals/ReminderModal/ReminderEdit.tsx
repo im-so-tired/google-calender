@@ -11,7 +11,6 @@ import reminderMobx from '@/store/Reminder'
 
 import mainStyles from '../CrudModal.module.scss'
 
-import ConfirmReminderDelete from '@/common/Modals/ConfirmModals/Delete/ConfirmReminderDelete'
 import ConfirmReminderUpdate from '@/common/Modals/ConfirmModals/Update/ConfirmReminderUpdate'
 import ChooseDay from '@/common/Modals/CrudModalComponent/ChooseDay'
 import Repeat from '@/common/Modals/CrudModalComponent/Repeat'

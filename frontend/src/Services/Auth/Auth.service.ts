@@ -2,8 +2,8 @@ import { IUser } from '@/store/User'
 
 import { axiosBase } from '../../Api/axios'
 
-import { IAuthResponse, ILoginData, IRegisterData } from './auth.types'
-import { saveToLs, saveToken } from './helpers'
+import { IAuthResponse, ILoginData } from './auth.types'
+import { saveToLs } from './helpers'
 
 export const AuthService = {
 	async login(data: ILoginData): Promise<IUser> {

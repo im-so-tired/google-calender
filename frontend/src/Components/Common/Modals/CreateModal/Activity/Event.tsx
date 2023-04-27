@@ -3,7 +3,6 @@ import { Controller } from 'react-hook-form'
 
 import styles from '../../CrudModal.module.scss'
 
-import MaterialIcon from '@/common/Icon'
 import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
 import ChooseDay from '@/common/Modals/CrudModalComponent/ChooseDay'
 import Description from '@/common/Modals/CrudModalComponent/Description'
@@ -18,47 +17,23 @@ const Event: FC = () => {
 	const { control, setValue, watch } = useCreateModalContext()
 	return (
 		<div>
-			{/* <ModalRow icon="MdAccessTime"> */}
-			{/* 	<div className={styles.time}> */}
-			{/* 		<ChooseDay control={control} /> */}
-			{/* 		<StartHour control={control} /> */}
-			{/* 		<span>-</span> */}
-			{/* 		<EndHour control={control} watch={watch} setValue={setValue} /> */}
-			{/* 	</div> */}
-			{/* </ModalRow> */}
-			<div className={styles.flexComp}>
-				<div>
-					<MaterialIcon name="MdAccessTime" />
-				</div>
+			<ModalRow icon="MdAccessTime">
 				<div className={styles.time}>
 					<ChooseDay control={control} />
 					<StartHour control={control} />
 					<span>-</span>
 					<EndHour control={control} watch={watch} setValue={setValue} />
 				</div>
-			</div>
-			<div className={styles.flexComp}>
-				<div>
-					<MaterialIcon name="MdRepeat" />
-				</div>
+			</ModalRow>
+			<ModalRow icon="MdRepeat">
 				<Repeat control={control} />
-			</div>
-			<div className={styles.flexComp}>
-				<div>
-					<MaterialIcon name="MdPeople" />
-				</div>
-				<div>
-					<Guests control={control} />
-				</div>
-			</div>
-			<div className={styles.flexComp}>
-				<div>
-					<MaterialIcon name="MdDescription" />
-				</div>
-				<div>
-					<Description row={1} control={control} />
-				</div>
-			</div>
+			</ModalRow>
+			<ModalRow icon="MdPeople">
+				<Guests control={control} />
+			</ModalRow>
+			<ModalRow icon="MdDescription">
+				<Description row={1} control={control} />
+			</ModalRow>
 		</div>
 	)
 }

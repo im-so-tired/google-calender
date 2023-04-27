@@ -6,13 +6,10 @@ import confirmModal from '@/store/ConfirmModal'
 import event from '@/store/Event'
 import modals from '@/store/Modals'
 
-import mainStyles from '../CrudModal.module.scss'
-
 import Heading from '@/common/ActivityInfo/Heading/Heading'
 import ActivityModal from '@/common/Modals/ActivityModal/ActivityModal'
 import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
 import ConfirmEventDelete from '@/common/Modals/ConfirmModals/Delete/ConfirmEventDelete'
-import ConfirmTaskDelete from '@/common/Modals/ConfirmModals/Delete/ConfirmTaskDelete'
 import EventEdit from '@/common/Modals/EventModal/EventEdit'
 import ModalRow from '@/common/Modals/ModalRow'
 

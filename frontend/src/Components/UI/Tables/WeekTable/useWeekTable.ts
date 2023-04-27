@@ -15,14 +15,6 @@ export const useWeekTable = () => {
 			)
 	)
 
-	// const tableHead = new Array(7).fill(0).map((_, i) => {
-	// 	const date = getDate(day, month, year).locale('RU').weekday(i)
-	// 	return {
-	// 		date: date.locale('EN').format('D ddd'),
-	// 		link: `/day/${date.format('YYYY/M/D')}`,
-	// 	}
-	// })
-
 	const tableHead = new Array(7).fill(0).map((_, i) => {
 		return getDate(day, month, year).locale('EN').weekday(i)
 	})

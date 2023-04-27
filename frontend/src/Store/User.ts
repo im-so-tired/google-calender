@@ -15,7 +15,6 @@ export interface IUser {
 }
 
 class User {
-	// user: IUser | null = JSON.parse(localStorage.getItem('user') || '') || null
 	user: IUser | null = null
 
 	constructor() {

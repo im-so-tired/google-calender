@@ -1,9 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { FC, useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
 import { SingleValue } from 'react-select'
-
-import { useGetTimeZone } from '@/hooks/useGetTimeZone'
 
 import { IOption } from '@/shared/types/SelectOpt'
 import { ITimeZone } from '@/shared/types/timeZone'
