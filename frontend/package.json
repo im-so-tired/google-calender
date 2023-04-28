@@ -4,9 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "dotenv -e .env webpack --mode development",
+		"dev": "cross-env NODE_ENV=development API_URL=https://google-calender-production.up.railway.app/api webpack --mode development",
 		"serve": "cross-env NODE_ENV=development webpack serve",
-		"build": "dotenv -e .env webpack --mode production --progress",
+		"build": "cross-env NODE_ENV=development API_URL=https://google-calender-production.up.railway.app/api webpack --mode production --progress",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
