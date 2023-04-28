@@ -3,7 +3,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
-
+const dotenv = require('dotenv')
+const webpack = require('webpack')
+const webpackDotenv = require('dotenv-webpack')
 const path = require('path')
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
@@ -41,6 +43,11 @@ const styleModulesLoader = loader => {
 
 	return config
 }
+const env = dotenv.config().parsed
+const envKeys = Object.keys(env).reduce((prev, next) => {
+	prev[`process.env.${next}`] = JSON.stringify(env[next])
+	return prev
+}, {})
 module.exports = {
 	mode: isDev ? 'development' : 'production',
 	context: path.resolve(__dirname, 'src'),
@@ -119,6 +126,8 @@ module.exports = {
 		new MomentLocalesPlugin({
 			localesToKeep: ['es-us', 'ru'],
 		}),
+		new webpack.DefinePlugin(envKeys),
+		new webpackDotenv(),
 	],
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],

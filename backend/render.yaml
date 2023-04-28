@@ -1,0 +1,6 @@
+services:
+  - name: app
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    port: 9000

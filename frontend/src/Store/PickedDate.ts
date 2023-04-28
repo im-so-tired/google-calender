@@ -8,9 +8,7 @@ import { getValueLocalStorage } from '@/utils/localStorage'
 class PickedDate {
 	timeZone: ITimeZone = getValueLocalStorage('timeZone')?.value || 'day'
 
-	date: Moment = getValueLocalStorage('date')
-		? moment(getValueLocalStorage('date'))
-		: moment()
+	date: Moment = moment()
 
 	constructor() {
 		makeAutoObservable(this)
