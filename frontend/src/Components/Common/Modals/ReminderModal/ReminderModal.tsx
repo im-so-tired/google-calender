@@ -1,19 +1,20 @@
 import { observer } from 'mobx-react-lite'
 import React, { FC, useState } from 'react'
 
-import confirmModal from '@/store/ConfirmModal'
-import modals from '@/store/Modals'
-import reminder from '@/store/Reminder'
+import confirmModal from '@store/ConfirmModal'
+import modals from '@store/Modals'
+import reminder from '@store/Reminder'
 
-import Heading from '@/common/ActivityInfo/Heading/Heading'
-import Time from '@/common/ActivityInfo/Time/Time'
-import ActivityModal from '@/common/Modals/ActivityModal/ActivityModal'
-import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
-import ConfirmReminderDelete from '@/common/Modals/ConfirmModals/Delete/ConfirmReminderDelete'
-import ModalRow from '@/common/Modals/ModalRow'
-import ReminderEdit from '@/common/Modals/ReminderModal/ReminderEdit'
+import Heading from '@common/ActivityInfo/Heading/Heading'
+import Time from '@common/ActivityInfo/Time/Time'
+import ActivityModal from '@common/Modals/ActivityModal/ActivityModal'
+import { IBaseModal } from '@common/Modals/BaseModal/BaseModal'
+import ConfirmReminderDelete from '@common/Modals/ConfirmModals/Delete/ConfirmReminderDelete'
+import ModalRow from '@common/Modals/ModalRow'
+import ReminderEdit from '@common/Modals/ReminderModal/ReminderEdit'
 
-interface IReminderModal extends IBaseModal {}
+interface IReminderModal extends IBaseModal {
+}
 
 const ReminderModal: FC<IReminderModal> = observer(props => {
 	const [isEdit, setIsEdit] = useState(false)
@@ -56,7 +57,7 @@ const ReminderModal: FC<IReminderModal> = observer(props => {
 					<ModalRow>
 						<Heading title={reminderInfo.title} />
 					</ModalRow>
-					<ModalRow icon="MdAccessTime">
+					<ModalRow icon='MdAccessTime'>
 						<Time time={reminderInfo.time} />
 					</ModalRow>
 				</>

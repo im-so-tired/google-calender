@@ -1,4 +1,4 @@
-import { IUser } from '@/store/User'
+import { IUser } from '@store/User'
 
 import { axiosBase } from '../../Api/axios'
 
@@ -9,7 +9,7 @@ export const AuthService = {
 	async login(data: ILoginData): Promise<IUser> {
 		const { data: res } = await axiosBase.post<IAuthResponse>(
 			'/auth/login',
-			data
+			data,
 		)
 		saveToLs(res)
 		return res.user
@@ -18,7 +18,7 @@ export const AuthService = {
 	async register(data: FormData): Promise<IUser> {
 		const { data: res } = await axiosBase.post<IAuthResponse>(
 			'/auth/register',
-			data
+			data,
 		)
 		saveToLs(res)
 		return res.user

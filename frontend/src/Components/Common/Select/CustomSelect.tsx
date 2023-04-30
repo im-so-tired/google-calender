@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Select, { SingleValue } from 'react-select'
 
-import { IOption } from '@/shared/types/SelectOpt'
+import { IOption } from '@shared/types/SelectOpt'
 
 import './CustomSelect.scss'
 

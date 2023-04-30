@@ -10,7 +10,7 @@ import {
 } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-import { useOutsideClick } from '@/hooks/useOutsideClick'
+import { useOutsideClick } from '@hooks/useOutsideClick'
 
 import { IDropDownProps } from './DropDown.interface'
 import styles from './DropDown.module.scss'
@@ -22,13 +22,13 @@ interface IDropDownAbs extends Omit<IDropDownProps, 'children'> {
 }
 
 const DropDownAbsolute: FC<IDropDownAbs> = ({
-	openingDirection = 'right',
-	clickHandler,
-	options,
-	opened,
-	elem,
-	setOpened,
-}) => {
+	                                            openingDirection = 'right',
+	                                            clickHandler,
+	                                            options,
+	                                            opened,
+	                                            elem,
+	                                            setOpened,
+                                            }) => {
 	const menuRef = useRef<HTMLUListElement | null>(null)
 	const [position, setPosition] = useState({ top: 0, left: 0 })
 	useOutsideClick(menuRef, elem, () => setOpened(false))
@@ -49,7 +49,7 @@ const DropDownAbsolute: FC<IDropDownAbs> = ({
 			nodeRef={menuRef}
 			timeout={150}
 			in={opened}
-			classNames="alert"
+			classNames='alert'
 			unmountOnExit
 		>
 			<ul

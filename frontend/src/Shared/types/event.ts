@@ -1,4 +1,4 @@
-import { RepeatType } from '@/shared/types/repeatType'
+import { RepeatType } from '@shared/types/repeatType'
 
 export interface IEvent {
 	id: number
@@ -11,4 +11,4 @@ export interface IEvent {
 	groupId: number | null
 }
 
-export interface DtoEvent extends Omit<IEvent, 'id' | 'groupId'> {}
+export type DtoEvent = Omit<IEvent, 'id' | 'groupId'>

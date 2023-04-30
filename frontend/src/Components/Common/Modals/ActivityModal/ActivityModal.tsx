@@ -2,14 +2,14 @@ import cn from 'classnames'
 import { FC, PropsWithChildren, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-import { IconTypes } from '@/shared/types/IconTypes'
-import { Position } from '@/shared/types/position'
+import { IconTypes } from '@shared/types/IconTypes'
+import { Position } from '@shared/types/position'
 
+import CircleBtn from '@common/Buttons/CircleBtn/CircleBtn'
+import { IBaseModal } from '@common/Modals/BaseModal/BaseModal'
 import mainStyles from '../BaseModal/BaseModal.module.scss'
 
 import styles from './ActivityModal.module.scss'
-import CircleBtn from '@/common/Buttons/CircleBtn/CircleBtn'
-import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
 
 export interface IActivityModal extends IBaseModal {
 	position: Position
@@ -25,16 +25,16 @@ interface IHeaderIcons {
 }
 
 const ActivityModal: FC<PropsWithChildren<IActivityModal>> = ({
-	open,
-	onClose,
-	children,
-	bgDark = false,
-	position,
-	deleteHandler,
-	editHandler,
-	isEdit,
-	setIsEdit,
-}) => {
+	                                                              open,
+	                                                              onClose,
+	                                                              children,
+	                                                              bgDark = false,
+	                                                              position,
+	                                                              deleteHandler,
+	                                                              editHandler,
+	                                                              isEdit,
+	                                                              setIsEdit,
+                                                              }) => {
 	const modalRef = useRef(null)
 
 	const clickOutside = () => {
@@ -53,7 +53,7 @@ const ActivityModal: FC<PropsWithChildren<IActivityModal>> = ({
 			nodeRef={modalRef}
 			timeout={200}
 			in={open}
-			classNames="alert"
+			classNames='alert'
 			unmountOnExit
 		>
 			<div

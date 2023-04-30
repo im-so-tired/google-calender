@@ -10,7 +10,7 @@ const ChooseDay: FC<{ control: Control<any, any> }> = ({ control }) => {
 	return (
 		<Controller
 			control={control}
-			name="day"
+			name='day'
 			render={({ field }) => (
 				<DatePicker
 					className={styles.datePicker}

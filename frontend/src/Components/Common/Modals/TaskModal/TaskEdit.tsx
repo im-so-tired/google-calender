@@ -3,23 +3,23 @@ import moment from 'moment'
 import React, { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { repeatOption } from '@/shared/constants/repeatOption'
+import { repeatOption } from '@shared/constants/repeatOption'
 
-import confirmModal from '@/store/ConfirmModal'
-import modals from '@/store/Modals'
-import taskMobx from '@/store/Task'
+import confirmModal from '@store/ConfirmModal'
+import modals from '@store/Modals'
+import taskMobx from '@store/Task'
 
+
+import ConfirmTaskUpdate from '@common/Modals/ConfirmModals/Update/ConfirmTaskUpdate'
+import ChooseDay from '@common/Modals/CrudModalComponent/ChooseDay'
+import Description from '@common/Modals/CrudModalComponent/Description'
+import Repeat from '@common/Modals/CrudModalComponent/Repeat'
+import StartHour from '@common/Modals/CrudModalComponent/StartHour'
+import Title from '@common/Modals/CrudModalComponent/Title'
+import { ITaskData } from '@common/Modals/Helpers/FormData.interface'
+import { startTimeOption } from '@common/Modals/Helpers/createOptions'
+import ModalRow from '@common/Modals/ModalRow'
 import mainStyles from '../CrudModal.module.scss'
-
-import ConfirmTaskUpdate from '@/common/Modals/ConfirmModals/Update/ConfirmTaskUpdate'
-import ChooseDay from '@/common/Modals/CrudModalComponent/ChooseDay'
-import Description from '@/common/Modals/CrudModalComponent/Description'
-import Repeat from '@/common/Modals/CrudModalComponent/Repeat'
-import StartHour from '@/common/Modals/CrudModalComponent/StartHour'
-import Title from '@/common/Modals/CrudModalComponent/Title'
-import { ITaskData } from '@/common/Modals/Helpers/FormData.interface'
-import { startTimeOption } from '@/common/Modals/Helpers/createOptions'
-import ModalRow from '@/common/Modals/ModalRow'
 
 const TaskEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 	const { activity: task } = modals.taskModal
@@ -30,7 +30,7 @@ const TaskEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 			description: task.description,
 			day: moment.unix(task.time || 0),
 			startHour: startTimeOption.find(
-				op => op.value === moment.unix(task.time || 0).hour()
+				op => op.value === moment.unix(task.time || 0).hour(),
 			),
 			repeat: repeatOption.find(op => op.value === task.repeat),
 		},
@@ -60,20 +60,20 @@ const TaskEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 				<ModalRow>
 					<Title control={control} />
 				</ModalRow>
-				<ModalRow icon="MdAccessTime">
+				<ModalRow icon='MdAccessTime'>
 					<div className={mainStyles.time}>
 						<ChooseDay control={control} />
 						<StartHour control={control} />
 					</div>
 				</ModalRow>
-				<ModalRow icon="MdRepeat">
+				<ModalRow icon='MdRepeat'>
 					<Repeat control={control} />
 				</ModalRow>
-				<ModalRow icon="MdDescription">
+				<ModalRow icon='MdDescription'>
 					<Description row={4} control={control} />
 				</ModalRow>
 				<div className={mainStyles.footer}>
-					<button className="primaryBtn" type="submit">
+					<button className='primaryBtn' type='submit'>
 						Save
 					</button>
 				</div>

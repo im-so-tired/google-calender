@@ -10,7 +10,8 @@
 		//        "eslint:recommended",
 		"plugin:react/recommended",
 		"plugin:@typescript-eslint/recommended",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"plugin:react-hooks/recommended"
 	],
 	"overrides": [
 	],
@@ -21,9 +22,10 @@
 		"project": [
 			"./tsconfig.json"
 		],
-		"tsconfigRootDir": "D:\\Работа\\Проекты\\withTs\\perfect-project\\google-calendar\\frontend"
+		"tsconfigRootDir": "D:\\Работа\\Проекты\\withTs\\perfect-project\\new-frontend-calendar"
 	},
 	"plugins": [
+		"react-refresh",
 		"react",
 		"@typescript-eslint",
 		"prettier"
@@ -47,6 +49,10 @@
 		"jsx-a11y/click-events-have-key-events": "off",
 		"consistent-return": "off",
 		"jsx-a11y/no-noninteractive-element-interactions": "off",
-		"class-methods-use-this": "off"
+		"class-methods-use-this": "off",
+		"react/jsx-first-prop-new-line": [
+			"error",
+			"multiline"
+		]
 	}
 }

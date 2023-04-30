@@ -2,18 +2,19 @@ import { observer } from 'mobx-react-lite'
 import moment from 'moment'
 import React, { FC, useState } from 'react'
 
-import confirmModal from '@/store/ConfirmModal'
-import event from '@/store/Event'
-import modals from '@/store/Modals'
+import confirmModal from '@store/ConfirmModal'
+import event from '@store/Event'
+import modals from '@store/Modals'
 
-import Heading from '@/common/ActivityInfo/Heading/Heading'
-import ActivityModal from '@/common/Modals/ActivityModal/ActivityModal'
-import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
-import ConfirmEventDelete from '@/common/Modals/ConfirmModals/Delete/ConfirmEventDelete'
-import EventEdit from '@/common/Modals/EventModal/EventEdit'
-import ModalRow from '@/common/Modals/ModalRow'
+import Heading from '@common/ActivityInfo/Heading/Heading'
+import ActivityModal from '@common/Modals/ActivityModal/ActivityModal'
+import { IBaseModal } from '@common/Modals/BaseModal/BaseModal'
+import ConfirmEventDelete from '@common/Modals/ConfirmModals/Delete/ConfirmEventDelete'
+import EventEdit from '@common/Modals/EventModal/EventEdit'
+import ModalRow from '@common/Modals/ModalRow'
 
-interface IEventModal extends IBaseModal {}
+interface IEventModal extends IBaseModal {
+}
 
 const EventModal: FC<IEventModal> = observer(props => {
 	const [isEdit, setIsEdit] = useState(false)
@@ -61,12 +62,12 @@ const EventModal: FC<IEventModal> = observer(props => {
 						</span>
 					</ModalRow>
 					{eventInfo.description && (
-						<ModalRow icon="MdDescription">
+						<ModalRow icon='MdDescription'>
 							<p>{eventInfo.description}</p>
 						</ModalRow>
 					)}
 					{eventInfo.guests && (
-						<ModalRow icon="MdPeople">
+						<ModalRow icon='MdPeople'>
 							<p>{eventInfo.guests}</p>
 						</ModalRow>
 					)}

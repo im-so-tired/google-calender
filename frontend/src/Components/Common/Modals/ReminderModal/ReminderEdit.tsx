@@ -3,22 +3,22 @@ import moment from 'moment'
 import React, { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { repeatOption } from '@/shared/constants/repeatOption'
+import { repeatOption } from '@shared/constants/repeatOption'
 
-import confirmModal from '@/store/ConfirmModal'
-import modals from '@/store/Modals'
-import reminderMobx from '@/store/Reminder'
+import confirmModal from '@store/ConfirmModal'
+import modals from '@store/Modals'
+import reminderMobx from '@store/Reminder'
 
+
+import ConfirmReminderUpdate from '@common/Modals/ConfirmModals/Update/ConfirmReminderUpdate'
+import ChooseDay from '@common/Modals/CrudModalComponent/ChooseDay'
+import Repeat from '@common/Modals/CrudModalComponent/Repeat'
+import StartHour from '@common/Modals/CrudModalComponent/StartHour'
+import Title from '@common/Modals/CrudModalComponent/Title'
+import { IReminderData } from '@common/Modals/Helpers/FormData.interface'
+import { startTimeOption } from '@common/Modals/Helpers/createOptions'
+import ModalRow from '@common/Modals/ModalRow'
 import mainStyles from '../CrudModal.module.scss'
-
-import ConfirmReminderUpdate from '@/common/Modals/ConfirmModals/Update/ConfirmReminderUpdate'
-import ChooseDay from '@/common/Modals/CrudModalComponent/ChooseDay'
-import Repeat from '@/common/Modals/CrudModalComponent/Repeat'
-import StartHour from '@/common/Modals/CrudModalComponent/StartHour'
-import Title from '@/common/Modals/CrudModalComponent/Title'
-import { IReminderData } from '@/common/Modals/Helpers/FormData.interface'
-import { startTimeOption } from '@/common/Modals/Helpers/createOptions'
-import ModalRow from '@/common/Modals/ModalRow'
 
 const ReminderEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 	const { activity: reminder } = modals.reminderModal
@@ -28,7 +28,7 @@ const ReminderEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 			title: reminder.title,
 			day: moment.unix(reminder.time || 0),
 			startHour: startTimeOption.find(
-				op => op.value === moment.unix(reminder.time || 0).hour()
+				op => op.value === moment.unix(reminder.time || 0).hour(),
 			),
 			repeat: repeatOption.find(op => op.value === reminder.repeat),
 		},
@@ -57,17 +57,17 @@ const ReminderEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 				<ModalRow>
 					<Title control={control} />
 				</ModalRow>
-				<ModalRow icon="MdAccessTime">
+				<ModalRow icon='MdAccessTime'>
 					<div className={mainStyles.time}>
 						<ChooseDay control={control} />
 						<StartHour control={control} />
 					</div>
 				</ModalRow>
-				<ModalRow icon="MdRepeat">
+				<ModalRow icon='MdRepeat'>
 					<Repeat control={control} />
 				</ModalRow>
 				<div className={mainStyles.footer}>
-					<button className="primaryBtn" type="submit">
+					<button className='primaryBtn' type='submit'>
 						Save
 					</button>
 				</div>

@@ -29,43 +29,44 @@
 		],
 		"baseUrl": "./src/",
 		"paths": {
-			"@/common/*": [
+			"@common/*": [
 				"Components/Common/*"
 			],
-			"@/screens/*": [
+			"@screens/*": [
 				"Components/Screens/*"
 			],
-			"@/ui/*": [
+			"@ui/*": [
 				"Components/UI/*"
 			],
-			"@/assets/*": [
+			"@assets/*": [
 				"Assets/*"
 			],
-			"@/hooks/*": [
+			"@hooks/*": [
 				"Hooks/*"
 			],
-			"@/services/*": [
+			"@services/*": [
 				"Services/*"
 			],
-			"@/shared/*": [
+			"@shared/*": [
 				"Shared/*"
 			],
-			"@/store/*": [
+			"@store/*": [
 				"Store/*"
 			],
-			"@/utils/*": [
+			"@utils/*": [
 				"Utils/*"
 			],
-			"@/providers/*": [
+			"@providers/*": [
 				"Providers/*"
 			],
-			"@/styles/*": [
+			"@styles/*": [
 				"styles/*"
 			]
 		}
 	},
 	"include": [
 		"src",
-		"global.d.ts"
+		"global.d.ts",
+		".env"
 	]
 }

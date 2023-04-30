@@ -1,11 +1,11 @@
 import { MutableRefObject, useEffect } from 'react'
 
-import { useLatest } from '@/hooks/useLatest'
+import { useLatest } from '@hooks/useLatest'
 
 export const useOutsideClick = (
 	elemRef: MutableRefObject<any>,
 	toggleRef: MutableRefObject<any>,
-	handler: () => void
+	handler: () => void,
 ) => {
 	const handlerRef = useLatest(handler)
 	useEffect(() => {

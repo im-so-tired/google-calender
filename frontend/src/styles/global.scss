@@ -4,121 +4,121 @@
 @import "./transition.scss";
 
 @font-face {
-	font-family: Google Sans, sans;
-	src: url("@/assets/fonts/GoogleSans-Regular.ttf");
-	font-weight: 500;
-	font-style: normal;
+  font-family: Google Sans, sans;
+  src: url("@assets/fonts/GoogleSans-Regular.ttf");
+  font-weight: 500;
+  font-style: normal;
 }
 
 ::-webkit-scrollbar {
-	width: 16px;
+  width: 16px;
 }
 
 ::-webkit-scrollbar-track {
-	background: none;
+  background: none;
 }
 
 ::-webkit-scrollbar-thumb {
-	border-radius: 8px;
-	border: 4px solid white;
-	margin-right: 6px;
-	background: var(--hairline);
+  border-radius: 8px;
+  border: 4px solid white;
+  margin-right: 6px;
+  background: var(--hairline);
 }
 
 ::-webkit-scrollbar-thumb:active {
-	background: var(--on-surface-variant);
+  background: var(--on-surface-variant);
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: Google Sans, Roboto, Arial, sans-serif;
-	color: var(--on-surface);
-	background: var(--surface);
-	overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Google Sans, Roboto, Arial, sans-serif;
+  color: var(--on-surface);
+  background: var(--surface);
+  overflow: hidden;
 
-	button {
-		cursor: pointer;
-		font-size: 16px;
-	}
+  button {
+    cursor: pointer;
+    font-size: 16px;
+  }
 }
 
 .text-large {
-	font-size: 24px;
+  font-size: 24px;
 }
 
 .hover-bg-gray {
-	transition: background .3ms;
-	background: white;
+  transition: background .3ms;
+  background: white;
 
-	&:hover {
-		background: var(--background-hover);
-	}
+  &:hover {
+    background: var(--background-hover);
+  }
 }
 
 .navBtn {
-	@extend .hover-bg-gray;
-	padding: .5rem .6rem;
-	font-size: 15px;
-	border: 1px solid var(--hairline);
-	border-radius: .25rem;
-	color: var(--on-surface);
+  @extend .hover-bg-gray;
+  padding: .5rem .6rem;
+  font-size: 15px;
+  border: 1px solid var(--hairline);
+  border-radius: .25rem;
+  color: var(--on-surface);
 }
 
 .rounded {
-	border-radius: 100%;
+  border-radius: 100%;
 }
 
 .modalTextField {
-	padding: .5rem;
-	border: none;
-	border-radius: 5px 5px 0 0;
-	font-size: 15px;
-	border-bottom: 2px solid transparent;
-	transition: all .3s;
+  padding: .5rem;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  font-size: 15px;
+  border-bottom: 2px solid transparent;
+  transition: all .3s;
 
-	&:focus {
-		border-bottom-color: var(--primary);
-		background: var(--textfield-surface);
-		outline: none;
-	}
+  &:focus {
+    border-bottom-color: var(--primary);
+    background: var(--textfield-surface);
+    outline: none;
+  }
 
-	&:hover {
-		background: var(--textfield-surface);
-	}
+  &:hover {
+    background: var(--textfield-surface);
+  }
 }
 
 textarea {
-	font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 .titleInput {
-	width: 100%;
-	border: none;
-	box-sizing: border-box;
-	border-bottom: 2px solid var(--textfield-surface);
-	font-size: 22px;
-	height: 28px;
-	color: rgb(60, 64, 67);
-	transition: all .3s;
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  border-bottom: 2px solid var(--textfield-surface);
+  font-size: 22px;
+  height: 28px;
+  color: rgb(60, 64, 67);
+  transition: all .3s;
 
-	&:focus {
-		outline: none;
-		border-bottom-color: var(--primary);
-	}
+  &:focus {
+    outline: none;
+    border-bottom-color: var(--primary);
+  }
 }
 
 .primaryBtn {
-	border-radius: 5px;
-	background: var(--primary);
-	padding: 10px 24px;
-	color: white;
-	font-family: Arial, sans-serif;
-	font-size: 16px;
+  border-radius: 5px;
+  background: var(--primary);
+  padding: 10px 24px;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
 }
 
 .justifyEnd {
-	display: flex;
-	justify-content: end;
+  display: flex;
+  justify-content: end;
 }

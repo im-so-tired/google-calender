@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { Moment } from 'moment'
 import React, { FC, useEffect, useState } from 'react'
 
-import pickedDate from '@/store/PickedDate'
+import pickedDate from '@store/PickedDate'
 
 const dateFormat = 'DD/MM/YYYY'
 
@@ -22,7 +22,7 @@ const DatePicker: FC = observer(() => {
 	}, [date])
 	return (
 		<DesktopDatePicker
-			label="Date desktop"
+			label='Date desktop'
 			inputFormat={dateFormat}
 			value={value}
 			onChange={handleChange}

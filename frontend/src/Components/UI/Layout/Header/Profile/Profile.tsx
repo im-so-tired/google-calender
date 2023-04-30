@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite'
 import React, { FC } from 'react'
 
-import defaultAvatar from '@/assets/images/default-avatar.png'
 
-import modals from '@/store/Modals'
-import userStore from '@/store/User'
+import modals from '@store/Modals'
+import userStore from '@store/User'
 
+import DropDown from '@common/DropDown/DropDown'
 import styles from './Profile.module.scss'
-import DropDown from '@/common/DropDown/DropDown'
+import defaultAvatar from '@/assets/images/default-avatar.png'
 
 const Profile: FC = observer(() => {
 	const { user } = userStore
@@ -17,14 +17,14 @@ const Profile: FC = observer(() => {
 				<DropDown
 					options={[{ value: 'Logout', label: 'Logout' }]}
 					clickHandler={() => userStore.logout()}
-					openingDirection="left"
+					openingDirection='left'
 				>
 					<div className={styles.wrapper}>
 						<img
 							height={40}
 							width={40}
 							className={styles.avatar}
-							alt="avatar"
+							alt='avatar'
 							src={
 								user.avatarPath
 									? `http://localhost:9000/upload/avatars/${user.avatarPath}`
@@ -36,10 +36,10 @@ const Profile: FC = observer(() => {
 				</DropDown>
 			) : (
 				<>
-					<button onClick={modals.toggleLoginModal} className="navBtn">
+					<button onClick={modals.toggleLoginModal} className='navBtn'>
 						Login
 					</button>
-					<button onClick={modals.toggleRegisterModal} className="navBtn">
+					<button onClick={modals.toggleRegisterModal} className='navBtn'>
 						Register
 					</button>
 				</>

@@ -1,8 +1,8 @@
 import { Moment } from 'moment'
 
-import { useNumberParams } from '@/hooks/useNumberParams'
+import { useNumberParams } from '@hooks/useNumberParams'
 
-import { getDate } from '@/utils/date/getDate'
+import { getDate } from '@utils/date/getDate'
 
 export const useWeekTable = () => {
 	const { month, day, year } = useNumberParams()
@@ -11,8 +11,8 @@ export const useWeekTable = () => {
 		new Array(7)
 			.fill(0)
 			.map((el, dayIdx) =>
-				getDate(day, month, year).locale('EN').weekday(dayIdx).hour(i)
-			)
+				getDate(day, month, year).locale('EN').weekday(dayIdx).hour(i),
+			),
 	)
 
 	const tableHead = new Array(7).fill(0).map((_, i) => {

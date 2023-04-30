@@ -1,23 +1,19 @@
 import moment from 'moment'
 import { FC, MouseEvent, useRef } from 'react'
 
-import { Position } from '@/shared/types/position'
-import { ITask } from '@/shared/types/task'
+import { ITask } from '@shared/types/task'
 
-import { countDayPosition } from '@/utils/countDayPosition'
-import { countWeekPosition } from '@/utils/countWeekPosition'
+import { countDayPosition } from '@utils/countDayPosition'
+import { countWeekPosition } from '@utils/countWeekPosition'
 
-import modals from '@/store/Modals'
-import pickedDate from '@/store/PickedDate'
+import modals from '@store/Modals'
+import pickedDate from '@store/PickedDate'
 
+import MaterialIcon from '@common/Icon'
 import mainStyles from '../Activity.module.scss'
 
-import MaterialIcon from '@/common/Icon'
 
-const Task: FC<{ task: ITask; countActivity: number }> = ({
-	task,
-	countActivity,
-}) => {
+const Task: FC<{ task: ITask; countActivity: number }> = ({ task, countActivity }) => {
 	const time = moment.unix(task.time).format('h a')
 	const ref = useRef<HTMLLIElement | null>(null)
 	const { timeZone } = pickedDate
@@ -47,7 +43,7 @@ const Task: FC<{ task: ITask; countActivity: number }> = ({
 			onClick={handleClick}
 			className={mainStyles.activity}
 		>
-			<MaterialIcon color="white" name="MdTaskAlt" size={14} />
+			<MaterialIcon color='white' name='MdTaskAlt' size={14} />
 			<span className={task.completed ? mainStyles.completed : ''}>
 				{task.title}, {time}
 			</span>

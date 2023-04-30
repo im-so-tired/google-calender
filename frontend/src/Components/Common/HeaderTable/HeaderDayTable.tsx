@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { Moment } from 'moment'
 import { FC } from 'react'
 
-import { getCurrentDate } from '@/utils/date/getCurrentDate'
+import { getCurrentDate } from '@utils/date/getCurrentDate'
 
 import styles from './HeaderTable.module.scss'
 

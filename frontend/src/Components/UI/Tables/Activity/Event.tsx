@@ -1,20 +1,18 @@
 import moment from 'moment'
 import { FC, MouseEvent, useRef } from 'react'
 
-import { IEvent } from '@/shared/types/event'
+import { IEvent } from '@shared/types/event'
 
-import { countDayPosition } from '@/utils/countDayPosition'
-import { countWeekPosition } from '@/utils/countWeekPosition'
+import { countDayPosition } from '@utils/countDayPosition'
+import { countWeekPosition } from '@utils/countWeekPosition'
 
-import modals from '@/store/Modals'
-import pickedDate from '@/store/PickedDate'
+import modals from '@store/Modals'
+import pickedDate from '@store/PickedDate'
 
 import mainStyles from '../Activity.module.scss'
 
-const Event: FC<{ event: IEvent; countActivity: number }> = ({
-	event,
-	countActivity,
-}) => {
+
+const Event: FC<{ event: IEvent; countActivity: number }> = ({ event, countActivity }) => {
 	const startTime = moment.unix(event.startTime).format('ha')
 	const endTime = moment.unix(event.endTime).format('ha')
 	const ref = useRef<HTMLLIElement | null>(null)

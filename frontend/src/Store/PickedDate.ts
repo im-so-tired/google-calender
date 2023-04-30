@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx'
 import moment, { Moment } from 'moment'
 
-import { ITimeZone } from '@/shared/types/timeZone'
+import { ITimeZone } from '@shared/types/timeZone'
 
-import { getValueLocalStorage } from '@/utils/localStorage'
+import { getValueLocalStorage } from '@utils/localStorage'
 
 class PickedDate {
 	timeZone: ITimeZone = getValueLocalStorage('timeZone')?.value || 'day'

@@ -1,9 +1,9 @@
 import React, { FC, PropsWithChildren } from 'react'
 
-import { IconTypes } from '@/shared/types/IconTypes'
+import { IconTypes } from '@shared/types/IconTypes'
 
+import MaterialIcon from '@common/Icon'
 import styles from './CrudModal.module.scss'
-import MaterialIcon from '@/common/Icon'
 
 interface ModalRowProps {
 	icon?: IconTypes

@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react'
 import { Control, UseFormGetValues, UseFormWatch } from 'react-hook-form'
+import { IFormData } from '@common/Modals/Helpers/FormData.interface'
 
-import { IFormData } from '@/common/Modals/CreateModal/Helpers/FormData.interface'
 
 export interface IModalContext {
 	setValue: any

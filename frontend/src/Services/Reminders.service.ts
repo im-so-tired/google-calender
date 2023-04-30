@@ -1,4 +1,4 @@
-import { DtoReminder, IReminder } from '@/shared/types/reminder'
+import { DtoReminder, IReminder } from '@shared/types/reminder'
 
 import { axiosAuth } from '../Api/axios'
 
@@ -11,18 +11,18 @@ export const RemindersService = {
 	async updateGroup(
 		groupId: number,
 		reminderId: number,
-		newData: DtoReminder
+		newData: DtoReminder,
 	): Promise<IReminder[]> {
 		const { data } = await axiosAuth.put(
 			`/reminders/group/${groupId}?reminderId=${reminderId}`,
-			newData
+			newData,
 		)
 		return data
 	},
 
 	async update(
 		reminderId: number,
-		newData: DtoReminder
+		newData: DtoReminder,
 	): Promise<{ updatedReminder: IReminder; createdReminders: IReminder[] }> {
 		const { data } = await axiosAuth.put(`/reminders/${reminderId}`, newData)
 		return data

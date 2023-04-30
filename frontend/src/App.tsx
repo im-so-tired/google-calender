@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import AllModals from '@/ui/AllModals/AllModals'
+import AllModals from '@ui/AllModals/AllModals'
 
-import { getCurrentDate } from '@/utils/date/getCurrentDate'
+import { getCurrentDate } from '@utils/date/getCurrentDate'
 
 import DayPage from './Components/Pages/Day/Day'
 import MonthPage from './Components/Pages/Month/Month'

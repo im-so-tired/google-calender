@@ -2,8 +2,8 @@ import moment, { Moment } from 'moment/moment'
 import { ChangeEvent, useState } from 'react'
 import { SingleValue } from 'react-select'
 
-import { IOption } from '@/shared/types/SelectOpt'
-import { RepeatType } from '@/shared/types/repeatType'
+import { IOption } from '@shared/types/SelectOpt'
+import { RepeatType } from '@shared/types/repeatType'
 
 export const useEvent = () => {
 	const [day, setDay] = useState<Moment | null>()

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { IParams } from '@/shared/types/params'
+import { IParams } from '@shared/types/params'
 
 export const useNumberParams = () => {
 	const { month, day, year } = useParams<IParams>()

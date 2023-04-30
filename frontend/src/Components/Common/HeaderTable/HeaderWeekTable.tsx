@@ -2,9 +2,9 @@ import cn from 'classnames'
 import { Moment } from 'moment'
 import { FC } from 'react'
 
-import { getCurrentDate } from '@/utils/date/getCurrentDate'
+import { getCurrentDate } from '@utils/date/getCurrentDate'
 
-import pickedDate from '@/store/PickedDate'
+import pickedDate from '@store/PickedDate'
 
 import styles from './HeaderTable.module.scss'
 

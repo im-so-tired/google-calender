@@ -1,15 +1,14 @@
 import { observer } from 'mobx-react-lite'
 import React, { FC } from 'react'
 
-import modals from '@/store/Modals'
-import pickedDate from '@/store/PickedDate'
+import modals from '@store/Modals'
 
-import CreateModal from '@/common/Modals/CreateModal/CreateModal'
-import EventModal from '@/common/Modals/EventModal/EventModal'
-import LoginModal from '@/common/Modals/Login/LoginModal'
-import RegisterModal from '@/common/Modals/Login/RegisterModal'
-import ReminderModal from '@/common/Modals/ReminderModal/ReminderModal'
-import TaskModal from '@/common/Modals/TaskModal/TaskModal'
+import CreateModal from '@common/Modals/CreateModal/CreateModal'
+import EventModal from '@common/Modals/EventModal/EventModal'
+import LoginModal from '@common/Modals/Login/LoginModal'
+import RegisterModal from '@common/Modals/Login/RegisterModal'
+import ReminderModal from '@common/Modals/ReminderModal/ReminderModal'
+import TaskModal from '@common/Modals/TaskModal/TaskModal'
 
 const AllModals: FC = observer(() => {
 	return (

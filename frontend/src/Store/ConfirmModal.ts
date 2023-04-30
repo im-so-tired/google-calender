@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx'
 
-import { DtoEvent } from '@/shared/types/event'
-import { IConfirmUpdateActivity } from '@/shared/types/modals'
-import { DtoReminder } from '@/shared/types/reminder'
-import { DtoTask } from '@/shared/types/task'
+import { DtoEvent } from '@shared/types/event'
+import { IConfirmUpdateActivity } from '@shared/types/modals'
+import { DtoReminder } from '@shared/types/reminder'
+import { DtoTask } from '@shared/types/task'
 
 class ConfirmModals {
 	constructor() {
@@ -36,7 +36,7 @@ class ConfirmModals {
 
 	toggleUpdateTask = (
 		newValue: DtoTask | null = null,
-		taskId: number | null = null
+		taskId: number | null = null,
 	) => {
 		this.confirmUpdateTask.open = !this.confirmUpdateTask.open
 		this.confirmUpdateTask.newValue = newValue
@@ -45,7 +45,7 @@ class ConfirmModals {
 
 	toggleUpdateEvent = (
 		newValue: DtoEvent | null = null,
-		eventId: number | null = null
+		eventId: number | null = null,
 	) => {
 		this.confirmUpdateEvent.open = !this.confirmUpdateEvent.open
 		this.confirmUpdateEvent.newValue = newValue
@@ -54,7 +54,7 @@ class ConfirmModals {
 
 	toggleUpdateReminder = (
 		newValue: DtoReminder | null = null,
-		reminderId: number | null = null
+		reminderId: number | null = null,
 	) => {
 		this.confirmUpdateReminder.open = !this.confirmUpdateReminder.open
 		this.confirmUpdateReminder.newValue = newValue

@@ -1,4 +1,4 @@
-import { IUser } from '@/store/User'
+import { IUser } from '@store/User'
 
 export interface ILoginData {
 	email: string

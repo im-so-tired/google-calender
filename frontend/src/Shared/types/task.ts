@@ -1,4 +1,4 @@
-import { RepeatType } from '@/shared/types/repeatType'
+import { RepeatType } from '@shared/types/repeatType'
 
 export interface ITask {
 	id: number
@@ -10,4 +10,4 @@ export interface ITask {
 	completed: boolean
 }
 
-export interface DtoTask extends Omit<ITask, 'id' | 'groupId' | 'completed'> {}
+export type DtoTask = Omit<ITask, 'id' | 'groupId' | 'completed'>

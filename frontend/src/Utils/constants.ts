@@ -1,4 +1,4 @@
-import { IOption } from '@/shared/types/SelectOpt'
+import { IOption } from '@shared/types/SelectOpt'
 
 export const defaultIconSize = 22
 

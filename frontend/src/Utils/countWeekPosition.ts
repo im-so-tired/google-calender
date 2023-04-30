@@ -1,9 +1,9 @@
 import { MutableRefObject } from 'react'
+import { Position } from '@shared/types/position'
 
-import { Position } from '@/shared/types/position'
 
 export const countWeekPosition = (
-	ref: MutableRefObject<HTMLLIElement | null>
+	ref: MutableRefObject<HTMLLIElement | null>,
 ) => {
 	if (!ref.current) return
 	const rect = ref.current.getBoundingClientRect()

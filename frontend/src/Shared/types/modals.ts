@@ -1,9 +1,9 @@
 import { Moment } from 'moment/moment'
 
-import { Position } from '@/shared/types/position'
-import { DtoTask } from '@/shared/types/task'
+import { Position } from '@shared/types/position'
+import { DtoTask } from '@shared/types/task'
 
-import { CreateModalType } from '@/store/Modals'
+import { CreateModalType } from '@store/Modals'
 
 export interface ICreateModal {
 	open: boolean

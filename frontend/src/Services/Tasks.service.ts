@@ -1,4 +1,4 @@
-import { DtoTask, ITask } from '@/shared/types/task'
+import { DtoTask, ITask } from '@shared/types/task'
 
 import { axiosAuth } from '../Api/axios'
 
@@ -11,18 +11,18 @@ export const TasksService = {
 	async updateGroup(
 		groupId: number,
 		taskId: number,
-		newData: DtoTask
+		newData: DtoTask,
 	): Promise<ITask[]> {
 		const { data } = await axiosAuth.put(
 			`/tasks/group/${groupId}?taskId=${taskId}`,
-			newData
+			newData,
 		)
 		return data
 	},
 
 	async update(
 		taskId: number,
-		newData: DtoTask
+		newData: DtoTask,
 	): Promise<{ updatedTask: ITask; createdTask: ITask[] }> {
 		const { data } = await axiosAuth.put(`/tasks/${taskId}`, newData)
 		return data

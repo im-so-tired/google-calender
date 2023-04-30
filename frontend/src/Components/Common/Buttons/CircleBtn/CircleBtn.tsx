@@ -1,12 +1,12 @@
 import cn from 'classnames'
 import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react'
 
-import { IconTypes } from '@/shared/types/IconTypes'
+import { IconTypes } from '@shared/types/IconTypes'
 
-import { defaultIconSize } from '@/utils/constants'
+import { defaultIconSize } from '@utils/constants'
 
+import Icon from '@common/Icon'
 import styles from './CircleBtn.module.scss'
-import Icon from '@/common/Icon'
 
 interface CircleBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	icon: IconTypes
@@ -16,13 +16,13 @@ interface CircleBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const CircleBtn: FC<PropsWithChildren<CircleBtnProps>> = ({
-	icon,
-	size,
-	iconSize = defaultIconSize,
-	bgColor = 'light',
-	className,
-	...rest
-}) => {
+	                                                          icon,
+	                                                          size,
+	                                                          iconSize = defaultIconSize,
+	                                                          bgColor = 'light',
+	                                                          className,
+	                                                          ...rest
+                                                          }) => {
 	const buttonStyle = size ? { width: size, height: size } : {}
 	return (
 		<button
@@ -32,7 +32,7 @@ const CircleBtn: FC<PropsWithChildren<CircleBtnProps>> = ({
 			})}
 			style={buttonStyle}
 		>
-			<Icon name={icon} size={iconSize} color="#5f6368" />
+			<Icon name={icon} size={iconSize} color='#5f6368' />
 		</button>
 	)
 }

@@ -1,4 +1,4 @@
-import { DtoEvent, IEvent } from '@/shared/types/event'
+import { DtoEvent, IEvent } from '@shared/types/event'
 
 import { axiosAuth } from '../Api/axios'
 
@@ -11,18 +11,18 @@ export const EventsService = {
 	async updateGroup(
 		groupId: number,
 		eventId: number,
-		newData: DtoEvent
+		newData: DtoEvent,
 	): Promise<IEvent[]> {
 		const { data } = await axiosAuth.put(
 			`/events/group/${groupId}?eventId=${eventId}`,
-			newData
+			newData,
 		)
 		return data
 	},
 
 	async update(
 		eventId: number,
-		newData: DtoEvent
+		newData: DtoEvent,
 	): Promise<{ updatedEvent: IEvent; createdEvents: IEvent[] }> {
 		const { data } = await axiosAuth.put(`/events/${eventId}`, newData)
 		return data

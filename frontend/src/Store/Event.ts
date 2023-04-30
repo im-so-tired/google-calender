@@ -1,13 +1,13 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import toast from 'react-hot-toast'
 
-import { DtoEvent, IEvent } from '@/shared/types/event'
-import { QueryParamTime } from '@/shared/types/queryParamTime'
+import { DtoEvent, IEvent } from '@shared/types/event'
+import { QueryParamTime } from '@shared/types/queryParamTime'
 
-import { EventsService } from '@/services/Events.service'
-import { UserService } from '@/services/User.service'
+import { EventsService } from '@services/Events.service'
+import { UserService } from '@services/User.service'
 
-import { errorMessage } from '@/utils/errorMessage'
+import { errorMessage } from '@utils/errorMessage'
 
 class Event {
 	events: IEvent[] = []
@@ -73,7 +73,7 @@ class Event {
 		try {
 			const { updatedEvent, createdEvents } = await EventsService.update(
 				id,
-				newValue
+				newValue,
 			)
 			runInAction(() => {
 				this.events = this.events.map(event => {
@@ -96,7 +96,7 @@ class Event {
 			const updatedEvents = await EventsService.updateGroup(
 				groupId,
 				taskId,
-				newValue
+				newValue,
 			)
 			runInAction(() => {
 				this.events = this.events.map(event => {

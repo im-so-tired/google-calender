@@ -2,16 +2,16 @@ import { observer } from 'mobx-react-lite'
 import { FC, useEffect, useState } from 'react'
 import { SingleValue } from 'react-select'
 
-import { IOption } from '@/shared/types/SelectOpt'
-import { ITimeZone } from '@/shared/types/timeZone'
+import { IOption } from '@shared/types/SelectOpt'
+import { ITimeZone } from '@shared/types/timeZone'
 
-import { typeTableOptions } from '@/utils/constants'
+import { typeTableOptions } from '@utils/constants'
 
-import pickedDate from '@/store/PickedDate'
+import pickedDate from '@store/PickedDate'
 
+import CustomSelect from '@common/Select/CustomSelect'
 import styles from '../Layout.module.scss'
 
-import CustomSelect from '@/common/Select/CustomSelect'
 
 const SelectTimeZone: FC = observer(() => {
 	const [value, setValue] = useState(typeTableOptions[0].value)
@@ -28,7 +28,7 @@ const SelectTimeZone: FC = observer(() => {
 	return (
 		<CustomSelect
 			value={value}
-			classNamePrefix="custom-select"
+			classNamePrefix='custom-select'
 			onChange={handleChange}
 			options={typeTableOptions}
 			className={styles.select}

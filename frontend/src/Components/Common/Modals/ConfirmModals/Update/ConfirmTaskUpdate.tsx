@@ -2,16 +2,16 @@ import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 
-import { IConfirmModal } from '@/shared/types/modals'
+import { IConfirmModal } from '@shared/types/modals'
 
-import confirmModal from '@/store/ConfirmModal'
-import task from '@/store/Task'
+import confirmModal from '@store/ConfirmModal'
+import task from '@store/Task'
 
+import BaseModal from '@common/Modals/BaseModal/BaseModal'
+import { useConfirm } from '@common/Modals/ConfirmModals/useConfirm'
 import styles from '../ConfirmModal.module.scss'
 import Footer from '../Footer'
 
-import BaseModal from '@/common/Modals/BaseModal/BaseModal'
-import { useConfirm } from '@/common/Modals/ConfirmModals/useConfirm'
 
 const ConfirmTaskUpdate: FC<IConfirmModal> = observer(
 	({ id, groupId, closeMainModal }) => {
@@ -33,27 +33,27 @@ const ConfirmTaskUpdate: FC<IConfirmModal> = observer(
 				<div className={styles.cnfModal}>
 					<h2>Save repeating task</h2>
 					<RadioGroup
-						aria-labelledby="demo-controlled-radio-buttons-group"
-						name="controlled-radio-buttons-group"
+						aria-labelledby='demo-controlled-radio-buttons-group'
+						name='controlled-radio-buttons-group'
 						value={value}
 						onChange={handleChange}
 					>
 						<FormControlLabel
-							value="one"
+							value='one'
 							control={<Radio />}
-							label="This task"
+							label='This task'
 						/>
 						<FormControlLabel
-							value="all"
+							value='all'
 							control={<Radio />}
-							label="All tasks"
+							label='All tasks'
 						/>
 					</RadioGroup>
 					<Footer confirm={handleConfirm} cancel={toggleUpdateTask} />
 				</div>
 			</BaseModal>
 		)
-	}
+	},
 )
 
 export default ConfirmTaskUpdate

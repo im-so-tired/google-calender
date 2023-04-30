@@ -1,7 +1,9 @@
 import React, { FC, memo } from 'react'
 
-import Profile from '@/ui/Layout/Header/Profile/Profile'
+import Profile from '@ui/Layout/Header/Profile/Profile'
 
+import CircleBtn from '@common/Buttons/CircleBtn/CircleBtn'
+import DropDown from '@common/DropDown/DropDown'
 import styles from '../Layout.module.scss'
 
 import CreateBtn from './CreateBtn/CreateBtn'
@@ -9,8 +11,6 @@ import Logo from './Logo'
 import Navigation from './Navigation/Navigation'
 import SelectTimeZone from './SelectTimeZone'
 import ShowSidebarBtn from './ShowSidebarBtn'
-import CircleBtn from '@/common/Buttons/CircleBtn/CircleBtn'
-import DropDown from '@/common/DropDown/DropDown'
 
 const Header: FC = memo(() => {
 	return (
@@ -22,7 +22,7 @@ const Header: FC = memo(() => {
 					<Navigation />
 				</div>
 				<div className={styles.extraOptions}>
-					<CircleBtn icon="MdSearch" size={40} iconSize={24} />
+					<CircleBtn icon='MdSearch' size={40} iconSize={24} />
 					<DropDown
 						options={[
 							{ value: 'help', label: 'Help' },
@@ -30,9 +30,9 @@ const Header: FC = memo(() => {
 							{ value: 'updates', label: 'Updates' },
 						]}
 						clickHandler={() => null}
-						openingDirection="left"
+						openingDirection='left'
 					>
-						<CircleBtn icon="MdInfoOutline" size={40} iconSize={24} />
+						<CircleBtn icon='MdInfoOutline' size={40} iconSize={24} />
 					</DropDown>
 					<DropDown
 						options={[
@@ -41,7 +41,7 @@ const Header: FC = memo(() => {
 						]}
 						clickHandler={() => null}
 					>
-						<CircleBtn icon="MdSettings" size={40} iconSize={24} />
+						<CircleBtn icon='MdSettings' size={40} iconSize={24} />
 					</DropDown>
 					<SelectTimeZone />
 					<Profile />

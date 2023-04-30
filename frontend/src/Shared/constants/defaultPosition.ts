@@ -1,4 +1,4 @@
-import { Position } from '@/shared/types/position'
+import { Position } from '@shared/types/position'
 
 export const defaultPosition: Position = {
 	right: 'auto',

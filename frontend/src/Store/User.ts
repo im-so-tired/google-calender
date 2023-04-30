@@ -1,11 +1,11 @@
 import { makeAutoObservable } from 'mobx'
 
-import { AuthService } from '@/services/Auth/Auth.service'
-import { ILoginData } from '@/services/Auth/auth.types'
-import { removeToken } from '@/services/Auth/helpers'
+import { AuthService } from '@services/Auth/Auth.service'
+import { ILoginData } from '@services/Auth/auth.types'
+import { removeToken } from '@services/Auth/helpers'
 
-import { errorMessage } from '@/utils/errorMessage'
-import { getValueLocalStorage } from '@/utils/localStorage'
+import { errorMessage } from '@utils/errorMessage'
+import { getValueLocalStorage } from '@utils/localStorage'
 
 export interface IUser {
 	id: number

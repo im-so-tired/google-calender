@@ -2,23 +2,22 @@ import { FC } from 'react'
 import { Control, Controller } from 'react-hook-form'
 import Select from 'react-select'
 
-import { repeatOption } from '@/shared/constants/repeatOption'
+import { repeatOption } from '@shared/constants/repeatOption'
 
-import { useCreateModalContext } from '@/common/Modals/CreateModal/useModalContext'
-import '@/common/Select/CustomSelect.scss'
+import '@common/Select/CustomSelect.scss'
 
 const Repeat: FC<{ control: Control<any, any> }> = ({ control }) => {
 	return (
 		<Controller
-			name="repeat"
+			name='repeat'
 			control={control}
 			render={({ field }) => (
 				<Select
 					value={field.value}
 					onChange={field.onChange}
-					name="repeat"
+					name='repeat'
 					options={repeatOption}
-					classNamePrefix="primary-select"
+					classNamePrefix='primary-select'
 					defaultValue={repeatOption[0]}
 				/>
 			)}

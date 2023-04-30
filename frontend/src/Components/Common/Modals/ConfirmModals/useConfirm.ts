@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { ConfirmValue } from '@/common/Modals/ConfirmModals/ConfirmValue.type'
+import { ConfirmValue } from '@common/Modals/ConfirmModals/ConfirmValue.type'
 
 export const useConfirm = () => {
 	const [value, setValue] = useState<ConfirmValue>('one')

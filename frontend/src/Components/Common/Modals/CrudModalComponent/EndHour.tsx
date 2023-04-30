@@ -3,12 +3,12 @@ import React, { FC, useEffect } from 'react'
 import { Control, Controller } from 'react-hook-form'
 import Select from 'react-select'
 
-import { IOption } from '@/shared/types/SelectOpt'
+import { IOption } from '@shared/types/SelectOpt'
 
 import {
 	endTimeOption,
 	startTimeOption,
-} from '@/common/Modals/Helpers/createOptions'
+} from '@common/Modals/Helpers/createOptions'
 
 interface ITimeOption {
 	endHour: IOption<number>
@@ -21,7 +21,7 @@ const EndHour: FC<{
 	watch: any
 }> = ({ control, watch, setValue }) => {
 	const defaultValue = endTimeOption.find(
-		op => op.value === moment().hour() + 1
+		op => op.value === moment().hour() + 1,
 	)
 	useEffect(() => {
 		const subscription = watch(
@@ -31,14 +31,14 @@ const EndHour: FC<{
 				if (startHour.value >= endHour.value) {
 					setValue(
 						'endHour',
-						endTimeOption.find(op => op.value === startHour.value! + 1)!
+						endTimeOption.find(op => op.value === startHour.value! + 1)!,
 					)
 				}
 			},
 			{
 				endHour: defaultValue,
 				startHour: startTimeOption.find(op => op.value === moment().hour()),
-			}
+			},
 		)
 
 		return () => {
@@ -47,15 +47,15 @@ const EndHour: FC<{
 	}, [defaultValue, setValue, watch])
 	return (
 		<Controller
-			name="endHour"
+			name='endHour'
 			control={control}
 			render={({ field }) => (
 				<Select
 					value={field.value}
 					onChange={field.onChange}
-					name="endHour"
+					name='endHour'
 					options={endTimeOption}
-					classNamePrefix="primary-select"
+					classNamePrefix='primary-select'
 					defaultValue={defaultValue}
 				/>
 			)}

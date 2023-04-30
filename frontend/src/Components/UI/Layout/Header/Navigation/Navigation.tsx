@@ -2,12 +2,12 @@ import cn from 'classnames'
 import moment from 'moment'
 import React, { FC } from 'react'
 
-import SelectedDate from '@/ui/Layout/Header/Navigation/SelectedDate'
+import SelectedDate from '@ui/Layout/Header/Navigation/SelectedDate'
 
-import pickedDate from '@/store/PickedDate'
+import pickedDate from '@store/PickedDate'
 
+import CircleBtn from '@common/Buttons/CircleBtn/CircleBtn'
 import styles from './Navigation.module.scss'
-import CircleBtn from '@/common/Buttons/CircleBtn/CircleBtn'
 
 const Navigation: FC = () => {
 	return (
@@ -20,13 +20,13 @@ const Navigation: FC = () => {
 			</button>
 			<CircleBtn
 				onClick={() => pickedDate.prev()}
-				icon="MdArrowBackIosNew"
+				icon='MdArrowBackIosNew'
 				size={32}
 				iconSize={18}
 			/>
 			<CircleBtn
 				onClick={() => pickedDate.next()}
-				icon="MdArrowForwardIos"
+				icon='MdArrowForwardIos'
 				size={32}
 				iconSize={18}
 			/>

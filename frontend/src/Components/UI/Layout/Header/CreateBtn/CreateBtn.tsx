@@ -1,15 +1,14 @@
 import cn from 'classnames'
 import React, { FC, useRef, useState } from 'react'
 
-import { useLayoutContext } from '@/ui/Layout/useLayoutContext'
+import { useLayoutContext } from '@ui/Layout/useLayoutContext'
 
-import PlusLogo from '@/assets/plus.png'
+import modals, { CreateModalType } from '@store/Modals'
 
-import modals, { CreateModalType } from '@/store/Modals'
-
+import DropDownAbsolute from '@common/DropDown/DropDownAbsolute'
+import Icon from '@common/Icon'
 import styles from './CreateBtn.module.scss'
-import DropDownAbsolute from '@/common/DropDown/DropDownAbsolute'
-import Icon from '@/common/Icon'
+import PlusLogo from '@/assets/plus.png'
 
 const CreateBtn: FC = () => {
 	const btnRef = useRef<HTMLButtonElement | null>(null)
@@ -25,11 +24,11 @@ const CreateBtn: FC = () => {
 				className={cn(styles.createBtn, { [styles.rounded]: !showSidebar })}
 				onClick={() => clickHandler()}
 			>
-				<img alt="plus" src={PlusLogo} height={24} width={24} />
+				<img alt='plus' src={PlusLogo} height={24} width={24} />
 				{showSidebar && (
 					<>
 						<span>Create</span>
-						<Icon name="MdArrowDropDown" />
+						<Icon name='MdArrowDropDown' />
 					</>
 				)}
 			</button>

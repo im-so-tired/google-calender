@@ -1,15 +1,16 @@
 import React, { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import modals from '@/store/Modals'
-import user from '@/store/User'
+import modals from '@store/Modals'
+import user from '@store/User'
 
+import FormInput from '@common/Inputs/FormInput/FormInput'
+import BaseModal, { IBaseModal } from '@common/Modals/BaseModal/BaseModal'
+import { ILoginFields } from '@common/Modals/Login/Login.interface'
 import styles from './Login.module.scss'
-import FormInput from '@/common/Inputs/FormInput/FormInput'
-import BaseModal, { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
-import { ILoginFields } from '@/common/Modals/Login/Login.interface'
 
-interface ILoginModal extends IBaseModal {}
+interface ILoginModal extends IBaseModal {
+}
 
 const LoginModal: FC<ILoginModal> = props => {
 	const {
@@ -45,7 +46,7 @@ const LoginModal: FC<ILoginModal> = props => {
 						register={{
 							...register('email', { required: 'Email is required field!' }),
 						}}
-						label="Email"
+						label='Email'
 						error={errors.email?.message || wrongEmail}
 					/>
 					<FormInput
@@ -58,10 +59,10 @@ const LoginModal: FC<ILoginModal> = props => {
 								},
 							}),
 						}}
-						label="Password"
+						label='Password'
 						error={errors.password?.message || wrongPassword}
 					/>
-					<button className={styles.submitBtn} type="submit">
+					<button className={styles.submitBtn} type='submit'>
 						Login In
 					</button>
 				</form>

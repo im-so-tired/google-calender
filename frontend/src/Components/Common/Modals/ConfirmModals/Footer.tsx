@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import styles from '@/common/Modals/ConfirmModals/ConfirmModal.module.scss'
+import styles from '@common/Modals/ConfirmModals/ConfirmModal.module.scss'
 
 interface FooterProps {
 	confirm: () => void

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IOption } from '@/shared/types/SelectOpt'
+import { IOption } from '@shared/types/SelectOpt'
 
 export interface IDropDownProps {
 	options: IOption<string>[]

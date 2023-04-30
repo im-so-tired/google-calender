@@ -1,7 +1,7 @@
 import { Moment } from 'moment'
 
-import { IOption } from '@/shared/types/SelectOpt'
-import { RepeatType } from '@/shared/types/repeatType'
+import { IOption } from '@shared/types/SelectOpt'
+import { RepeatType } from '@shared/types/repeatType'
 
 export interface IFormData {
 	title: string
@@ -13,9 +13,12 @@ export interface IFormData {
 	repeat: IOption<RepeatType>
 }
 
-export interface ITaskData extends Omit<IFormData, 'guests' | 'endHour'> {}
+export interface ITaskData extends Omit<IFormData, 'guests' | 'endHour'> {
+}
 
 export interface IReminderData
-	extends Omit<IFormData, 'guests' | 'endHour' | 'description'> {}
+	extends Omit<IFormData, 'guests' | 'endHour' | 'description'> {
+}
 
-export interface IEventData extends IFormData {}
+export interface IEventData extends IFormData {
+}

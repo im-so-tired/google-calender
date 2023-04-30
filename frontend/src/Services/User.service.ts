@@ -1,4 +1,4 @@
-import { QueryParamTime } from '@/shared/types/queryParamTime'
+import { QueryParamTime } from '@shared/types/queryParamTime'
 
 import { axiosAuth } from '../Api/axios'
 

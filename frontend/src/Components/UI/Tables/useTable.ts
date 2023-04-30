@@ -1,11 +1,11 @@
 import moment from 'moment'
 import { useEffect } from 'react'
 
-import event from '@/store/Event'
-import pickedDate from '@/store/PickedDate'
-import reminder from '@/store/Reminder'
-import task from '@/store/Task'
-import user from '@/store/User'
+import event from '@store/Event'
+import pickedDate from '@store/PickedDate'
+import reminder from '@store/Reminder'
+import task from '@store/Task'
+import user from '@store/User'
 
 export const useTable = () => {
 	const { timeZone, date } = pickedDate

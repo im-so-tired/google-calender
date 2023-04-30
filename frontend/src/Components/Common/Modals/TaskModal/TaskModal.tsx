@@ -1,20 +1,21 @@
 import { observer } from 'mobx-react-lite'
 import React, { FC, useState } from 'react'
 
-import confirmModal from '@/store/ConfirmModal'
-import modals from '@/store/Modals'
-import task from '@/store/Task'
+import confirmModal from '@store/ConfirmModal'
+import modals from '@store/Modals'
+import task from '@store/Task'
 
+import Heading from '@common/ActivityInfo/Heading/Heading'
+import Time from '@common/ActivityInfo/Time/Time'
+import ActivityModal from '@common/Modals/ActivityModal/ActivityModal'
+import { IBaseModal } from '@common/Modals/BaseModal/BaseModal'
+import ConfirmTaskDelete from '@common/Modals/ConfirmModals/Delete/ConfirmTaskDelete'
+import ModalRow from '@common/Modals/ModalRow'
+import TaskEdit from '@common/Modals/TaskModal/TaskEdit'
 import styles from './TaskModal.module.scss'
-import Heading from '@/common/ActivityInfo/Heading/Heading'
-import Time from '@/common/ActivityInfo/Time/Time'
-import ActivityModal from '@/common/Modals/ActivityModal/ActivityModal'
-import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
-import ConfirmTaskDelete from '@/common/Modals/ConfirmModals/Delete/ConfirmTaskDelete'
-import ModalRow from '@/common/Modals/ModalRow'
-import TaskEdit from '@/common/Modals/TaskModal/TaskEdit'
 
-interface ITaskModal extends IBaseModal {}
+interface ITaskModal extends IBaseModal {
+}
 
 const TaskModal: FC<ITaskModal> = observer(props => {
 	const [isEdit, setIsEdit] = useState(false)
@@ -61,11 +62,11 @@ const TaskModal: FC<ITaskModal> = observer(props => {
 					<ModalRow>
 						<Heading title={taskInfo.title} />
 					</ModalRow>
-					<ModalRow icon="MdAccessTime">
+					<ModalRow icon='MdAccessTime'>
 						<Time time={taskInfo.time} />
 					</ModalRow>
 					{taskInfo.description && (
-						<ModalRow icon="MdDescription">
+						<ModalRow icon='MdDescription'>
 							<p>{taskInfo.description}</p>
 						</ModalRow>
 					)}

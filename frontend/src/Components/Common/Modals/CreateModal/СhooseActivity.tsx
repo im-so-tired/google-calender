@@ -1,18 +1,19 @@
 import { observer } from 'mobx-react-lite'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 
-import modals, { CreateModalType } from '@/store/Modals'
+import modals, { CreateModalType } from '@store/Modals'
 
+
+import Event from '@common/Modals/CreateModal/Activity/Event'
+import Reminder from '@common/Modals/CreateModal/Activity/Reminder'
+import Task from '@common/Modals/CreateModal/Activity/Task'
 import styles from '../CrudModal.module.scss'
-
-import Event from '@/common/Modals/CreateModal/Activity/Event'
-import Reminder from '@/common/Modals/CreateModal/Activity/Reminder'
-import Task from '@/common/Modals/CreateModal/Activity/Task'
 
 const btns: CreateModalType[] = ['event', 'task', 'reminder']
 const ChooseActivity: FC = observer(() => {
 	const created = modals.createModal.type
-	useEffect(() => {}, [created])
+	useEffect(() => {
+	}, [created])
 	return (
 		<>
 			<div className={styles.flexComp}>

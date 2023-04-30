@@ -2,17 +2,17 @@ import cn from 'classnames'
 import { FC, useRef, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-import { useOutsideClick } from '@/hooks/useOutsideClick'
+import { useOutsideClick } from '@hooks/useOutsideClick'
 
+import { IDropDownProps } from '@common/DropDown/DropDown.interface'
 import styles from './DropDown.module.scss'
-import { IDropDownProps } from '@/common/DropDown/DropDown.interface'
 
 const DropDown: FC<IDropDownProps> = ({
-	children,
-	options,
-	openingDirection = 'right',
-	clickHandler,
-}) => {
+	                                      children,
+	                                      options,
+	                                      openingDirection = 'right',
+	                                      clickHandler,
+                                      }) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const menuRef = useRef(null)
 	const toggleRef = useRef(null)
@@ -28,7 +28,7 @@ const DropDown: FC<IDropDownProps> = ({
 				nodeRef={menuRef}
 				timeout={300}
 				in={isOpen}
-				classNames="alert"
+				classNames='alert'
 				unmountOnExit
 			>
 				<ul ref={menuRef} className={cn(styles.menu, styles[openingDirection])}>

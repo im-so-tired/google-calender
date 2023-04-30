@@ -3,29 +3,29 @@ import moment from 'moment'
 import React, { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { repeatOption } from '@/shared/constants/repeatOption'
-import { DtoEvent } from '@/shared/types/event'
+import { repeatOption } from '@shared/constants/repeatOption'
+import { DtoEvent } from '@shared/types/event'
 
-import confirmModal from '@/store/ConfirmModal'
-import eventMobx from '@/store/Event'
-import modals from '@/store/Modals'
+import confirmModal from '@store/ConfirmModal'
+import eventMobx from '@store/Event'
+import modals from '@store/Modals'
 
-import mainStyles from '../CrudModal.module.scss'
 
-import ConfirmEventUpdate from '@/common/Modals/ConfirmModals/Update/ConfirmEventUpdate'
-import ChooseDay from '@/common/Modals/CrudModalComponent/ChooseDay'
-import Description from '@/common/Modals/CrudModalComponent/Description'
-import EndHour from '@/common/Modals/CrudModalComponent/EndHour'
-import Guests from '@/common/Modals/CrudModalComponent/Guests'
-import Repeat from '@/common/Modals/CrudModalComponent/Repeat'
-import StartHour from '@/common/Modals/CrudModalComponent/StartHour'
-import Title from '@/common/Modals/CrudModalComponent/Title'
-import { IEventData } from '@/common/Modals/Helpers/FormData.interface'
+import ConfirmEventUpdate from '@common/Modals/ConfirmModals/Update/ConfirmEventUpdate'
+import ChooseDay from '@common/Modals/CrudModalComponent/ChooseDay'
+import Description from '@common/Modals/CrudModalComponent/Description'
+import EndHour from '@common/Modals/CrudModalComponent/EndHour'
+import Guests from '@common/Modals/CrudModalComponent/Guests'
+import Repeat from '@common/Modals/CrudModalComponent/Repeat'
+import StartHour from '@common/Modals/CrudModalComponent/StartHour'
+import Title from '@common/Modals/CrudModalComponent/Title'
+import { IEventData } from '@common/Modals/Helpers/FormData.interface'
 import {
 	endTimeOption,
 	startTimeOption,
-} from '@/common/Modals/Helpers/createOptions'
-import ModalRow from '@/common/Modals/ModalRow'
+} from '@common/Modals/Helpers/createOptions'
+import ModalRow from '@common/Modals/ModalRow'
+import mainStyles from '../CrudModal.module.scss'
 
 const EventEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 	const { activity: event } = modals.eventModal
@@ -37,15 +37,15 @@ const EventEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 				description: event.description,
 				day: moment.unix(event.startTime || 0),
 				startHour: startTimeOption.find(
-					op => op.value === moment.unix(event.startTime || 0).hour()
+					op => op.value === moment.unix(event.startTime || 0).hour(),
 				),
 				endHour: endTimeOption.find(
-					op => op.value === moment.unix(event.endTime || 0).hour()
+					op => op.value === moment.unix(event.endTime || 0).hour(),
 				),
 				repeat: repeatOption.find(op => op.value === event.repeat),
 				guests: event.guests,
 			},
-		}
+		},
 	)
 
 	const onSubmit = (data: IEventData) => {
@@ -72,9 +72,9 @@ const EventEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 		<>
 			<form className={mainStyles.editForm} onSubmit={handleSubmit(onSubmit)}>
 				<ModalRow>
-					<Title control={control} />
+					<Title<IEventData> control={control} />
 				</ModalRow>
-				<ModalRow icon="MdAccessTime">
+				<ModalRow icon='MdAccessTime'>
 					<div className={mainStyles.time}>
 						<ChooseDay control={control} />
 						<StartHour control={control} />
@@ -82,17 +82,17 @@ const EventEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 						<EndHour control={control} setValue={setValue} watch={watch} />
 					</div>
 				</ModalRow>
-				<ModalRow icon="MdRepeat">
+				<ModalRow icon='MdRepeat'>
 					<Repeat control={control} />
 				</ModalRow>
-				<ModalRow icon="MdDescription">
+				<ModalRow icon='MdDescription'>
 					<Description row={4} control={control} />
 				</ModalRow>
-				<ModalRow icon="MdPeople">
+				<ModalRow icon='MdPeople'>
 					<Guests control={control} />
 				</ModalRow>
 				<div className={mainStyles.footer}>
-					<button className="primaryBtn" type="submit">
+					<button className='primaryBtn' type='submit'>
 						Save
 					</button>
 				</div>

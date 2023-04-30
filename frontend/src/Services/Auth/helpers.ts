@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-import { IAuthResponse } from '@/services/Auth/auth.types'
+import { IAuthResponse } from '@services/Auth/auth.types'
 
 export const saveToken = (accessToken: string) => {
 	Cookies.set('accessToken', accessToken)

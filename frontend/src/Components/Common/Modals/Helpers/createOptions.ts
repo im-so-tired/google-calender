@@ -1,6 +1,6 @@
 import moment from 'moment/moment'
 
-import { IOption } from '@/shared/types/SelectOpt'
+import { IOption } from '@shared/types/SelectOpt'
 
 export const startTimeOption: IOption<number>[] = []
 for (let i = 0; i <= 23; i += 1) {

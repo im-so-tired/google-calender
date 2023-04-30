@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
-import LogoImg from '@/assets/logo.png'
+import { getCurrentDate } from '@utils/date/getCurrentDate'
+import LogoImg from '@assets/logo.png'
 
-import { getCurrentDate } from '@/utils/date/getCurrentDate'
 
 import styles from '../Layout.module.scss'
 
@@ -11,10 +11,10 @@ const Logo: FC = () => {
 	return (
 		<div className={styles.logo}>
 			<div>
-				<img alt="logo" src={LogoImg} />
+				<img alt='logo' src={LogoImg} />
 				<span className={styles.currentDay}>{day}</span>
 			</div>
-			<h1 className="text-large">Calendar</h1>
+			<h1 className='text-large'>Calendar</h1>
 		</div>
 	)
 }

@@ -1,5 +1,5 @@
-import { IOption } from '@/shared/types/SelectOpt'
-import { RepeatType } from '@/shared/types/repeatType'
+import { IOption } from '@shared/types/SelectOpt'
+import { RepeatType } from '@shared/types/repeatType'
 
 export const repeatOption: IOption<RepeatType>[] = [
 	{

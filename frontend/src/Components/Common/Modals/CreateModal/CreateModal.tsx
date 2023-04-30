@@ -4,26 +4,26 @@ import React, { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
-import { repeatOption } from '@/shared/constants/repeatOption'
+import { repeatOption } from '@shared/constants/repeatOption'
 
-import event from '@/store/Event'
-import modals from '@/store/Modals'
-import reminder from '@/store/Reminder'
-import task from '@/store/Task'
+import event from '@store/Event'
+import modals from '@store/Modals'
+import reminder from '@store/Reminder'
+import task from '@store/Task'
 
-import styles from '../CrudModal.module.scss'
 
-import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
-import { CreateModalProvider } from '@/common/Modals/CreateModal/useModalContext'
-import ChooseActivity from '@/common/Modals/CreateModal/СhooseActivity'
-import Title from '@/common/Modals/CrudModalComponent/Title'
-import DraggableModal from '@/common/Modals/DraggableModal/DraggableModal'
-import { IFormData } from '@/common/Modals/Helpers/FormData.interface'
+import { IBaseModal } from '@common/Modals/BaseModal/BaseModal'
+import { CreateModalProvider } from '@common/Modals/CreateModal/useModalContext'
+import ChooseActivity from '@common/Modals/CreateModal/СhooseActivity'
+import Title from '@common/Modals/CrudModalComponent/Title'
+import DraggableModal from '@common/Modals/DraggableModal/DraggableModal'
+import { IFormData } from '@common/Modals/Helpers/FormData.interface'
 import {
 	endTimeOption,
 	startTimeOption,
-} from '@/common/Modals/Helpers/createOptions'
-import ModalRow from '@/common/Modals/ModalRow'
+} from '@common/Modals/Helpers/createOptions'
+import ModalRow from '@common/Modals/ModalRow'
+import styles from '../CrudModal.module.scss'
 
 interface CreateModalProps extends IBaseModal {
 	// date: Moment
@@ -91,7 +91,7 @@ const CreateModal: FC<CreateModalProps> = observer(({ onClose, ...props }) => {
 					</ModalRow>
 					<ChooseActivity />
 					<div className={styles.footer}>
-						<button className="primaryBtn" type="submit">
+						<button className='primaryBtn' type='submit'>
 							Save
 						</button>
 					</div>

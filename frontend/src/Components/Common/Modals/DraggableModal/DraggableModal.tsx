@@ -8,10 +8,11 @@ import React, {
 } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
+import MaterialIcon from '@common/Icon'
+import { IBaseModal } from '@common/Modals/BaseModal/BaseModal'
+import mainStyles from '@common/Modals/BaseModal/BaseModal.module.scss'
 import styles from './DraggableModal.module.scss'
-import MaterialIcon from '@/common/Icon'
-import { IBaseModal } from '@/common/Modals/BaseModal/BaseModal'
-import mainStyles from '@/common/Modals/BaseModal/BaseModal.module.scss'
+
 
 interface Coordinates {
 	x: number
@@ -19,11 +20,11 @@ interface Coordinates {
 }
 
 const DraggableModal: React.FC<PropsWithChildren<IBaseModal>> = ({
-	children,
-	onClose,
-	open,
-	bgDark,
-}) => {
+	                                                                 children,
+	                                                                 onClose,
+	                                                                 open,
+	                                                                 bgDark,
+                                                                 }) => {
 	const modalRef = useRef<HTMLDivElement | null>(null)
 	const [isDragging, setIsDragging] = useState(false)
 	const [modalPosition, setModalPosition] = useState<Coordinates>({
@@ -64,7 +65,7 @@ const DraggableModal: React.FC<PropsWithChildren<IBaseModal>> = ({
 	}, [isDragging, dragStart])
 
 	const handleMouseDown = (
-		event: React.MouseEvent<HTMLDivElement, MouseEvent>
+		event: React.MouseEvent<HTMLDivElement, MouseEvent>,
 	) => {
 		setIsDragging(true)
 		setDragStart({
@@ -78,7 +79,7 @@ const DraggableModal: React.FC<PropsWithChildren<IBaseModal>> = ({
 			nodeRef={modalRef}
 			timeout={200}
 			in={open}
-			classNames="alert"
+			classNames='alert'
 			unmountOnExit
 		>
 			<div
@@ -101,9 +102,9 @@ const DraggableModal: React.FC<PropsWithChildren<IBaseModal>> = ({
 						style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
 						onMouseDown={handleMouseDown}
 					>
-						<MaterialIcon name="MdDragHandle" />
+						<MaterialIcon name='MdDragHandle' />
 						<button onClick={onClose}>
-							<MaterialIcon name="MdClose" />
+							<MaterialIcon name='MdClose' />
 						</button>
 					</header>
 					<div>{children}</div>

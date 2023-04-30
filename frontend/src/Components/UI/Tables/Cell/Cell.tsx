@@ -1,16 +1,16 @@
 import { Moment } from 'moment'
 import { FC } from 'react'
 
-import Event from '@/ui/Tables/Activity/Event'
-import Reminder from '@/ui/Tables/Activity/Reminders'
-import Task from '@/ui/Tables/Activity/Task'
-import { useCell } from '@/ui/Tables/Cell/useCell'
+import Event from '@ui/Tables/Activity/Event'
+import Reminder from '@ui/Tables/Activity/Reminders'
+import Task from '@ui/Tables/Activity/Task'
+import { useCell } from '@ui/Tables/Cell/useCell'
 
-import { IEvent } from '@/shared/types/event'
-import { IReminder } from '@/shared/types/reminder'
-import { ITask } from '@/shared/types/task'
+import { IEvent } from '@shared/types/event'
+import { IReminder } from '@shared/types/reminder'
+import { ITask } from '@shared/types/task'
 
-import modals from '@/store/Modals'
+import modals from '@store/Modals'
 
 import styles from './Cell.module.scss'
 

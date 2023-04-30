@@ -1,13 +1,13 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import toast from 'react-hot-toast'
 
-import { QueryParamTime } from '@/shared/types/queryParamTime'
-import { DtoReminder, IReminder } from '@/shared/types/reminder'
+import { QueryParamTime } from '@shared/types/queryParamTime'
+import { DtoReminder, IReminder } from '@shared/types/reminder'
 
-import { RemindersService } from '@/services/Reminders.service'
-import { UserService } from '@/services/User.service'
+import { RemindersService } from '@services/Reminders.service'
+import { UserService } from '@services/User.service'
 
-import { errorMessage } from '@/utils/errorMessage'
+import { errorMessage } from '@utils/errorMessage'
 
 class Reminder {
 	reminders: IReminder[] = []
@@ -50,7 +50,7 @@ class Reminder {
 			const deletedId = await RemindersService.delete(id)
 			runInAction(() => {
 				this.reminders = this.reminders.filter(
-					reminder => reminder.id !== deletedId
+					reminder => reminder.id !== deletedId,
 				)
 			})
 			toast.success('Reminder deleted!')
@@ -64,7 +64,7 @@ class Reminder {
 			const deletedId = await RemindersService.deleteGroup(groupId)
 			runInAction(() => {
 				this.reminders = this.reminders.filter(
-					reminder => reminder.groupId !== deletedId
+					reminder => reminder.groupId !== deletedId,
 				)
 			})
 			toast.success('Reminder group deleted!')
@@ -98,12 +98,12 @@ class Reminder {
 			const updatedReminders = await RemindersService.updateGroup(
 				groupId,
 				taskId,
-				newValue
+				newValue,
 			)
 			runInAction(() => {
 				this.reminders = this.reminders.map(reminder => {
 					const updatedReminder = updatedReminders.find(
-						el => el.id === reminder.id
+						el => el.id === reminder.id,
 					)
 					if (updatedReminder) {
 						reminder = { ...reminder, ...updatedReminder }
