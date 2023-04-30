@@ -7,8 +7,8 @@ import modals, { CreateModalType } from '@store/Modals'
 
 import DropDownAbsolute from '@common/DropDown/DropDownAbsolute'
 import Icon from '@common/Icon'
+import PlusLogo from '@assets/plus.png'
 import styles from './CreateBtn.module.scss'
-import PlusLogo from '@/assets/plus.png'
 
 const CreateBtn: FC = () => {
 	const btnRef = useRef<HTMLButtonElement | null>(null)
