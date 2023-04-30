@@ -9,8 +9,8 @@ import FileInput from '@common/Inputs/FileInput/FileInput'
 import FormInput from '@common/Inputs/FormInput/FormInput'
 import BaseModal, { IBaseModal } from '@common/Modals/BaseModal/BaseModal'
 import { IRegisterFields } from '@common/Modals/Login/Login.interface'
+import defaultAvatar from '@assets/images/default-avatar.png'
 import styles from './Login.module.scss'
-import defaultAvatar from '@/assets/images/default-avatar.png'
 
 interface ILoginModal extends IBaseModal {
 }

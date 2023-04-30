@@ -6,8 +6,8 @@ import modals from '@store/Modals'
 import userStore from '@store/User'
 
 import DropDown from '@common/DropDown/DropDown'
+import defaultAvatar from '@assets/images/default-avatar.png'
 import styles from './Profile.module.scss'
-import defaultAvatar from '@/assets/images/default-avatar.png'
 
 const Profile: FC = observer(() => {
 	const { user } = userStore
