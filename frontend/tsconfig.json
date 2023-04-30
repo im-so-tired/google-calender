@@ -67,6 +67,7 @@
 	"include": [
 		"src",
 		"global.d.ts",
-		".env"
+		".env",
+		"vite.config.ts"
 	]
 }

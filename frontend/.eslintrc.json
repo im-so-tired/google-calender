@@ -22,7 +22,7 @@
 		"project": [
 			"./tsconfig.json"
 		],
-		"tsconfigRootDir": "D:\\Работа\\Проекты\\withTs\\perfect-project\\new-frontend-calendar"
+		"tsconfigRootDir": "D:\\Работа\\Проекты\\withTs\\perfect-project\\google-calendar\\frontend"
 	},
 	"plugins": [
 		"react-refresh",

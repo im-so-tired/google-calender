@@ -7,8 +7,8 @@ import { defaultIconSize } from '@utils/constants'
 
 interface IMaterialIconProps {
 	name: IconTypes
-	color: string
-	size: number
+	color?: string
+	size?: number
 }
 
 const MaterialIcon: FC<IMaterialIconProps> = ({ name, color = '#5f6368', size = defaultIconSize }) => {

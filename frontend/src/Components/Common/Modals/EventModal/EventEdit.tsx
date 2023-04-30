@@ -72,7 +72,7 @@ const EventEdit: FC<{ onClose: () => void }> = observer(({ onClose }) => {
 		<>
 			<form className={mainStyles.editForm} onSubmit={handleSubmit(onSubmit)}>
 				<ModalRow>
-					<Title<IEventData> control={control} />
+					<Title control={control} />
 				</ModalRow>
 				<ModalRow icon='MdAccessTime'>
 					<div className={mainStyles.time}>

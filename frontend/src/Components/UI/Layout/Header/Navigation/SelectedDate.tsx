@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite'
 import React from 'react'
 
-import { getGenitiveMonth } from '@/utils/date/genitiveMonth'
+import { getGenitiveMonth } from '@utils/date/genitiveMonth'
 
-import pickedDate from '@/store/PickedDate'
+import pickedDate from '@store/PickedDate'
 
 const SelectedDate = observer(() => {
 	const { date } = pickedDate
