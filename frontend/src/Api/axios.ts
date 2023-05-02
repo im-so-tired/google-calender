@@ -2,14 +2,14 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 export const axiosBase = axios.create({
-	baseURL: 'https://google-calender-production.up.railway.app/api',
+	baseURL: import.meta.env.VITE_API_URL,
 	headers: {
 		'Content-Type': 'application/json',
 	},
 })
 
 export const axiosAuth = axios.create({
-	baseURL: 'https://google-calender-production.up.railway.app/api',
+	baseURL: import.meta.env.VITE_API_URL,
 	headers: {
 		'Content-Type': 'application/json',
 	},

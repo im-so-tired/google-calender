@@ -1,12 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { UserEntity } from './user.entity'
-import { Repository } from 'typeorm'
-import { UserDto } from './user.dto'
-import { QueryParameters } from './user.interface'
-import { TasksService } from '../tasks/tasks.service'
-import { RemindersService } from '../reminders/reminders.service'
-import { EventsService } from '../events/events.service'
+import {Injectable, NotFoundException} from '@nestjs/common'
+import {InjectRepository} from '@nestjs/typeorm'
+import {UserEntity} from './user.entity'
+import {Repository} from 'typeorm'
+import {UserDto} from './user.dto'
+import {QueryParameters} from './user.interface'
+import {TasksService} from '../tasks/tasks.service'
+import {RemindersService} from '../reminders/reminders.service'
+import {EventsService} from '../events/events.service'
 
 @Injectable()
 export class UserService {
@@ -21,7 +21,7 @@ export class UserService {
 
 	async byId(userId: number) {
 		const user = await this.UserEntity.findOne({
-			where: { id: userId },
+			where: {id: userId},
 			select: ['id', 'email', 'avatarPath', 'name'],
 			relations: {
 				events: true,
@@ -44,7 +44,7 @@ export class UserService {
 
 	async getActivity(userId: number, query: QueryParameters) {
 		const user = await this.UserEntity.findOne({
-			where: { id: userId },
+			where: {id: userId},
 			relations: {
 				events: true,
 				tasks: true,
@@ -52,9 +52,12 @@ export class UserService {
 			},
 		})
 
-		const events = user.events.filter(evt => evt.startTime >= query.startTime && evt.endTime <= query.endTime)
-		const tasks = user.tasks.filter(task => task.time >= query.startTime && task.time <= query.endTime)
-		const reminders = user.reminders.filter(rem => rem.time >= query.startTime && rem.time <= query.endTime)
+		const events = user.events.filter(evt => +evt.startTime >= query.startTime && +evt.endTime <= query.endTime)
+			.map(event => this.eventsService.returnEventFields(event))
+		const tasks = user.tasks.filter(task => +task.time >= query.startTime && +task.time <= query.endTime)
+			.map(task => this.tasksService.returnTaskFields(task))
+		const reminders = user.reminders.filter(rem => +rem.time >= query.startTime && +rem.time <= query.endTime)
+			.map(reminder => this.remindersService.returnReminderFields(reminder))
 		return {
 			events,
 			tasks,
@@ -64,7 +67,7 @@ export class UserService {
 
 	async getTasks(userId, query: QueryParameters) {
 		const user = await this.UserEntity.findOne({
-			where: { id: userId },
+			where: {id: userId},
 			relations: {
 				tasks: true,
 			},
@@ -75,7 +78,7 @@ export class UserService {
 
 	async getEvents(userId, query: QueryParameters) {
 		const user = await this.UserEntity.findOne({
-			where: { id: userId },
+			where: {id: userId},
 			relations: {
 				events: true,
 			},
@@ -86,7 +89,7 @@ export class UserService {
 
 	async getReminders(userId, query: QueryParameters) {
 		const user = await this.UserEntity.findOne({
-			where: { id: userId },
+			where: {id: userId},
 			relations: {
 				reminders: true,
 			},

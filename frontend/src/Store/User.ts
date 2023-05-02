@@ -1,4 +1,5 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable, runInAction } from 'mobx'
+import toast from 'react-hot-toast'
 
 import { AuthService } from '@services/Auth/Auth.service'
 import { ILoginData } from '@services/Auth/auth.types'
@@ -23,18 +24,31 @@ class User {
 	}
 
 	async login(data: ILoginData) {
+		const toastId = toast.loading('Login...')
 		try {
-			this.user = await AuthService.login(data)
+			const user = await AuthService.login(data)
+			toast.dismiss(toastId)
+			toast.success('Login successful')
+			runInAction(() => {
+				this.user = user
+			})
 		} catch (e) {
+			toast.dismiss(toastId)
 			return errorMessage(e)
 		}
 	}
 
 	async register(data: FormData) {
+		const toastId = toast.loading('Register...')
 		try {
-			this.user = await AuthService.register(data)
-			console.log(this.user)
+			const newUser = await AuthService.register(data)
+			toast.dismiss(toastId)
+			toast.success('Register successful')
+			runInAction(() => {
+				this.user = newUser
+			})
 		} catch (e) {
+			toast.dismiss(toastId)
 			return errorMessage(e)
 		}
 	}

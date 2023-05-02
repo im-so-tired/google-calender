@@ -1,5 +1,6 @@
-import moment from 'moment'
 import { useEffect } from 'react'
+
+import { cancelRequest, loadActivity } from '@utils/loadActivity'
 
 import event from '@store/Event'
 import pickedDate from '@store/PickedDate'
@@ -13,26 +14,14 @@ export const useTable = () => {
 
 	useEffect(() => {
 		localStorage.setItem('timeZone', JSON.stringify({ value: timeZone }))
-		localStorage.setItem('date', JSON.stringify(date))
+		localStorage.setItem('date', JSON.stringify({ value: date }))
+		cancelRequest()
 		if (!client) {
 			task.clearTasks()
 			reminder.clear()
 			event.clear()
-			return
+		} else {
+			loadActivity()
 		}
-		const startTime = moment(date).startOf(timeZone).unix()
-		const endTime = moment(date).endOf(timeZone).unix()
-		task.getTasks({
-			startTime,
-			endTime,
-		})
-		reminder.getReminders({
-			startTime,
-			endTime,
-		})
-		event.getEvents({
-			startTime,
-			endTime,
-		})
-	}, [client, date, timeZone])
+	}, [client, date])
 }

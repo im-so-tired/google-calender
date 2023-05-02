@@ -16,6 +16,10 @@ class Event {
 		makeAutoObservable(this)
 	}
 
+	setEvents(events: IEvent[]) {
+		this.events = events
+	}
+
 	async getEvents(param: QueryParamTime) {
 		try {
 			const res = await UserService.getEvents(param)
@@ -28,6 +32,7 @@ class Event {
 	}
 
 	async create(event: DtoEvent) {
+		const toastId = toast.loading('Create an event...')
 		try {
 			const newEvents = await EventsService.create(event)
 			runInAction(() => {
@@ -35,8 +40,10 @@ class Event {
 				// this.tasks.push(...newTasks)
 				// this.tasks.splice(this.tasks.length, 0, ...newTasks)
 			})
+			toast.dismiss(toastId)
 			toast.success('Event created!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
@@ -46,34 +53,41 @@ class Event {
 	}
 
 	async delete(id: number) {
+		const toastId = toast.loading('Deletion...')
 		try {
 			const deletedId = await EventsService.delete(id)
 			runInAction(() => {
 				this.events = this.events.filter(event => event.id !== deletedId)
 			})
+			toast.dismiss(toastId)
 			toast.success('Event deleted!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async deleteGroup(groupId: number) {
+		const toastId = toast.loading('Group deletion...')
 		try {
 			const deletedId = await EventsService.deleteGroup(groupId)
 			runInAction(() => {
 				this.events = this.events.filter(event => event.groupId !== deletedId)
 			})
+			toast.dismiss(toastId)
 			toast.success('Event group deleted!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async update(id: number, newValue: DtoEvent) {
+		const toastId = toast.loading('Update in progress...')
 		try {
 			const { updatedEvent, createdEvents } = await EventsService.update(
 				id,
-				newValue,
+				newValue
 			)
 			runInAction(() => {
 				this.events = this.events.map(event => {
@@ -85,18 +99,21 @@ class Event {
 				if (createdEvents.length)
 					this.events = [...this.events, ...createdEvents]
 			})
+			toast.dismiss(toastId)
 			toast.success('Event updated!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async groupUpdate(groupId: number, taskId: number, newValue: DtoEvent) {
+		const toastId = toast.loading('Group update in progress...')
 		try {
 			const updatedEvents = await EventsService.updateGroup(
 				groupId,
 				taskId,
-				newValue,
+				newValue
 			)
 			runInAction(() => {
 				this.events = this.events.map(event => {
@@ -107,8 +124,10 @@ class Event {
 					return event
 				})
 			})
+			toast.dismiss(toastId)
 			toast.success('Event group updated!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}

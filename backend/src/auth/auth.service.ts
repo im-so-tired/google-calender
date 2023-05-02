@@ -4,13 +4,13 @@ import {
 	NotFoundException,
 	UnauthorizedException,
 } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { UserEntity } from '../user/user.entity'
-import { Repository } from 'typeorm'
-import { JwtService } from '@nestjs/jwt'
-import { LoginDto, RegisterDto } from './auth.dto'
-import { compare, genSalt, hash } from 'bcrypt'
-import { ConfigService } from '@nestjs/config'
+import {InjectRepository} from '@nestjs/typeorm'
+import {UserEntity} from '../user/user.entity'
+import {Repository} from 'typeorm'
+import {JwtService} from '@nestjs/jwt'
+import {LoginDto, RegisterDto} from './auth.dto'
+import {compare, genSalt, hash} from 'bcrypt'
+import {ConfigService} from '@nestjs/config'
 
 @Injectable()
 export class AuthService {
@@ -32,10 +32,9 @@ export class AuthService {
 	}
 
 	async register(dto: RegisterDto, avatar: Express.Multer.File) {
-		const oldUser = await this.userRepository.findOneBy({ email: dto.email })
+		const oldUser = await this.userRepository.findOneBy({email: dto.email})
 		if (oldUser)
 			throw new BadRequestException('Пользователь с таким email уже существует')
-		console.log(avatar)
 		const salt = await genSalt(10)
 		const newUser = this.userRepository.create({
 			email: dto.email,
@@ -54,7 +53,7 @@ export class AuthService {
 
 	async validateUser(dto: LoginDto) {
 		const user = await this.userRepository.findOne({
-			where: { email: dto.email },
+			where: {email: dto.email},
 		})
 
 		if (!user) throw new NotFoundException('User not found')

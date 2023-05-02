@@ -49,10 +49,10 @@
 		"jsx-a11y/click-events-have-key-events": "off",
 		"consistent-return": "off",
 		"jsx-a11y/no-noninteractive-element-interactions": "off",
-		"class-methods-use-this": "off",
-		"react/jsx-first-prop-new-line": [
-			"error",
-			"multiline"
-		]
+		"class-methods-use-this": "off"
+		//		"react/jsx-first-prop-new-line": [
+		//			"error",
+		//			"multiline"
+		//		]
 	}
 }

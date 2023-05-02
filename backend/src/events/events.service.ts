@@ -1,11 +1,11 @@
-import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { EventsEntity } from './events.entity'
-import { Repository } from 'typeorm'
-import { EventsDto } from './events.dto'
-import { TasksEntity } from '../tasks/tasks.entity'
-import { TasksDto } from '../tasks/tasks.dto'
-import { countTime } from '../utils/repeatTime'
+import {BadRequestException, ForbiddenException, Injectable, NotFoundException} from '@nestjs/common'
+import {InjectRepository} from '@nestjs/typeorm'
+import {EventsEntity} from './events.entity'
+import {Repository} from 'typeorm'
+import {EventsDto} from './events.dto'
+import {TasksEntity} from '../tasks/tasks.entity'
+import {TasksDto} from '../tasks/tasks.dto'
+import {countTime} from '../utils/repeatTime'
 import * as moment from 'moment/moment'
 import DurationConstructor = moment.unitOfTime.DurationConstructor
 
@@ -18,7 +18,7 @@ export class EventsService {
 		if (dto.repeat === 'no-repeat') {
 			const newEvent = this.eventsRepository.create({
 				...dto,
-				author: { id: userId },
+				author: {id: userId},
 			})
 			await this.eventsRepository.save(newEvent)
 			return [this.returnEventFields(newEvent)]
@@ -48,7 +48,7 @@ export class EventsService {
 	}
 
 	async groupUpdate(groupId: number, eventId: number, userId: number, dto: EventsDto) {
-		const events = await this.eventsRepository.find({ where: { groupId }, relations: { author: true } })
+		const events = await this.eventsRepository.find({where: {groupId}, relations: {author: true}})
 		if (!events.length) throw new NotFoundException('Event group not found')
 		if (events[0].author.id !== userId) throw new ForbiddenException('You do not have permission to update this event group!!!')
 		const updatedEvents = []
@@ -76,27 +76,27 @@ export class EventsService {
 	async delete(id: number, userId: number) {
 		const event = await this.byId(id)
 		if (event.author.id !== userId) throw new ForbiddenException('You do not have permission to delete this event!!!')
-		await this.eventsRepository.delete({ id: id })
+		await this.eventsRepository.delete({id: id})
 		return id
 	}
 
 	async deleteGroup(groupId: number, userId: number) {
 		const events = await this.getGroup(groupId)
 		if (events[0].author.id !== userId) throw new ForbiddenException('You do not have permission to delete this group tasks!!!')
-		await this.eventsRepository.delete({ groupId })
+		await this.eventsRepository.delete({groupId})
 		return groupId
 	}
 
 	async createRepeat(dto: EventsDto, userId: number, time: number, groupId: number) {
 		const events = []
 		const delta = dto.endTime - dto.startTime
-		for (let i = 0; i < 5; i++) {
+		for (let i = 0; i < 7; i++) {
 			const newTask = await this.eventsRepository.create({
 				...dto,
 				groupId,
 				startTime: time,
 				endTime: time + delta,
-				author: { id: userId },
+				author: {id: userId},
 			})
 			await this.eventsRepository.save(newTask)
 			events.push(this.returnEventFields(newTask))
@@ -106,13 +106,13 @@ export class EventsService {
 	}
 
 	async byId(id: number) {
-		const event = await this.eventsRepository.findOne({ where: { id }, relations: { author: true } })
+		const event = await this.eventsRepository.findOne({where: {id}, relations: {author: true}})
 		if (!event) throw new NotFoundException('Event not found!')
 		return event
 	}
 
 	async getGroup(groupId: number) {
-		const events = await this.eventsRepository.find({ where: { groupId }, relations: { author: true } })
+		const events = await this.eventsRepository.find({where: {groupId}, relations: {author: true}})
 		if (!events) throw new NotFoundException('Group not found')
 		return events
 	}

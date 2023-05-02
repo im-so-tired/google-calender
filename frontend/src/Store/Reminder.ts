@@ -16,6 +16,10 @@ class Reminder {
 		makeAutoObservable(this)
 	}
 
+	setReminders(reminders: IReminder[]) {
+		this.reminders = reminders
+	}
+
 	async getReminders(param: QueryParamTime) {
 		try {
 			const res = await UserService.getReminders(param)
@@ -28,6 +32,7 @@ class Reminder {
 	}
 
 	async create(reminder: DtoReminder) {
+		const toastId = toast.loading('Create an reminder...')
 		try {
 			const newReminders = await RemindersService.create(reminder)
 			runInAction(() => {
@@ -35,8 +40,10 @@ class Reminder {
 				// this.tasks.push(...newTasks)
 				// this.tasks.splice(this.tasks.length, 0, ...newTasks)
 			})
+			toast.dismiss(toastId)
 			toast.success('Reminder created!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
@@ -46,34 +53,41 @@ class Reminder {
 	}
 
 	async delete(id: number) {
+		const toastId = toast.loading('Deletion...')
 		try {
 			const deletedId = await RemindersService.delete(id)
 			runInAction(() => {
 				this.reminders = this.reminders.filter(
-					reminder => reminder.id !== deletedId,
+					reminder => reminder.id !== deletedId
 				)
 			})
+			toast.dismiss(toastId)
 			toast.success('Reminder deleted!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async deleteGroup(groupId: number) {
+		const toastId = toast.loading('Group deletion...')
 		try {
 			const deletedId = await RemindersService.deleteGroup(groupId)
 			runInAction(() => {
 				this.reminders = this.reminders.filter(
-					reminder => reminder.groupId !== deletedId,
+					reminder => reminder.groupId !== deletedId
 				)
 			})
+			toast.dismiss(toastId)
 			toast.success('Reminder group deleted!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async update(id: number, newValue: DtoReminder) {
+		const toastId = toast.loading('Update in progress...')
 		try {
 			const { updatedReminder, createdReminders } =
 				await RemindersService.update(id, newValue)
@@ -87,23 +101,26 @@ class Reminder {
 				if (createdReminders.length)
 					this.reminders = [...this.reminders, ...createdReminders]
 			})
+			toast.dismiss(toastId)
 			toast.success('Reminder updated!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async groupUpdate(groupId: number, taskId: number, newValue: DtoReminder) {
+		const toastId = toast.loading('Group update in progress...')
 		try {
 			const updatedReminders = await RemindersService.updateGroup(
 				groupId,
 				taskId,
-				newValue,
+				newValue
 			)
 			runInAction(() => {
 				this.reminders = this.reminders.map(reminder => {
 					const updatedReminder = updatedReminders.find(
-						el => el.id === reminder.id,
+						el => el.id === reminder.id
 					)
 					if (updatedReminder) {
 						reminder = { ...reminder, ...updatedReminder }
@@ -111,8 +128,10 @@ class Reminder {
 					return reminder
 				})
 			})
+			toast.dismiss(toastId)
 			toast.success('Reminder group updated!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}

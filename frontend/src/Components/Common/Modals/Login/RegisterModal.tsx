@@ -1,19 +1,18 @@
-import React, { FC, useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-
-
-import modals from '@store/Modals'
-import user from '@store/User'
-
 import FileInput from '@common/Inputs/FileInput/FileInput'
 import FormInput from '@common/Inputs/FormInput/FormInput'
 import BaseModal, { IBaseModal } from '@common/Modals/BaseModal/BaseModal'
 import { IRegisterFields } from '@common/Modals/Login/Login.interface'
+import React, { FC, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+
 import defaultAvatar from '@assets/images/default-avatar.png'
+
+import modals from '@store/Modals'
+import user from '@store/User'
+
 import styles from './Login.module.scss'
 
-interface ILoginModal extends IBaseModal {
-}
+interface ILoginModal extends IBaseModal {}
 
 const RegisterModal: FC<ILoginModal> = props => {
 	const {
@@ -38,8 +37,9 @@ const RegisterModal: FC<ILoginModal> = props => {
 			setWrongEmail(errorMes)
 		} else {
 			setWrongEmail(null)
-			modals.toggleRegisterModal()
+			setSelectedFile(null)
 			reset()
+			modals.toggleRegisterModal()
 		}
 	}
 	return (
@@ -51,9 +51,9 @@ const RegisterModal: FC<ILoginModal> = props => {
 				</header>
 				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 					<FileInput
-						label='Avatar'
+						label="Avatar"
 						onChange={e => setSelectedFile(e.target.files && e.target.files[0])}
-						alt='avatar'
+						alt="avatar"
 						src={
 							selectedFile ? URL.createObjectURL(selectedFile) : defaultAvatar
 						}
@@ -62,14 +62,14 @@ const RegisterModal: FC<ILoginModal> = props => {
 						register={{
 							...register('name', { required: 'Name is required field!' }),
 						}}
-						label='Name'
+						label="Name"
 						error={errors.name?.message}
 					/>
 					<FormInput
 						register={{
 							...register('email', { required: 'Email is required field!' }),
 						}}
-						label='Email'
+						label="Email"
 						error={errors.email?.message || wrongEmail}
 					/>
 					<FormInput
@@ -82,10 +82,10 @@ const RegisterModal: FC<ILoginModal> = props => {
 								},
 							}),
 						}}
-						label='Password'
+						label="Password"
 						error={errors.password?.message}
 					/>
-					<button className={styles.submitBtn} type='submit'>
+					<button className={styles.submitBtn} type="submit">
 						Sign up
 					</button>
 				</form>

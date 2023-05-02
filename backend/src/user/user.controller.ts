@@ -6,13 +6,13 @@ import {
 	Put,
 	Body,
 	UsePipes,
-	ValidationPipe, Query, Res,
+	ValidationPipe, Query
 } from '@nestjs/common'
-import { UserService } from './user.service'
-import { Auth } from '../auth/decorators/auth.decorator'
-import { UserDto } from './user.dto'
-import { User } from './user.decorator'
-import { QueryParameters } from './user.interface'
+import {UserService} from './user.service'
+import {Auth} from '../auth/decorators/auth.decorator'
+import {UserDto} from './user.dto'
+import {User} from './user.decorator'
+import {QueryParameters} from './user.interface'
 
 @Controller('user')
 export class UserController {

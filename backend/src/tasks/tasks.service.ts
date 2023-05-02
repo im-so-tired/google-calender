@@ -1,9 +1,9 @@
-import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { TasksEntity } from './tasks.entity'
-import { Repository } from 'typeorm'
-import { TasksDto } from './tasks.dto'
-import { countTime } from '../utils/repeatTime'
+import {BadRequestException, ForbiddenException, Injectable, NotFoundException} from '@nestjs/common'
+import {InjectRepository} from '@nestjs/typeorm'
+import {TasksEntity} from './tasks.entity'
+import {Repository} from 'typeorm'
+import {TasksDto} from './tasks.dto'
+import {countTime} from '../utils/repeatTime'
 
 @Injectable()
 export class TasksService {
@@ -17,7 +17,7 @@ export class TasksService {
 		if (dto.repeat === 'no-repeat') {
 			const newTask = this.tasksRepository.create({
 				...dto,
-				author: { id: userId },
+				author: {id: userId},
 			})
 			await this.tasksRepository.save(newTask)
 			return [this.returnTaskFields(newTask)]
@@ -46,7 +46,7 @@ export class TasksService {
 	}
 
 	async groupUpdate(groupId: number, taskId: number, userId: number, dto: TasksDto) {
-		const tasks = await this.tasksRepository.find({ where: { groupId }, relations: { author: true } })
+		const tasks = await this.tasksRepository.find({where: {groupId}, relations: {author: true}})
 		if (!tasks.length) throw new NotFoundException('Task group not found')
 		if (tasks[0].author.id !== userId) throw new ForbiddenException('You do not have permission to update this task group!!!')
 		const updatedTasks = []
@@ -70,14 +70,14 @@ export class TasksService {
 	async delete(id: number, userId: number) {
 		const task = await this.byId(id)
 		if (task.author.id !== userId) throw new ForbiddenException('You do not have permission to delete this task!!!')
-		await this.tasksRepository.delete({ id: id })
+		await this.tasksRepository.delete({id: id})
 		return id
 	}
 
 	async deleteGroup(groupId: number, userId: number) {
 		const tasks = await this.getGroup(groupId)
 		if (tasks[0].author.id !== userId) throw new ForbiddenException('You do not have permission to delete this group tasks!!!')
-		await this.tasksRepository.delete({ groupId })
+		await this.tasksRepository.delete({groupId})
 		return groupId
 	}
 
@@ -91,12 +91,12 @@ export class TasksService {
 
 	async createRepeat(dto: TasksDto, userId: number, time: number, groupId: number) {
 		const tasks = []
-		for (let i = 0; i < 5; i++) {
+		for (let i = 0; i < 7; i++) {
 			const newTask = await this.tasksRepository.create({
 				...dto,
 				groupId,
 				time,
-				author: { id: userId },
+				author: {id: userId},
 			})
 			await this.tasksRepository.save(newTask)
 			tasks.push(this.returnTaskFields(newTask))
@@ -106,13 +106,13 @@ export class TasksService {
 	}
 
 	async byId(id: number) {
-		const task = await this.tasksRepository.findOne({ where: { id }, relations: { author: true } })
+		const task = await this.tasksRepository.findOne({where: {id}, relations: {author: true}})
 		if (!task) throw new NotFoundException('Task not found')
 		return task
 	}
 
 	async getGroup(groupId: number) {
-		const tasks = await this.tasksRepository.find({ where: { groupId }, relations: { author: true } })
+		const tasks = await this.tasksRepository.find({where: {groupId}, relations: {author: true}})
 		if (!tasks) throw new NotFoundException('Group not found')
 		return tasks
 	}

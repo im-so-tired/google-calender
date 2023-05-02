@@ -9,6 +9,7 @@ import DayPage from './Components/Pages/Day/Day'
 import MonthPage from './Components/Pages/Month/Month'
 import WeekPage from './Components/Pages/Week/Week'
 import Layout from './Components/UI/Layout/Layout'
+import AuthProvider from './Provider/AuthProvider'
 import MainProvider from './Provider/MainProvider'
 
 const currentDate = getCurrentDate()
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
 			{
 				path: '/week/:year/:month/:day',
 				element: <WeekPage />,
+				// loader: loadActivity,
 			},
 			{
 				path: '/month/:year/:month/:day',

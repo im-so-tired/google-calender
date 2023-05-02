@@ -11,6 +11,8 @@ frontend/.dockerignore
 frontend/dist
 backend/dist
 
+frontend/.env
+backend/.env
 # Logs
 logs
 *.log

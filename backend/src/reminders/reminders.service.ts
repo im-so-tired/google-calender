@@ -1,12 +1,12 @@
-import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { RemindersEntity } from './reminders.entity'
-import { Repository } from 'typeorm'
-import { ReminderDto } from './reminder.dto'
+import {BadRequestException, ForbiddenException, Injectable, NotFoundException} from '@nestjs/common'
+import {InjectRepository} from '@nestjs/typeorm'
+import {RemindersEntity} from './reminders.entity'
+import {Repository} from 'typeorm'
+import {ReminderDto} from './reminder.dto'
 import * as moment from 'moment/moment'
-import { countTime } from '../utils/repeatTime'
+import {countTime} from '../utils/repeatTime'
 import DurationConstructor = moment.unitOfTime.DurationConstructor
-import { TasksDto } from '../tasks/tasks.dto'
+import {TasksDto} from '../tasks/tasks.dto'
 
 @Injectable()
 export class RemindersService {
@@ -17,7 +17,7 @@ export class RemindersService {
 		if (dto.repeat === 'no-repeat') {
 			const newReminder = this.reminderRepository.create({
 				...dto,
-				author: { id: userId },
+				author: {id: userId},
 			})
 			await this.reminderRepository.save(newReminder)
 			return [this.returnReminderFields(newReminder)]
@@ -46,7 +46,7 @@ export class RemindersService {
 	}
 
 	async groupUpdate(groupId: number, reminderId: number, userId: number, dto: ReminderDto) {
-		const reminders = await this.reminderRepository.find({ where: { groupId }, relations: { author: true } })
+		const reminders = await this.reminderRepository.find({where: {groupId}, relations: {author: true}})
 		if (!reminders.length) throw new NotFoundException('Reminder group not found')
 		if (reminders[0].author.id !== userId) throw new ForbiddenException('You do not have permission to update this reminder group!!!')
 		const updatedTasks = []
@@ -70,37 +70,37 @@ export class RemindersService {
 	async delete(id: number, userId: number) {
 		const reminder = await this.byId(id)
 		if (reminder.author.id !== userId) throw new ForbiddenException('You do not have permission to delete this task!!!')
-		await this.reminderRepository.delete({ id: id })
+		await this.reminderRepository.delete({id: id})
 		return id
 	}
 
 	async deleteGroup(groupId: number, userId: number) {
 		const reminders = await this.getGroup(groupId)
 		if (reminders[0].author.id !== userId) throw new ForbiddenException('You do not have permission to delete this group tasks!!!')
-		await this.reminderRepository.delete({ groupId })
+		await this.reminderRepository.delete({groupId})
 		return groupId
 	}
 
 	async byId(id: number) {
-		const reminder = await this.reminderRepository.findOne({ where: { id }, relations: { author: true } })
+		const reminder = await this.reminderRepository.findOne({where: {id}, relations: {author: true}})
 		if (!reminder) throw new NotFoundException('Reminder not found')
 		return reminder
 	}
 
 	async getGroup(groupId: number) {
-		const reminders = await this.reminderRepository.find({ where: { groupId }, relations: { author: true } })
+		const reminders = await this.reminderRepository.find({where: {groupId}, relations: {author: true}})
 		if (!reminders) throw new NotFoundException('Group not found')
 		return reminders
 	}
 
 	async createRepeat(dto: ReminderDto, userId: number, time: number, groupId: number) {
 		const tasks = []
-		for (let i = 0; i < 5; i++) {
+		for (let i = 0; i < 7; i++) {
 			const newReminder = await this.reminderRepository.create({
 				...dto,
 				groupId,
 				time,
-				author: { id: userId },
+				author: {id: userId},
 			})
 			await this.reminderRepository.save(newReminder)
 			tasks.push(this.returnReminderFields(newReminder))

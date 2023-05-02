@@ -16,6 +16,10 @@ class Task {
 		makeAutoObservable(this)
 	}
 
+	setTasks(tasks: ITask[]) {
+		this.tasks = tasks
+	}
+
 	async getTasks(param: QueryParamTime) {
 		try {
 			const res = await UserService.getTasks(param)
@@ -28,6 +32,7 @@ class Task {
 	}
 
 	async createTask(task: DtoTask) {
+		const toastId = toast.loading('Create an task...')
 		try {
 			const newTasks = await TasksService.create(task)
 			runInAction(() => {
@@ -35,8 +40,10 @@ class Task {
 				// this.tasks.push(...newTasks)
 				// this.tasks.splice(this.tasks.length, 0, ...newTasks)
 			})
+			toast.dismiss(toastId)
 			toast.success('Task created!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
@@ -46,30 +53,37 @@ class Task {
 	}
 
 	async deleteTask(id: number) {
+		const toastId = toast.loading('Deletion...')
 		try {
 			const deletedId = await TasksService.delete(id)
 			runInAction(() => {
 				this.tasks = this.tasks.filter(task => task.id !== deletedId)
 			})
+			toast.dismiss(toastId)
 			toast.success('Task deleted!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async deleteGroup(groupId: number) {
+		const toastId = toast.loading('Group deletion...')
 		try {
 			const deletedId = await TasksService.deleteGroup(groupId)
 			runInAction(() => {
 				this.tasks = this.tasks.filter(task => task.groupId !== deletedId)
 			})
+			toast.dismiss(toastId)
 			toast.success('Task group deleted!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async changeComplete(id: number) {
+		const toastId = toast.loading('Change completion...')
 		try {
 			const newComplete = await TasksService.changeComplete(id)
 			runInAction(() => {
@@ -80,17 +94,20 @@ class Task {
 					return task
 				})
 			})
+			toast.dismiss(toastId)
 			toast.success('Task updated!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async update(id: number, newValue: DtoTask) {
+		const toastId = toast.loading('Update in progress...')
 		try {
 			const { updatedTask, createdTask } = await TasksService.update(
 				id,
-				newValue,
+				newValue
 			)
 			runInAction(() => {
 				this.tasks = this.tasks.map(task => {
@@ -101,18 +118,21 @@ class Task {
 				})
 				if (createdTask.length) this.tasks = [...this.tasks, ...createdTask]
 			})
+			toast.dismiss(toastId)
 			toast.success('Task updated!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
 
 	async groupUpdate(groupId: number, taskId: number, newValue: DtoTask) {
+		const toastId = toast.loading('Group update in progress...')
 		try {
 			const updatedTasks = await TasksService.updateGroup(
 				groupId,
 				taskId,
-				newValue,
+				newValue
 			)
 			runInAction(() => {
 				this.tasks = this.tasks.map(task => {
@@ -123,8 +143,10 @@ class Task {
 					return task
 				})
 			})
+			toast.dismiss(toastId)
 			toast.success('Task group updated!')
 		} catch (e) {
+			toast.dismiss(toastId)
 			toast.error(errorMessage(e))
 		}
 	}
