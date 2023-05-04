@@ -1,21 +1,14 @@
 import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
-
-import WeekTable from '@ui/Tables/WeekTable/WeekTable'
+import React, { FC, PropsWithChildren } from 'react'
 
 import { useRedirect } from '@hooks/useRedirect'
 
 import pickedDate from '@store/PickedDate'
 
-const WeekPage: FC = observer(() => {
+const TableLayout: FC<PropsWithChildren> = observer(({ children }) => {
 	const { timeZone, date } = pickedDate
 	useRedirect(date, timeZone)
-
-	return (
-		<div>
-			<WeekTable />
-		</div>
-	)
+	return <div>{children}</div>
 })
 
-export default WeekPage
+export default TableLayout
